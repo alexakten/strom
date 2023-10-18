@@ -24,6 +24,18 @@ export default function Home() {
     }
   };
 
+  const saveText = () => {
+    const blob = new Blob([text], { type: "text/plain" });
+    const href = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = href;
+    link.download = "strōm-savedText.txt"; // Name of the downloaded file
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(href); // Optional: free up memory
+  };
+
   const clearText = () => {
     setText(""); // Update state to empty string
     localStorage.removeItem("savedText"); // Remove the savedText from localStorage
@@ -62,23 +74,23 @@ export default function Home() {
     }
   }, []);
 
-  useEffect(() => {
-    const handleKeyDown = () => {
-      if (
-        editableRef.current &&
-        document.activeElement !== editableRef.current
-      ) {
-        editableRef.current.focus();
-      }
-    };
+  // useEffect(() => {
+  //   const handleKeyDown = () => {
+  //     if (
+  //       editableRef.current &&
+  //       document.activeElement !== editableRef.current
+  //     ) {
+  //       editableRef.current.focus();
+  //     }
+  //   };
 
-    document.addEventListener("keydown", handleKeyDown);
+  //   document.addEventListener("keydown", handleKeyDown);
 
-    // Cleanup
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  //   // Cleanup
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
 
   return (
     <main
@@ -108,8 +120,8 @@ export default function Home() {
             className="whitespace-pre-wrap w-full outline-none font-normal select-none leading-8 text-xl relative no-select"
             contentEditable={true}
             suppressContentEditableWarning={true}
-            onMouseUp={(e) => e.preventDefault()}
-            onMouseDown={(e) => e.preventDefault()}
+            // onMouseUp={(e) => e.preventDefault()}
+            // onMouseDown={(e) => e.preventDefault()}
             onBlur={handleInput}
             dangerouslySetInnerHTML={{ __html: text }}
           ></div>
@@ -139,7 +151,7 @@ export default function Home() {
 
       <div className="flex font-neue-haas font-medium justify-between items-end">
         <div className="flex flex-row gap-4">
-          <button type="button" onClick={toggleTheme}>
+          <button type="button" onClick={saveText}>
             [ save ]
           </button>
           <button type="button" onClick={clearText}>
