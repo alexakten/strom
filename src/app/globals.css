@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: url('/fonts/NHaasGroteskTXPro-55Rg.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400; /* normal */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: url('/fonts/NHaasGroteskTXPro-65Md.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 500; /* medium weight for example */
+  font-style: normal;
+}
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -17,6 +35,7 @@
 }
 
 body {
+  font-family: 'Neue Haas Grotesk', sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -25,3 +44,13 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
