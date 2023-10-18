@@ -9,6 +9,7 @@ export default function Home() {
   const [viewportHeight, setViewportHeight] = useState(0);
 
   const [text, setText] = useState("");
+  
   const handleInput = (e: React.SyntheticEvent) => {
     let target = e.target as HTMLDivElement; // Adjust as per your actual element type
     const currentText = target.textContent || "";
@@ -102,7 +103,7 @@ export default function Home() {
           : "bg-neutral-950 text-white"
       }`}
     >
-      <nav className="flex justify-between relative">
+      <nav className="flex justify-between items-center relative">
         <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
         <div className="font-medium">
           <button type="button" onClick={toggleTheme}>
