@@ -24,6 +24,7 @@ export default function Home() {
     }
   };
 
+
   const saveText = () => {
     const blob = new Blob([text], { type: "text/plain" });
     const href = URL.createObjectURL(blob);
@@ -74,23 +75,23 @@ export default function Home() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const handleKeyDown = () => {
-  //     if (
-  //       editableRef.current &&
-  //       document.activeElement !== editableRef.current
-  //     ) {
-  //       editableRef.current.focus();
-  //     }
-  //   };
+  useEffect(() => {
+    const handleKeyDown = () => {
+      if (
+        editableRef.current &&
+        document.activeElement !== editableRef.current
+      ) {
+        editableRef.current.focus();
+      }
+    };
 
-  //   document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
-  //   // Cleanup
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
+    // Cleanup
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <main
@@ -132,14 +133,12 @@ export default function Home() {
               theme === "light" ? "bg-slate-100" : "bg-neutral-950"
             } opacity-85`}
           ></div>
-
           {/* Overlay for 3rd line */}
           <div
             className={`absolute bottom-16 w-full h-8 ${
               theme === "light" ? "bg-slate-100" : "bg-neutral-950"
             } opacity-90`}
           ></div>
-
           {/* Overlay for 4th line */}
           <div
             className={`absolute bottom-24 w-full h-8 ${
