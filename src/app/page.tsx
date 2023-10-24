@@ -12,6 +12,8 @@ export default function Home() {
 
   const [text, setText] = useState("");
 
+  const [selectedSpeed, setSelectedSpeed] = useState(null);
+
   const handleInput = (e: React.SyntheticEvent) => {
     let target = e.target as HTMLDivElement; // Adjust as per your actual element type
     const currentText = target.textContent || "";
@@ -272,20 +274,24 @@ export default function Home() {
 
         {view === "breathe" && (
           <div className="w-full h-full flex items-center justify-center">
-            <div className="relative">
-              {/* Constant outer circle */}
-              <div
-                className={`w-56 h-56 rounded-full border-2 ${
-                  theme === "light" ? "border-black" : "border-white"
-                }`}
-              ></div>
-
-              {/* Animated inner circle */}
-              <div
-                className={`w-56 h-56 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-breathe ${
-                  theme === "light" ? "bg-black" : "bg-white"
-                }`}
-              ></div>
+            <div className="flex flex-col gap-8 items-center">
+              {/* Container for Circle */}
+              <div className="relative mb-4">
+                {" "}
+                {/* <-- Added a margin bottom (mb-4) for spacing */}
+                {/* Constant outer circle */}
+                <div
+                  className={`w-56 h-56 rounded-full border-2 ${
+                    theme === "light" ? "border-black" : "border-white"
+                  }`}
+                ></div>
+                {/* Animated inner circle */}
+                <div
+                  className={`w-56 h-56 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-breathe ${
+                    theme === "light" ? "bg-black" : "bg-white"
+                  }`}
+                ></div>
+              </div>
             </div>
           </div>
         )}
@@ -300,8 +306,15 @@ export default function Home() {
 
       <div className="flex font-neue-haas font-medium justify-between items-end">
         {view === "text" ? (
-          <div className="flex flex-row gap-4">
-            <button type="button" onClick={saveText}>
+          <div className="flex flex-row gap-8">
+            <button
+              type="button"
+              aria-label="save"
+              onClick={saveText}
+              className={`py-1 px-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              }`}
+            >
               save
             </button>
             <button type="button" onClick={clearText}>
@@ -309,7 +322,68 @@ export default function Home() {
             </button>
           </div>
         ) : (
-          <div style={{ visibility: "hidden" }}></div>
+          <div style={{ display: "none" }}></div>
+        )}
+
+        {view === "breathe" ? (
+          <div className="flex flex-row gap-4">
+            <button
+              type="button"
+              aria-label="energy"
+              onClick={() => {
+                setSelectedSpeed("energy");
+              }}
+              className={`py-1 px-4 border-sm border-2 rounded-md ${
+                selectedSpeed === "energy"
+                  ? theme === "dark"
+                    ? "bg-white text-black border-white"
+                    : "bg-black text-white border-black"
+                  : theme === "dark"
+                  ? "border-white"
+                  : "border-black"
+              }`}
+            >
+              energy
+            </button>
+            <button
+              type="button"
+              aria-label="relax"
+              onClick={() => {
+                setSelectedSpeed("relax");
+              }}
+              className={`py-1 px-4 border-sm border-2 rounded-md ${
+                selectedSpeed === "relax"
+                  ? theme === "dark"
+                    ? "bg-white text-black border-white"
+                    : "bg-black text-white border-black"
+                  : theme === "dark"
+                  ? "border-white"
+                  : "border-black"
+              }`}
+            >
+              relax
+            </button>
+            <button
+              type="button"
+              aria-label="sleep"
+              onClick={() => {
+                setSelectedSpeed("sleep");
+              }}
+              className={`py-1 px-4 border-sm border-2 rounded-md ${
+                selectedSpeed === "sleep"
+                  ? theme === "dark"
+                    ? "bg-white text-black border-white"
+                    : "bg-black text-white border-black"
+                  : theme === "dark"
+                  ? "border-white"
+                  : "border-black"
+              }`}
+            >
+              sleep
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: "none" }}></div>
         )}
 
         <p>© 2023</p>
