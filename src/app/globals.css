@@ -103,27 +103,27 @@
 }
 
 .meditate-5m {
-  animation: meditateShrink 5m forwards;
+  animation: meditateShrink calc(60*5s)forwards;
 }
 
 .meditate-10m {
-  animation: meditateShrink 10m forwards;
+  animation: meditateShrink calc(60*10s) forwards;
 }
 
 .meditate-15m {
-  animation: meditateShrink 15m forwards;
+  animation: meditateShrink calc(60*15s) forwards;
 }
 
 .meditate-20m {
-  animation: meditateShrink 20m forwards;
+  animation: meditateShrink calc(60*20s) forwards;
 }
 
 .meditate-30m {
-  animation: meditateShrink 30m forwards;
+  animation: meditateShrink calc(60*30s) forwards;
 }
 
 .meditate-60m {
-  animation: meditateShrink 60m forwards;
+  animation: meditateShrink calc(60*60s) forwards;
 }
 
 

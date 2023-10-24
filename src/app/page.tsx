@@ -12,12 +12,17 @@ export default function Home() {
 
   const [text, setText] = useState("");
 
-  const [selectedSpeed, setSelectedSpeed] = useState("relax");
   const [selectedDuration, setSelectedDuration] = useState(5);
   const [isMeditating, setIsMeditating] = useState(false);
   function toggleMeditation() {
     setIsMeditating(!isMeditating);
   }
+
+  const [selectedSpeed, setSelectedSpeed] = useState("relax");
+  const [isBreathing, setIsBreathing] = useState(false);
+  const toggleBreathing = () => {
+    setIsBreathing((prev) => !prev);
+  };
 
   const handleInput = (e: React.SyntheticEvent) => {
     let target = e.target as HTMLDivElement; // Adjust as per your actual element type
@@ -124,7 +129,7 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []); // Empty dependency array means this effect runs once when component mounts
+  }, []);
 
   return (
     <main
@@ -281,26 +286,29 @@ export default function Home() {
           <div className="w-full h-full flex items-center justify-center">
             <div className="flex flex-col gap-8 items-center">
               {/* Container for Circle */}
-              <div className="relative mb-4">
+              <div className="relative">
                 {" "}
-                {/* <-- Added a margin bottom (mb-4) for spacing */}
                 {/* Constant outer circle */}
                 <div
                   className={`w-56 h-56 rounded-full border-2 ${
-                    theme === "light" ? "border-black" : "border-white"
+                    theme === "light" ? "border-black" : "border-zinc-50"
                   }`}
                 ></div>
                 {/* Animated inner circle */}
                 <div
-                  className={`w-56 h-56 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
-                    selectedSpeed === "relax"
-                      ? "animate-breathe-relax"
-                      : selectedSpeed === "energy"
-                      ? "animate-breathe-energy"
-                      : selectedSpeed === "sleep"
-                      ? "animate-breathe-sleep"
-                      : ""
-                  } ${theme === "light" ? "bg-black" : "bg-white"}`}
+                  className={`w-56 h-56 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+        ${
+          isBreathing
+            ? selectedSpeed === "relax"
+              ? "animate-breathe-relax"
+              : selectedSpeed === "energy"
+              ? "animate-breathe-energy"
+              : selectedSpeed === "sleep"
+              ? "animate-breathe-sleep"
+              : ""
+            : ""
+        }
+        ${theme === "light" ? "bg-black" : "bg-zinc-50"}`}
                 ></div>
               </div>
             </div>
@@ -368,6 +376,23 @@ export default function Home() {
 
         {view === "breathe" ? (
           <div className="flex flex-row gap-4">
+            <button
+              type="button"
+              aria-label="toggleBreathing"
+              onClick={toggleBreathing}
+              className={`py-1 px-4 border-sm border-2 rounded-md w-20 
+        ${
+          isBreathing
+            ? theme === "dark"
+              ? "bg-white text-black border-white"
+              : "bg-black text-white border-black"
+            : theme === "dark"
+            ? "border-white"
+            : "border-black"
+        }`}
+            >
+              {isBreathing ? "pause" : "start"}
+            </button>
             <button
               type="button"
               aria-label="energy"
