@@ -228,8 +228,8 @@ export default function Home() {
                     : "/icons/meditate.png"
                 }
                 alt="Meditate Icon"
-                width={22}
-                height={22}
+                width={24}
+                height={24}
               />
             </div>
           </button>
