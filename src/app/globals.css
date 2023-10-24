@@ -90,6 +90,43 @@
 
 
 
+/* Common style to ensure the div shrinks from the right */
+.inner-div {
+  transform-origin: left;
+}
+
+@keyframes meditateShrink {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.meditate-5m {
+  animation: meditateShrink 5s forwards;
+}
+
+.meditate-10m {
+  animation: meditateShrink 10s forwards;
+}
+
+.meditate-15m {
+  animation: meditateShrink 15s forwards;
+}
+
+.meditate-20m {
+  animation: meditateShrink 20s forwards;
+}
+
+.meditate-30m {
+  animation: meditateShrink 30s forwards;
+}
+
+.meditate-60m {
+  animation: meditateShrink 60s forwards;
+}
+
+
+
 
 
 

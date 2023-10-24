@@ -13,6 +13,11 @@ export default function Home() {
   const [text, setText] = useState("");
 
   const [selectedSpeed, setSelectedSpeed] = useState("relax");
+  const [selectedDuration, setSelectedDuration] = useState(5);
+  const [isMeditating, setIsMeditating] = useState(false);
+  function toggleMeditation() {
+    setIsMeditating(!isMeditating);
+  }
 
   const handleInput = (e: React.SyntheticEvent) => {
     let target = e.target as HTMLDivElement; // Adjust as per your actual element type
@@ -303,9 +308,39 @@ export default function Home() {
         )}
 
         {view === "meditate" && (
-          <div className="w-full flex items-center justify-center h-full">
-            {/* Meditate view's content goes here */}
-            <p>Meditate View Content</p>
+          <div className="w-full overflow-hidden flex items-center justify-center h-full">
+            <div
+              className={`w-96 h-10 ${
+                theme === "light" ? "bg-black" : "bg-zinc-50"
+              } relative rounded-full`}
+            >
+              <div
+                className={`w-full h-full absolute rounded-full ${
+                  theme === "light" ? "bg-zinc-50" : "bg-black"
+                } ${
+                  !isMeditating
+                    ? ""
+                    : selectedDuration === 5
+                    ? "meditate-5m"
+                    : selectedDuration === 10
+                    ? "meditate-10m"
+                    : selectedDuration === 15
+                    ? "meditate-15m"
+                    : selectedDuration === 20
+                    ? "meditate-20m"
+                    : selectedDuration === 30
+                    ? "meditate-30m"
+                    : selectedDuration === 60
+                    ? "meditate-60m"
+                    : ""
+                }`}
+              ></div>
+              <div
+                className={`w-96 h-10 border-4 ${
+                  theme === "light" ? "border-black" : "border-zinc-50"
+                } absolute rounded-full`}
+              ></div>
+            </div>
           </div>
         )}
       </div>
@@ -387,6 +422,48 @@ export default function Home() {
             >
               sleep
             </button>
+          </div>
+        ) : (
+          <div style={{ display: "none" }}></div>
+        )}
+
+        {view === "meditate" ? (
+          <div className="flex flex-row gap-4">
+            <button
+              type="button"
+              aria-label="toggleMeditation"
+              onClick={toggleMeditation}
+              className={`py-1 px-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              }`}
+            >
+              {isMeditating ? "pause" : "start"}
+            </button>
+
+            {
+              // Using map to reduce code repetition
+              [5, 10, 15, 20, 30, 60].map((duration) => (
+                <button
+                  key={duration}
+                  type="button"
+                  aria-label={`${duration} minutes`}
+                  onClick={() => {
+                    setSelectedDuration(duration);
+                  }}
+                  className={`py-1 px-2 border-sm border-2 rounded-md ${
+                    selectedDuration === duration
+                      ? theme === "dark"
+                        ? "bg-white text-black border-white"
+                        : "bg-black text-white border-black"
+                      : theme === "dark"
+                      ? "border-white"
+                      : "border-black"
+                  }`}
+                >
+                  {duration}
+                </button>
+              ))
+            }
           </div>
         ) : (
           <div style={{ display: "none" }}></div>
