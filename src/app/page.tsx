@@ -116,14 +116,26 @@ export default function Home() {
             type="button"
             aria-label="Text"
             onClick={() => setView("text")}
-            className={`p-4 border-sm border-2 rounded-md border-black relative ${
-              view === "text" ? "bg-black" : ""
+            className={`p-4 border-sm border-2 rounded-md ${
+              theme === "dark" ? "border-white" : "border-black"
+            } relative ${
+              view === "text"
+                ? theme === "dark"
+                  ? "bg-white text-black"
+                  : "bg-black text-white"
+                : ""
             }`}
           >
             <div className="absolute inset-0 flex items-center justify-center">
               <Image
                 src={
-                  view === "text" ? "/icons/text-white.png" : "/icons/text.png"
+                  theme === "dark"
+                    ? view === "text"
+                      ? "/icons/text.png"
+                      : "/icons/text-white.png"
+                    : view === "text"
+                    ? "/icons/text-white.png"
+                    : "/icons/text.png"
                 }
                 alt="Text Icon"
                 width={20}
@@ -136,14 +148,24 @@ export default function Home() {
             type="button"
             aria-label="Breathe"
             onClick={() => setView("breathe")}
-            className={`p-4 border-sm border-2 rounded-md border-black relative ${
-              view === "breathe" ? "bg-black" : ""
+            className={`p-4 border-sm border-2 rounded-md ${
+              theme === "dark" ? "border-white" : "border-black"
+            } relative ${
+              view === "breathe"
+                ? theme === "dark"
+                  ? "bg-white text-black"
+                  : "bg-black text-white"
+                : ""
             }`}
           >
             <div className="absolute inset-0 flex items-center justify-center">
               <Image
                 src={
-                  view === "breathe"
+                  theme === "dark"
+                    ? view === "breathe"
+                      ? "/icons/breathe.png"
+                      : "/icons/breathe-white.png"
+                    : view === "breathe"
                     ? "/icons/breathe-white.png"
                     : "/icons/breathe.png"
                 }
@@ -158,14 +180,24 @@ export default function Home() {
             type="button"
             aria-label="Meditate"
             onClick={() => setView("meditate")}
-            className={`p-4 border-sm border-2 rounded-md border-black relative ${
-              view === "meditate" ? "bg-black text-white" : ""
+            className={`p-4 border-sm border-2 rounded-md ${
+              theme === "dark" ? "border-white" : "border-black"
+            } relative ${
+              view === "meditate"
+                ? theme === "dark"
+                  ? "bg-white text-black"
+                  : "bg-black text-white"
+                : ""
             }`}
           >
             <div className="absolute inset-0 flex items-center justify-center">
               <Image
                 src={
-                  view === "meditate"
+                  theme === "dark"
+                    ? view === "meditate"
+                      ? "/icons/meditate.png"
+                      : "/icons/meditate-white.png"
+                    : view === "meditate"
                     ? "/icons/meditate-white.png"
                     : "/icons/meditate.png"
                 }
