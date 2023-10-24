@@ -19,20 +19,79 @@
   font-style: normal;
 }
 
-@keyframes breatheAnimation {
+/* Relax */
+@keyframes breatheAnimationRelax {
   0%, 100% {
     width: 0;
     height: 0;
   }
-  50% {
+  25%, 50% {
     width: 224px;
     height: 224px;
   }
+  75% {
+    width: 0;
+    height: 0;
+  }
 }
 
-.animate-breathe {
-  animation: breatheAnimation 12s infinite;
+.animate-breathe-relax {
+  animation: breatheAnimationRelax 16s infinite;
 }
+
+/* Energy */
+@keyframes breatheAnimationEnergy {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  22.22% {  /* Breathe in complete */
+    width: 224px;
+    height: 224px;
+  }
+  33.33% {  /* 22.22 + 11.11 (Hold after breathe in) */
+    width: 224px;
+    height: 224px;
+  }
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
+
+.animate-breathe-energy {
+  animation: breatheAnimationEnergy 9s infinite;
+}
+
+/* Sleep */
+@keyframes breatheAnimationSleep {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  21.05% {  /* Breathe in complete */
+    width: 224px;
+    height: 224px;
+  }
+  57.89% {  /* 21.05 + 36.84 */
+    width: 224px;
+    height: 224px;
+  }
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
+
+.animate-breathe-sleep {
+  animation: breatheAnimationSleep 19s infinite;
+}
+
+
+
+
+
+
 
 
 

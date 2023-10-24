@@ -12,7 +12,7 @@ export default function Home() {
 
   const [text, setText] = useState("");
 
-  const [selectedSpeed, setSelectedSpeed] = useState(null);
+  const [selectedSpeed, setSelectedSpeed] = useState("relax");
 
   const handleInput = (e: React.SyntheticEvent) => {
     let target = e.target as HTMLDivElement; // Adjust as per your actual element type
@@ -287,9 +287,15 @@ export default function Home() {
                 ></div>
                 {/* Animated inner circle */}
                 <div
-                  className={`w-56 h-56 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-breathe ${
-                    theme === "light" ? "bg-black" : "bg-white"
-                  }`}
+                  className={`w-56 h-56 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
+                    selectedSpeed === "relax"
+                      ? "animate-breathe-relax"
+                      : selectedSpeed === "energy"
+                      ? "animate-breathe-energy"
+                      : selectedSpeed === "sleep"
+                      ? "animate-breathe-sleep"
+                      : ""
+                  } ${theme === "light" ? "bg-black" : "bg-white"}`}
                 ></div>
               </div>
             </div>
