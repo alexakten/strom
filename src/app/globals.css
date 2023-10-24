@@ -93,6 +93,7 @@
 /* Common style to ensure the div shrinks from the right */
 .inner-div {
   transform-origin: left;
+  animation-timing-function: linear; 
 }
 
 @keyframes meditateShrink {
@@ -102,27 +103,27 @@
 }
 
 .meditate-5m {
-  animation: meditateShrink 5s forwards;
+  animation: meditateShrink 5m forwards;
 }
 
 .meditate-10m {
-  animation: meditateShrink 10s forwards;
+  animation: meditateShrink 10m forwards;
 }
 
 .meditate-15m {
-  animation: meditateShrink 15s forwards;
+  animation: meditateShrink 15m forwards;
 }
 
 .meditate-20m {
-  animation: meditateShrink 20s forwards;
+  animation: meditateShrink 20m forwards;
 }
 
 .meditate-30m {
-  animation: meditateShrink 30s forwards;
+  animation: meditateShrink 30m forwards;
 }
 
 .meditate-60m {
-  animation: meditateShrink 60s forwards;
+  animation: meditateShrink 60m forwards;
 }
 
 

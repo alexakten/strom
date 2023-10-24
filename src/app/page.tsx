@@ -433,9 +433,16 @@ export default function Home() {
               type="button"
               aria-label="toggleMeditation"
               onClick={toggleMeditation}
-              className={`py-1 px-4 border-sm border-2 rounded-md ${
-                theme === "dark" ? "border-white" : "border-black"
-              }`}
+              className={`py-1 px-4 border-sm border-2 rounded-md w-20 
+        ${
+          isMeditating
+            ? theme === "dark"
+              ? "bg-white text-black border-white"
+              : "bg-black text-white border-black"
+            : theme === "dark"
+            ? "border-white"
+            : "border-black"
+        }`}
             >
               {isMeditating ? "pause" : "start"}
             </button>
