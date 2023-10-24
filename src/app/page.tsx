@@ -73,9 +73,21 @@ export default function Home() {
 
   useEffect(() => {
     if (editableRef.current !== null) {
+      // Focus the contentEditable div
       editableRef.current.focus();
+
+      // Set cursor to the end of the content
+      const range = document.createRange();
+      range.selectNodeContents(editableRef.current);
+      range.collapse(false); // false means collapse to the end
+      const sel = window.getSelection();
+      if (sel) {
+        // null check here
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
     }
-  }, []);
+  }, [theme, view]);
 
   useEffect(() => {
     const handleKeyDown = () => {
@@ -84,6 +96,18 @@ export default function Home() {
         document.activeElement !== editableRef.current
       ) {
         editableRef.current.focus();
+
+        // Set cursor to the end
+        const range = document.createRange();
+        range.selectNodeContents(editableRef.current);
+        range.collapse(false); // false means collapse to the end
+        const sel = window.getSelection();
+
+        if (sel) {
+          // null check here
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
       }
     };
 
@@ -93,7 +117,7 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, []); // Empty dependency array means this effect runs once when component mounts
 
   return (
     <main
@@ -213,11 +237,11 @@ export default function Home() {
       <div className="flex items-center justify-center h-screen">
         {view === "text" && (
           <div
-            ref={editableRef}
             className="w-full flex items-end h-32 overflow-hidden select-none cursor-text max-w-lg relative transform -translate-y-1/2"
             onClick={handleContainerClick}
           >
             <div
+              ref={editableRef}
               className="whitespace-pre-wrap w-full outline-none font-normal select-none leading-8 text-xl relative no-select"
               contentEditable={true}
               suppressContentEditableWarning={true}
