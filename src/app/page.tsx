@@ -108,7 +108,7 @@ export default function Home() {
         <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
         <div className="font-medium">
           <button type="button" onClick={toggleTheme}>
-            {theme === "light" ? "[ ◖ dark ]" : "[ ● light ]"}
+            {theme === "light" ? "◖ dark" : "● light"}
           </button>
         </div>
         <div className="flex flex-row gap-4 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -215,8 +215,22 @@ export default function Home() {
         )}
 
         {view === "breathe" && (
-          <div className="w-full flex items-center justify-center h-full">
-            
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="relative">
+              {/* Constant outer circle */}
+              <div
+                className={`w-56 h-56 rounded-full border-2 ${
+                  theme === "light" ? "border-black" : "border-white"
+                }`}
+              ></div>
+
+              {/* Animated inner circle */}
+              <div
+                className={`w-56 h-56 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-breathe ${
+                  theme === "light" ? "bg-black" : "bg-white"
+                }`}
+              ></div>
+            </div>
           </div>
         )}
 
@@ -229,14 +243,18 @@ export default function Home() {
       </div>
 
       <div className="flex font-neue-haas font-medium justify-between items-end">
-        <div className="flex flex-row gap-4">
-          <button type="button" onClick={saveText}>
-            [ save ]
-          </button>
-          <button type="button" onClick={clearText}>
-            [ clear ]
-          </button>
-        </div>
+        {view === "text" ? (
+          <div className="flex flex-row gap-4">
+            <button type="button" onClick={saveText}>
+              save
+            </button>
+            <button type="button" onClick={clearText}>
+              clear
+            </button>
+          </div>
+        ) : (
+          <div style={{ visibility: "hidden" }}></div>
+        )}
 
         <p>© 2023</p>
       </div>

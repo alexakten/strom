@@ -19,6 +19,22 @@
   font-style: normal;
 }
 
+@keyframes breatheAnimation {
+  0%, 100% {
+    width: 0;
+    height: 0;
+  }
+  50% {
+    width: 224px;
+    height: 224px;
+  }
+}
+
+.animate-breathe {
+  animation: breatheAnimation 12s infinite;
+}
+
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
