@@ -19,6 +19,9 @@ const config: Config = {
       borderWidth: {
         '3': '3px'
       },
+      screens: {
+        xs: "440px",
+      },
     },
   },
   plugins: [],
