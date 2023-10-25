@@ -450,11 +450,11 @@ export default function Home() {
 
         {view === "quotes" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
-            <div className="flex flex-col gap-4 w-full outline-none relative no-select">
-              <p className="font-medium select-none leading-8 text-xl">
+            <div className="flex flex-col gap-4 w-full">
+              <p className="font-medium leading-8 text-xl">
               “{currentQuote.quote}”
               </p>
-              <p className="pl-8 font-regular">—{currentQuote.person}</p>
+              <p className="pl-12 font-regular">—{currentQuote.person}</p>
             </div>
           </div>
         )}
