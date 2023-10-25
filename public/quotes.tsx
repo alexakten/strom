@@ -62,14 +62,6 @@ const Quotes = [
     person: "Seneca",
   },
   {
-    quote: "It's not that we have little time, but more that we waste a good deal of it.",
-    person: "Seneca",
-  },
-  {
-    quote: "Only the educated are free.",
-    person: "Epictetus",
-  },
-  {
     quote: "Wealth consists not in having great possessions, but in having few wants.",
     person: "Epictetus",
   },
@@ -90,18 +82,6 @@ const Quotes = [
     person: "Epictetus",
   },
   {
-    quote: "The only way to do our duty is by doing the immediate thing that lies at our feet.",
-    person: "John Ruskin",
-  },
-  {
-    quote: "The unexamined life is not worth living.",
-    person: "Socrates",
-  },
-  {
-    quote: "I think therefore I am.",
-    person: "René Descartes",
-  },
-  {
     quote: "The only true wisdom is in knowing you know nothing.",
     person: "Socrates",
   },
@@ -112,10 +92,6 @@ const Quotes = [
   {
     quote: "The greatest wealth is to live content with little.",
     person: "Plato",
-  },
-  {
-    quote: "The life which is unexamined is not worth living.",
-    person: "Socrates",
   },
   {
     quote: "Happiness is the highest good.",
@@ -138,24 +114,8 @@ const Quotes = [
     person: "Spinoza",
   },
   {
-    quote: "The price good men pay for indifference to public affairs is to be ruled by evil men.",
-    person: "Plato",
-  },
-  {
     quote: "Virtue is nothing else than right reason.",
     person: "Seneca the Younger",
-  },
-  {
-    quote: "The only way to escape the personal corruption of praise is to go on working.",
-    person: "Albert Einstein",
-  },
-  {
-    quote: "He who commits injustice is ever made more wretched than he who suffers it.",
-    person: "Plato",
-  },
-  {
-    quote: "To enjoy the things we ought, and to hate the things we ought, has the greatest bearing on excellence of character.",
-    person: "Aristotle",
   },
   {
     quote: "Life must be understood backward. But it must be lived forward.",
@@ -164,10 +124,6 @@ const Quotes = [
   {
     quote: "Happiness is not an ideal of reason, but of imagination.",
     person: "Immanuel Kant",
-  },
-  {
-    quote: "The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion.",
-    person: "Albert Camus",
   },
   {
     quote: "The journey of a thousand miles begins with one step.",

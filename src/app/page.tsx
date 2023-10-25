@@ -2,6 +2,8 @@
 import "./globals.css";
 import React from "react";
 import Image from "next/image";
+import Head from 'next/head';
+
 import Quotes from "../../public/quotes";
 
 import { useState, useEffect, useCallback } from "react";
@@ -208,6 +210,21 @@ export default function Home() {
           : "bg-neutral-950 text-white"
       }`}
     >
+      <Head>
+        <link rel="preload" href="/icons/text.png" as="image" />
+        <link rel="preload" href="/icons/text-white.png" as="image" />
+        <link rel="preload" href="/icons/breathe.png" as="image" />
+        <link rel="preload" href="/icons/breathe-white.png" as="image" />
+        <link rel="preload" href="/icons/meditate.png" as="image" />
+        <link rel="preload" href="/icons/meditate-white.png" as="image" />
+        <link rel="preload" href="/icons/todo.png" as="image" />
+        <link rel="preload" href="/icons/todo-white.png" as="image" />
+        <link rel="preload" href="/icons/quotes.png" as="image" />
+        <link rel="preload" href="/icons/quotes-white.png" as="image" />
+        {/* ... other head elements ... */}
+      </Head>
+      {/* ——————————————————————————————————————————————————————————————————— */}
+
       <nav className="flex justify-between items-center relative">
         <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
         <div className="font-medium">
@@ -378,7 +395,8 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* ————— All main views are in the div below ————— */}
+      {/* ——————————————————————————————————————————————————————————————————— */}
+
       <div className="flex items-center justify-center h-screen">
         {view === "text" && (
           <div
@@ -559,7 +577,8 @@ export default function Home() {
         )}
       </div>
 
-      {/* ————— All buttons for views are in the div below ————— */}
+      {/* ——————————————————————————————————————————————————————————————————— */}
+
       <div className="flex font-neue-haas font-medium justify-between items-end">
         {view === "text" ? (
           <div className="flex flex-row gap-8">
