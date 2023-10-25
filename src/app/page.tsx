@@ -28,7 +28,7 @@ export default function Home() {
   const getRandomQuote = () => {
     const randomIndex = Math.floor(Math.random() * Quotes.length);
     setCurrentQuote(Quotes[randomIndex]);
-};
+  };
 
   const [currentQuote, setCurrentQuote] = useState(Quotes[0]); // or any default quote
 
@@ -68,8 +68,6 @@ export default function Home() {
       editableRef.current.focus();
     }
   };
-
-  
 
   const editableRef = React.useRef<HTMLDivElement>(null);
 
@@ -452,7 +450,7 @@ export default function Home() {
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
             <div className="flex flex-col gap-4 w-full">
               <p className="font-medium leading-8 text-xl">
-              “{currentQuote.quote}”
+                “{currentQuote.quote}”
               </p>
               <p className="pl-12 font-regular">—{currentQuote.person}</p>
             </div>
@@ -619,14 +617,20 @@ export default function Home() {
                 theme === "dark" ? "border-white" : "border-black"
               }`}
             >
-              new
+              next
             </button>
           </div>
         ) : (
           <div style={{ display: "none" }}></div>
         )}
 
-        <p>© 2023</p>
+        <a
+          href="https://portfolio-alexakten.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <p>© 2023</p>
+        </a>
       </div>
     </main>
   );
