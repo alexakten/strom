@@ -151,6 +151,19 @@
 }
 
 
+.editable-div::before {
+  content: '...';
+  display: inline-block;
+  opacity: 0.6;
+  pointer-events: none; /* make sure the pseudo-element doesn't interfere with editing */
+  position: absolute;
+}
+
+.editable-div.active::before {
+  content: '';
+}
+
+
 
 
 

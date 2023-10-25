@@ -28,15 +28,19 @@ export default function Home() {
     setIsBreathing((prev) => !prev);
   };
 
-  const getRandomQuote = () => {
+  const getRandomQuoteValue = () => {
     const randomIndex = Math.floor(Math.random() * Quotes.length);
-    setCurrentQuote(Quotes[randomIndex]);
+    return Quotes[randomIndex];
   };
 
-  const [currentQuote, setCurrentQuote] = useState(Quotes[0]); // or any default quote
+  const getRandomQuote = () => {
+    setCurrentQuote(getRandomQuoteValue());
+  };
+
+  const [currentQuote, setCurrentQuote] = useState(getRandomQuoteValue());
 
   const handleInput = (e: React.SyntheticEvent) => {
-    let target = e.target as HTMLDivElement; // Adjust as per your actual element type
+    let target = e.target as HTMLDivElement;
     const currentText = target.textContent || "";
     setText(currentText);
     localStorage.setItem("savedText", currentText);
@@ -84,68 +88,73 @@ export default function Home() {
     text: string;
     isChecked: boolean;
   };
-  
+
   const [todos, setTodos] = useState<Todo[]>(() => {
     // Try getting todos from localStorage on initial load
     const savedTodos = localStorage.getItem("todos");
-    return savedTodos ? JSON.parse(savedTodos) : [{ text: "", isChecked: false }];
+    return savedTodos
+      ? JSON.parse(savedTodos)
+      : [{ text: "", isChecked: false }];
   });
-  
+
+  const [activeTodoIndex, setActiveTodoIndex] = useState<number | null>(null);
+
   useEffect(() => {
     // Any time the todos change, update them in localStorage
     localStorage.setItem("todos", JSON.stringify(todos));
- }, [todos]);
- 
-  
+  }, [todos]);
+
   const addTodo = (text: string): void => {
     setTodos((prevTodos: Todo[]) => [...prevTodos, { text, isChecked: false }]);
   };
-  
+
   const toggleTodo = (index: number): void => {
     const newTodos = [...todos];
     newTodos[index].isChecked = !newTodos[index].isChecked;
     setTodos(newTodos);
   };
-  
+
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     if (event.key === "Enter") {
       event.preventDefault();
       const value = event.currentTarget.innerText;
       if (value.trim() !== "") {
         const newTodos = [...todos];
-        newTodos[newTodos.length - 1].text = value.trim(); // Save the current text
+        newTodos[newTodos.length - 1].text = value.trim();
         setTodos(newTodos);
         addTodo("");
+        // Immediately focus on the new todo
         if (editableRef.current) {
-          editableRef.current.innerHTML = ""; // Clear the current editable div
+          editableRef.current.innerHTML = "";
+          editableRef.current.focus();
         }
       }
     }
   };
-  
+
   const handleDocumentKeyPress = useCallback(
     (event: Event) => {
       const keyEvent = event as KeyboardEvent;
+      // Check if the target isn't any contentEditable div
       if (
         todos[todos.length - 1].text === "" &&
         editableRef.current &&
-        keyEvent.target === document.body
+        !(keyEvent.target as HTMLElement).contentEditable
       ) {
         editableRef.current.focus();
       }
     },
     [todos]
   );
-  
+
   const clearTodos = (): void => {
     setTodos([{ text: "", isChecked: false }]);
   };
-  
+
   const markAllDone = (): void => {
     const updatedTodos = todos.map((todo) => ({ ...todo, isChecked: true }));
     setTodos(updatedTodos);
   };
-  
 
   useEffect(() => {
     document.addEventListener("keypress", handleDocumentKeyPress);
@@ -153,6 +162,12 @@ export default function Home() {
       document.removeEventListener("keypress", handleDocumentKeyPress);
     };
   }, [todos, handleDocumentKeyPress]);
+
+  useEffect(() => {
+    if (editableRef && editableRef.current) {
+      editableRef.current.focus();
+    }
+  }, [todos.length]);
 
   useEffect(() => {
     const savedText = localStorage.getItem("savedText");
@@ -407,6 +422,38 @@ export default function Home() {
               />
             </div>
           </button>
+
+          <button
+            type="button"
+            aria-label="gratitude"
+            onClick={() => setView("gratitude")}
+            className={`p-4 border-sm border-2 rounded-md ${
+              theme === "dark" ? "border-white" : "border-black"
+            } relative ${
+              view === "gratitude"
+                ? theme === "dark"
+                  ? "bg-white text-black"
+                  : "bg-black text-white"
+                : ""
+            }`}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Image
+                src={
+                  theme === "dark"
+                    ? view === "gratitude"
+                      ? "/icons/gratitude.png"
+                      : "/icons/gratitude-white.png"
+                    : view === "gratitude"
+                    ? "/icons/gratitude-white.png"
+                    : "/icons/gratitude.png"
+                }
+                alt="Gratitude Icon"
+                width={17}
+                height={17}
+              />
+            </div>
+          </button>
         </div>
       </nav>
 
@@ -535,7 +582,7 @@ export default function Home() {
 
         {view === "todo" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
-            <div className="flex flex-col gap-2 w-full">
+            <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
               {todos.map((todo, index) => (
                 <div
                   key={index}
@@ -553,27 +600,26 @@ export default function Home() {
                         }`}
                     onClick={() => toggleTodo(index)}
                   ></div>
-                  {index === todos.length - 1 ? (
-                    <div
-                      ref={editableRef}
-                      className="whitespace-pre-wrap w-full outline-none font-normal select-none leading-8 text-xl relative no-select"
-                      contentEditable={true}
-                      suppressContentEditableWarning={true}
-                      onKeyPress={handleKeyPress}
-                      onFocus={(event) => {
-                        if (event.currentTarget.innerHTML === "")
-                          event.currentTarget.innerHTML = "<br>";
-                      }}
-                      onBlur={(event) => {
-                        if (event.currentTarget.innerHTML === "<br>")
-                          event.currentTarget.innerHTML = "";
-                      }}
-                    ></div>
-                  ) : (
-                    <div className="whitespace-pre-wrap w-full outline-none font-normal select-none leading-8 text-xl relative no-select">
-                      {todo.text}
-                    </div>
-                  )}
+                  <div
+                    ref={index === todos.length - 1 ? editableRef : null}
+                    className="whitespace-pre-wrap w-full outline-none font-normal leading-8 text-xl relative"
+                    contentEditable={true}
+                    suppressContentEditableWarning={true}
+                    onKeyPress={handleKeyPress}
+                    onFocus={(event) => {
+                      setActiveTodoIndex(index);
+                      if (event.currentTarget.innerHTML === "") {
+                        event.currentTarget.innerHTML = "<br>";
+                      }
+                    }}
+                    onBlur={(event) => {
+                      setActiveTodoIndex(null);
+                      // Save changes to todo.text here
+                      // Consider updating the todo list with the edited text
+                    }}
+                  >
+                    {todo.text}
+                  </div>
                 </div>
               ))}
             </div>
@@ -587,6 +633,71 @@ export default function Home() {
                 “{currentQuote.quote}”
               </p>
               <p className="pl-12 font-regular">—{currentQuote.person}</p>
+            </div>
+          </div>
+        )}
+
+        {view === "gratitude" && (
+          <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
+            <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
+              {Array(3)
+                .fill(null)
+                .map((_, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-row items-start justify-start gap-1 w-full"
+                  >
+                    <div
+                      contentEditable={true}
+                      className="whitespace-pre-wrap flex-grow w-full outline-none font-normal select-none leading-8 text-xl relative no-select"
+                      suppressContentEditableWarning={true}
+                      onFocus={(event) => {
+                        if (
+                          event.currentTarget.innerHTML === "" ||
+                          event.currentTarget.innerHTML === "<br>"
+                        )
+                          event.currentTarget.innerHTML =
+                            '<span className="font-normal leading-8 text-xl flex-shrink-0">I am grateful for</span> <span style="color: #aaa;"></span>';
+                      }}
+                      onBlur={(event) => {
+                        if (
+                          event.currentTarget.innerHTML.includes(
+                            '<span style="color: #aaa;"></span>'
+                          )
+                        )
+                          event.currentTarget.innerHTML =
+                            '<span className="font-normal leading-8 text-xl flex-shrink-0">I am grateful for</span> ';
+                      }}
+                      onInput={(event) => {
+                        if (
+                          !event.currentTarget.innerHTML.startsWith(
+                            '<span className="font-normal leading-8 text-xl flex-shrink-0">I am grateful for</span>'
+                          )
+                        ) {
+                          // Restore the original span if deleted
+                          event.currentTarget.innerHTML =
+                            '<span className="font-normal leading-8 text-xl flex-shrink-0">I am grateful for</span> ' +
+                            event.currentTarget.innerHTML;
+                        }
+                        if (
+                          event.currentTarget.innerHTML.includes(
+                            '<span style="color: #aaa;"></span>'
+                          )
+                        ) {
+                          event.currentTarget.innerHTML =
+                            event.currentTarget.innerHTML.replace(
+                              '<span style="color: #aaa;"></span>',
+                              ""
+                            );
+                        }
+                      }}
+                    >
+                      <span className="font-normal leading-8 text-xl flex-shrink-0">
+                        I am grateful for
+                      </span>{" "}
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
         )}

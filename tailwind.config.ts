@@ -22,6 +22,9 @@ const config: Config = {
       screens: {
         xs: "440px",
       },
+      spacing: {
+        '120': '30rem', // 120 x 0.25rem = 30rem
+      }
     },
   },
   plugins: [],
