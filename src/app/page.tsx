@@ -2,7 +2,7 @@
 import "./globals.css";
 import React from "react";
 import Image from "next/image";
-import Head from 'next/head';
+import Head from "next/head";
 
 import Quotes from "../../public/quotes";
 
@@ -80,18 +80,33 @@ export default function Home() {
     }
   };
 
-  const [todos, setTodos] = useState([{ text: "", isChecked: false }]);
-
-  const addTodo = (text: string): void => {
-    setTodos((prevTodos) => [...prevTodos, { text, isChecked: false }]);
+  type Todo = {
+    text: string;
+    isChecked: boolean;
   };
-
+  
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    // Try getting todos from localStorage on initial load
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [{ text: "", isChecked: false }];
+  });
+  
+  useEffect(() => {
+    // Any time the todos change, update them in localStorage
+    localStorage.setItem("todos", JSON.stringify(todos));
+ }, [todos]);
+ 
+  
+  const addTodo = (text: string): void => {
+    setTodos((prevTodos: Todo[]) => [...prevTodos, { text, isChecked: false }]);
+  };
+  
   const toggleTodo = (index: number): void => {
     const newTodos = [...todos];
     newTodos[index].isChecked = !newTodos[index].isChecked;
     setTodos(newTodos);
   };
-
+  
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -107,11 +122,10 @@ export default function Home() {
       }
     }
   };
-
-  const handleDocumentKeyPress = useCallback<EventListener>(
-    (event) => {
-      const keyEvent = event as unknown as KeyboardEvent;
-
+  
+  const handleDocumentKeyPress = useCallback(
+    (event: Event) => {
+      const keyEvent = event as KeyboardEvent;
       if (
         todos[todos.length - 1].text === "" &&
         editableRef.current &&
@@ -122,15 +136,16 @@ export default function Home() {
     },
     [todos]
   );
-
+  
   const clearTodos = (): void => {
     setTodos([{ text: "", isChecked: false }]);
   };
-
+  
   const markAllDone = (): void => {
     const updatedTodos = todos.map((todo) => ({ ...todo, isChecked: true }));
     setTodos(updatedTodos);
   };
+  
 
   useEffect(() => {
     document.addEventListener("keypress", handleDocumentKeyPress);
