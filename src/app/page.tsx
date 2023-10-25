@@ -3,9 +3,8 @@ import "./globals.css";
 import React from "react";
 import Image from "next/image";
 import Quotes from "../../public/quotes";
-import TodoApp from "./TodoApp";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function Home() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -26,7 +25,6 @@ export default function Home() {
   const toggleBreathing = () => {
     setIsBreathing((prev) => !prev);
   };
-
 
   const getRandomQuote = () => {
     const randomIndex = Math.floor(Math.random() * Quotes.length);
@@ -79,6 +77,67 @@ export default function Home() {
       editableRef.current.focus();
     }
   };
+
+  const [todos, setTodos] = useState([{ text: "", isChecked: false }]);
+
+  const addTodo = (text: string): void => {
+    setTodos((prevTodos) => [...prevTodos, { text, isChecked: false }]);
+  };
+
+  const toggleTodo = (index: number): void => {
+    const newTodos = [...todos];
+    newTodos[index].isChecked = !newTodos[index].isChecked;
+    setTodos(newTodos);
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const value = event.currentTarget.innerText;
+      if (value.trim() !== "") {
+        const newTodos = [...todos];
+        newTodos[newTodos.length - 1].text = value.trim(); // Save the current text
+        setTodos(newTodos);
+        addTodo("");
+        if (editableRef.current) {
+          editableRef.current.innerHTML = ""; // Clear the current editable div
+        }
+      }
+    }
+  };
+
+  const handleDocumentKeyPress = useCallback<EventListener>(
+    (event) => {
+      const keyEvent = event as unknown as KeyboardEvent;
+
+      if (
+        todos[todos.length - 1].text === "" &&
+        editableRef.current &&
+        keyEvent.target === document.body
+      ) {
+        editableRef.current.focus();
+      }
+    },
+    [todos]
+  );
+
+  const clearTodos = (): void => {
+    setTodos([{ text: "", isChecked: false }]);
+  };
+
+  const markAllDone = (): void => {
+    const updatedTodos = todos.map((todo) => ({ ...todo, isChecked: true }));
+    setTodos(updatedTodos);
+  };
+
+  useEffect(() => {
+    document.addEventListener("keypress", handleDocumentKeyPress);
+    return () => {
+      document.removeEventListener("keypress", handleDocumentKeyPress);
+    };
+  }, [todos, handleDocumentKeyPress]);
+
+  // todo end
 
   useEffect(() => {
     const savedText = localStorage.getItem("savedText");
@@ -445,7 +504,48 @@ export default function Home() {
 
         {view === "todo" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
-            <TodoApp theme={theme} />
+            <div className="flex flex-col gap-2 w-full">
+              {todos.map((todo, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-center justify-start gap-4 w-full"
+                >
+                  <div
+                    className={`cursor-pointer border-2 rounded-sm w-6 h-6 
+                        ${theme === "light" ? "border-black" : "border-white"}
+                        ${
+                          todo.isChecked
+                            ? theme === "light"
+                              ? "bg-black"
+                              : "bg-white"
+                            : ""
+                        }`}
+                    onClick={() => toggleTodo(index)}
+                  ></div>
+                  {index === todos.length - 1 ? (
+                    <div
+                      ref={editableRef}
+                      className="whitespace-pre-wrap w-full outline-none font-normal select-none leading-8 text-xl relative no-select"
+                      contentEditable={true}
+                      suppressContentEditableWarning={true}
+                      onKeyPress={handleKeyPress}
+                      onFocus={(event) => {
+                        if (event.currentTarget.innerHTML === "")
+                          event.currentTarget.innerHTML = "<br>";
+                      }}
+                      onBlur={(event) => {
+                        if (event.currentTarget.innerHTML === "<br>")
+                          event.currentTarget.innerHTML = "";
+                      }}
+                    ></div>
+                  ) : (
+                    <div className="whitespace-pre-wrap w-full outline-none font-normal select-none leading-8 text-xl relative no-select">
+                      {todo.text}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
@@ -614,15 +714,15 @@ export default function Home() {
           <div className="flex flex-row gap-8">
             <button
               type="button"
-              aria-label="save"
-              // onClick={saveText}
+              aria-label="all done"
+              onClick={markAllDone}
               className={`py-1 px-4 border-sm border-2 rounded-md ${
                 theme === "dark" ? "border-white" : "border-black"
               }`}
             >
               all done
             </button>
-            <button type="button" onClick={clearText}>
+            <button type="button" onClick={clearTodos}>
               clear
             </button>
           </div>
