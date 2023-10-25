@@ -697,9 +697,14 @@ export default function Home() {
                     }}
                     onBlur={(event) => {
                       setActiveEntryIndex(null);
-                      // Save changes to entry.text here
+                      let content = event.currentTarget.innerHTML;
+                      content = content.replace(/<br>/g, "");
+                      const textarea = document.createElement("textarea");
+                      textarea.innerHTML = content;
+                      content = textarea.value;
+
                       const newEntries = [...gratitudeEntries];
-                      newEntries[index].text = event.currentTarget.innerHTML;
+                      newEntries[index].text = content;
                       setGratitudeEntries(newEntries);
                     }}
                   >
@@ -901,10 +906,7 @@ export default function Home() {
 
         {view === "gratitude" ? (
           <div className="flex flex-row gap-8">
-            <button
-              type="button"
-              onClick={clearGratitude}
-            >
+            <button type="button" onClick={clearGratitude}>
               clear
             </button>
           </div>
