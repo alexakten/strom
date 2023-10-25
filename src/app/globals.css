@@ -164,14 +164,6 @@
 }
 
 
-
-
-
-
-
-
-
-
 /* Common style to ensure the div shrinks from the right */
 .inner-div {
   transform-origin: left;
@@ -210,6 +202,16 @@
 
 
 
+.gratitude-entry::before {
+  content: "I am grateful for";
+  display: inline;
+  font-weight: normal;
+  margin-right: 4px; /* Adjust this margin to your liking */
+  pointer-events: none; /* Makes sure it doesn't interfere with editing */
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
 
 
 

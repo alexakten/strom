@@ -231,6 +231,42 @@ export default function Home() {
     };
   }, []);
 
+  const [gratitudeEntries, setGratitudeEntries] = useState<
+    Array<{ text: string }>
+  >([{ text: "" }]);
+  const [activeEntryIndex, setActiveEntryIndex] = useState<number | null>(null);
+
+  const handleGratitudeKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Prevents the addition of a new line
+      const newEntries = [...gratitudeEntries];
+      newEntries.splice(activeEntryIndex! + 1, 0, { text: "" });
+      setGratitudeEntries(newEntries);
+      setActiveEntryIndex(activeEntryIndex! + 1);
+      // Set a small delay to ensure focus is set on the next editable div
+      setTimeout(() => {
+        editableRef.current?.focus();
+      }, 50);
+    }
+  };
+
+  useEffect(() => {
+    // Check local storage and update gratitudeEntries with saved data if present
+    const savedEntries = localStorage.getItem("gratitudeEntries");
+    if (savedEntries) {
+      setGratitudeEntries(JSON.parse(savedEntries));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("gratitudeEntries", JSON.stringify(gratitudeEntries));
+  }, [gratitudeEntries]);
+
+  const clearGratitude = () => {
+    setGratitudeEntries([{ text: "" }]);
+    localStorage.removeItem("gratitudeEntries");
+  };
+
   return (
     <main
       style={{ userSelect: "none", height: `${viewportHeight}px` }}
@@ -640,64 +676,37 @@ export default function Home() {
         {view === "gratitude" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
             <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
-              {Array(3)
-                .fill(null)
-                .map((_, index) => (
+              {gratitudeEntries.map((entry, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-center justify-start gap-1 w-full"
+                >
                   <div
-                    key={index}
-                    className="flex flex-row items-start justify-start gap-1 w-full"
+                    ref={
+                      index === gratitudeEntries.length - 1 ? editableRef : null
+                    }
+                    className="whitespace-pre-wrap w-full outline-none font-normal leading-8 text-xl relative gratitude-entry"
+                    contentEditable={true}
+                    suppressContentEditableWarning={true}
+                    onKeyPress={handleGratitudeKeyPress}
+                    onFocus={(event) => {
+                      setActiveEntryIndex(index);
+                      if (event.currentTarget.innerHTML === "") {
+                        event.currentTarget.innerHTML = "<br>";
+                      }
+                    }}
+                    onBlur={(event) => {
+                      setActiveEntryIndex(null);
+                      // Save changes to entry.text here
+                      const newEntries = [...gratitudeEntries];
+                      newEntries[index].text = event.currentTarget.innerHTML;
+                      setGratitudeEntries(newEntries);
+                    }}
                   >
-                    <div
-                      contentEditable={true}
-                      className="whitespace-pre-wrap flex-grow w-full outline-none font-normal select-none leading-8 text-xl relative no-select"
-                      suppressContentEditableWarning={true}
-                      onFocus={(event) => {
-                        if (
-                          event.currentTarget.innerHTML === "" ||
-                          event.currentTarget.innerHTML === "<br>"
-                        )
-                          event.currentTarget.innerHTML =
-                            '<span className="font-normal leading-8 text-xl flex-shrink-0">I am grateful for</span> <span style="color: #aaa;"></span>';
-                      }}
-                      onBlur={(event) => {
-                        if (
-                          event.currentTarget.innerHTML.includes(
-                            '<span style="color: #aaa;"></span>'
-                          )
-                        )
-                          event.currentTarget.innerHTML =
-                            '<span className="font-normal leading-8 text-xl flex-shrink-0">I am grateful for</span> ';
-                      }}
-                      onInput={(event) => {
-                        if (
-                          !event.currentTarget.innerHTML.startsWith(
-                            '<span className="font-normal leading-8 text-xl flex-shrink-0">I am grateful for</span>'
-                          )
-                        ) {
-                          // Restore the original span if deleted
-                          event.currentTarget.innerHTML =
-                            '<span className="font-normal leading-8 text-xl flex-shrink-0">I am grateful for</span> ' +
-                            event.currentTarget.innerHTML;
-                        }
-                        if (
-                          event.currentTarget.innerHTML.includes(
-                            '<span style="color: #aaa;"></span>'
-                          )
-                        ) {
-                          event.currentTarget.innerHTML =
-                            event.currentTarget.innerHTML.replace(
-                              '<span style="color: #aaa;"></span>',
-                              ""
-                            );
-                        }
-                      }}
-                    >
-                      <span className="font-normal leading-8 text-xl flex-shrink-0">
-                        I am grateful for
-                      </span>{" "}
-                    </div>
+                    {entry.text}
                   </div>
-                ))}
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -884,6 +893,19 @@ export default function Home() {
               }`}
             >
               next
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: "none" }}></div>
+        )}
+
+        {view === "gratitude" ? (
+          <div className="flex flex-row gap-8">
+            <button
+              type="button"
+              onClick={clearGratitude}
+            >
+              clear
             </button>
           </div>
         ) : (
