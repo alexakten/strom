@@ -2,6 +2,7 @@
 import "./globals.css";
 import React from "react";
 import Image from "next/image";
+import Quotes from "../../public/quotes";
 
 import { useState, useEffect } from "react";
 
@@ -23,6 +24,13 @@ export default function Home() {
   const toggleBreathing = () => {
     setIsBreathing((prev) => !prev);
   };
+
+  const getRandomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * Quotes.length);
+    setCurrentQuote(Quotes[randomIndex]);
+};
+
+  const [currentQuote, setCurrentQuote] = useState(Quotes[0]); // or any default quote
 
   const handleInput = (e: React.SyntheticEvent) => {
     let target = e.target as HTMLDivElement; // Adjust as per your actual element type
@@ -60,6 +68,8 @@ export default function Home() {
       editableRef.current.focus();
     }
   };
+
+  
 
   const editableRef = React.useRef<HTMLDivElement>(null);
 
@@ -310,6 +320,7 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* ————— All main views are in the div below ————— */}
       <div className="flex items-center justify-center h-screen">
         {view === "text" && (
           <div
@@ -431,12 +442,6 @@ export default function Home() {
           </div>
         )}
 
-        {view === "empty" && (
-          <div className="w-full overflow-hidden flex items-center justify-center h-full">
-            This is empty View
-          </div>
-        )}
-
         {view === "todo" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full">
             This is Todo View
@@ -444,12 +449,18 @@ export default function Home() {
         )}
 
         {view === "quotes" && (
-          <div className="w-full overflow-hidden flex items-center justify-center h-full">
-            This is Quotes View
+          <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
+            <div className="flex flex-col gap-4 w-full outline-none relative no-select">
+              <p className="font-medium select-none leading-8 text-xl">
+              “{currentQuote.quote}”
+              </p>
+              <p className="pl-8 font-regular">—{currentQuote.person}</p>
+            </div>
           </div>
         )}
       </div>
 
+      {/* ————— All buttons for views are in the div below ————— */}
       <div className="flex font-neue-haas font-medium justify-between items-end">
         {view === "text" ? (
           <div className="flex flex-row gap-8">
@@ -593,6 +604,23 @@ export default function Home() {
                 </button>
               ))
             }
+          </div>
+        ) : (
+          <div style={{ display: "none" }}></div>
+        )}
+
+        {view === "quotes" ? (
+          <div className="flex flex-row gap-8">
+            <button
+              type="button"
+              aria-label="new quote"
+              onClick={getRandomQuote}
+              className={`py-1 px-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              }`}
+            >
+              new
+            </button>
           </div>
         ) : (
           <div style={{ display: "none" }}></div>
