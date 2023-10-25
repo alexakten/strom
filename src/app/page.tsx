@@ -275,6 +275,38 @@ export default function Home() {
               />
             </div>
           </button>
+
+          <button
+            type="button"
+            aria-label="quotes"
+            onClick={() => setView("quotes")}
+            className={`p-4 border-sm border-2 rounded-md ${
+              theme === "dark" ? "border-white" : "border-black"
+            } relative ${
+              view === "quotes"
+                ? theme === "dark"
+                  ? "bg-white text-black"
+                  : "bg-black text-white"
+                : ""
+            }`}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Image
+                src={
+                  theme === "dark"
+                    ? view === "quotes"
+                      ? "/icons/quotes.png"
+                      : "/icons/quotes-white.png"
+                    : view === "quotes"
+                    ? "/icons/quotes-white.png"
+                    : "/icons/quotes.png"
+                }
+                alt="Quotes Icon"
+                width={14}
+                height={14}
+              />
+            </div>
+          </button>
         </div>
       </nav>
 
@@ -399,9 +431,21 @@ export default function Home() {
           </div>
         )}
 
+        {view === "empty" && (
+          <div className="w-full overflow-hidden flex items-center justify-center h-full">
+            This is empty View
+          </div>
+        )}
+
         {view === "todo" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full">
             This is Todo View
+          </div>
+        )}
+
+        {view === "quotes" && (
+          <div className="w-full overflow-hidden flex items-center justify-center h-full">
+            This is Quotes View
           </div>
         )}
       </div>
