@@ -243,6 +243,38 @@ export default function Home() {
               />
             </div>
           </button>
+
+          <button
+            type="button"
+            aria-label="todo"
+            onClick={() => setView("todo")}
+            className={`p-4 border-sm border-2 rounded-md ${
+              theme === "dark" ? "border-white" : "border-black"
+            } relative ${
+              view === "todo"
+                ? theme === "dark"
+                  ? "bg-white text-black"
+                  : "bg-black text-white"
+                : ""
+            }`}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Image
+                src={
+                  theme === "dark"
+                    ? view === "todo"
+                      ? "/icons/todo.png"
+                      : "/icons/todo-white.png"
+                    : view === "todo"
+                    ? "/icons/todo-white.png"
+                    : "/icons/todo.png"
+                }
+                alt="todo Icon"
+                width={22}
+                height={22}
+              />
+            </div>
+          </button>
         </div>
       </nav>
 
@@ -359,11 +391,17 @@ export default function Home() {
                 }`}
               ></div>
               <div
-                className={`w-96 h-10 border-4 ${
+                className={`w-96 h-10 border-2 ${
                   theme === "light" ? "border-black" : "border-zinc-50"
                 } absolute rounded-full`}
               ></div>
             </div>
+          </div>
+        )}
+
+        {view === "todo" && (
+          <div className="w-full overflow-hidden flex items-center justify-center h-full">
+            This is Todo View
           </div>
         )}
       </div>
