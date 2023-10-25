@@ -283,7 +283,7 @@ export default function Home() {
         )}
 
         {view === "breathe" && (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full h-full flex flex-col items-center justify-center">
             <div className="flex flex-col gap-8 items-center">
               {/* Container for Circle */}
               <div className="relative">
@@ -311,6 +311,21 @@ export default function Home() {
     ${theme === "light" ? "bg-black" : "bg-zinc-50"}`}
                 ></div>
               </div>
+            </div>
+            <div className="font-medium pt-8 relative h-6">
+              <span
+                className={`fixed-width-text ${
+                  isBreathing
+                    ? selectedSpeed === "energy"
+                      ? "text-energy"
+                      : selectedSpeed === "sleep"
+                      ? "text-sleep"
+                      : selectedSpeed === "relax"
+                      ? "text-relax"
+                      : ""
+                    : ""
+                }`}
+              ></span>
             </div>
           </div>
         )}
@@ -409,7 +424,7 @@ export default function Home() {
                   : "border-black"
               }`}
             >
-              energy
+              2-1-6
             </button>
             <button
               type="button"
@@ -427,7 +442,7 @@ export default function Home() {
                   : "border-black"
               }`}
             >
-              relax
+              4-4-4-4
             </button>
             <button
               type="button"
@@ -445,7 +460,7 @@ export default function Home() {
                   : "border-black"
               }`}
             >
-              sleep
+              4-7-8
             </button>
           </div>
         ) : (

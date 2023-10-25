@@ -87,6 +87,75 @@
   animation: breatheAnimationSleep 19s infinite;
 }
 
+@keyframes textAnimationRelax {
+  0%, 24.99% {
+    content: "breathe in";
+  }
+  25%, 49.99% {
+    content: "hold";
+  }
+  50%, 74.99% {
+    content: "exhale";
+  }
+  75%, 100% {
+    content: "hold";
+  }
+}
+
+
+@keyframes textAnimationEnergy {
+  0%, 22.22% {
+    content: "breathe in";
+  }
+  22.23%, 33.33% {
+    content: "breathe in";
+  }
+  33.34%, 100% {
+    content: "exhale";
+  }
+}
+
+
+@keyframes textAnimationSleep {
+  0%, 21.05% {
+    content: "breathe in";
+  }
+  21.06%, 57.89% {
+    content: "hold";
+  }
+  57.90%, 100% {
+    content: "exhale";
+  }
+}
+
+.text-relax::before {
+  content: "";
+  animation: textAnimationRelax 16s infinite;
+}
+
+.text-energy::before {
+  content: "";
+  animation: textAnimationEnergy 9s infinite;
+}
+
+.text-sleep::before {
+  content: "";
+  animation: textAnimationSleep 19s infinite;
+}
+
+.fixed-width-text {
+  width: 100px; /* Adjust this value to your liking */
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
 
 
 
