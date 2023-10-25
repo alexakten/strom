@@ -137,8 +137,6 @@ export default function Home() {
     };
   }, [todos, handleDocumentKeyPress]);
 
-  // todo end
-
   useEffect(() => {
     const savedText = localStorage.getItem("savedText");
     if (savedText) {
