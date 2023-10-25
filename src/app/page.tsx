@@ -3,11 +3,13 @@ import "./globals.css";
 import React from "react";
 import Image from "next/image";
 import Quotes from "../../public/quotes";
+import TodoApp from "./TodoApp";
 
 import { useState, useEffect } from "react";
 
 export default function Home() {
-  const [theme, setTheme] = useState("light"); // Default theme is dark
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
   const [viewportHeight, setViewportHeight] = useState(0);
   const [view, setView] = useState("text"); // default to text view
 
@@ -24,6 +26,7 @@ export default function Home() {
   const toggleBreathing = () => {
     setIsBreathing((prev) => !prev);
   };
+
 
   const getRandomQuote = () => {
     const randomIndex = Math.floor(Math.random() * Quotes.length);
@@ -441,8 +444,8 @@ export default function Home() {
         )}
 
         {view === "todo" && (
-          <div className="w-full overflow-hidden flex items-center justify-center h-full">
-            This is Todo View
+          <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
+            <TodoApp theme={theme} />
           </div>
         )}
 
@@ -602,6 +605,26 @@ export default function Home() {
                 </button>
               ))
             }
+          </div>
+        ) : (
+          <div style={{ display: "none" }}></div>
+        )}
+
+        {view === "todo" ? (
+          <div className="flex flex-row gap-8">
+            <button
+              type="button"
+              aria-label="save"
+              // onClick={saveText}
+              className={`py-1 px-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              }`}
+            >
+              all done
+            </button>
+            <button type="button" onClick={clearText}>
+              clear
+            </button>
           </div>
         ) : (
           <div style={{ display: "none" }}></div>
