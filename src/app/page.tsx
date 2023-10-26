@@ -606,7 +606,7 @@ export default function Home() {
         )}
 
         {view === "meditate" && (
-          <div className="w-full pb-8 overflow-hidden flex flex-col gap-12 items-center justify-center h-full relative">
+          <div className="w-full overflow-hidden flex flex-col gap-12 items-center justify-center h-full relative">
             <div
               className={`w-64 h-64 planet-1 border-2 rounded-full flex items-center justify-center relative box-border ${
                 theme === "light" ? "border-black" : "border-zinc-50"
@@ -650,9 +650,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="absolute"></div>
 
-            {/* <div className="w-64 h-4 relative rounded-full">
+            <div
+              className={`w-56 h-4 ${
+                theme === "light" ? "bg-black" : "bg-zinc-50"
+              } relative rounded-full`}
+            >
               <div
                 className={`w-full h-full absolute rounded-full ${
                   theme === "light" ? "bg-zinc-50" : "bg-black"
@@ -675,11 +678,11 @@ export default function Home() {
                 }`}
               ></div>
               <div
-                className={`w-64 h-4 border-2 ${
+                className={`w-56 h-4 border-2 ${
                   theme === "light" ? "border-black" : "border-zinc-50"
                 } absolute rounded-full`}
               ></div>
-            </div> */}
+            </div>
           </div>
         )}
 
