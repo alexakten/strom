@@ -43,8 +43,8 @@ export default function Home() {
     let target = e.target as HTMLDivElement;
     const currentText = target.textContent || "";
     setText(currentText);
-    if (typeof window !== 'undefined') {
-    localStorage.setItem("savedText", currentText);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("savedText", currentText);
     }
   };
 
@@ -70,8 +70,8 @@ export default function Home() {
 
   const clearText = () => {
     setText(""); // Update state to empty string
-    if (typeof window !== 'undefined') {
-    localStorage.removeItem("savedText"); // Remove the savedText from localStorage
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("savedText"); // Remove the savedText from localStorage
     }
 
     if (editableRef.current) {
@@ -95,12 +95,12 @@ export default function Home() {
 
   const [todos, setTodos] = useState<Todo[]>(() => {
     // Try getting todos from localStorage on initial load
-    if (typeof window !== 'undefined') {
-    const savedTodos = localStorage.getItem("todos");
-    
-    return savedTodos
-      ? JSON.parse(savedTodos)
-      : [{ text: "", isChecked: false }];
+    if (typeof window !== "undefined") {
+      const savedTodos = localStorage.getItem("todos");
+
+      return savedTodos
+        ? JSON.parse(savedTodos)
+        : [{ text: "", isChecked: false }];
     }
   });
 
@@ -161,8 +161,10 @@ export default function Home() {
   };
 
   const markAllDone = (): void => {
-    const updatedTodos = todos.map((todo) => ({ ...todo, isChecked: true }));
-    setTodos(updatedTodos);
+    if (todos && todos.length) {
+      const updatedTodos = todos.map((todo) => ({ ...todo, isChecked: true }));
+      setTodos(updatedTodos);
+    }
   };
 
   useEffect(() => {
@@ -642,13 +644,15 @@ export default function Home() {
         {view === "todo" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
             <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
-              {todos.map((todo, index) => (
-                <div
-                  key={index}
-                  className="flex flex-row items-center justify-start gap-4 w-full"
-                >
+              {todos &&
+                todos.length > 0 &&
+                todos.map((todo, index) => (
                   <div
-                    className={`cursor-pointer border-2 rounded-sm w-6 h-6 
+                    key={index}
+                    className="flex flex-row items-center justify-start gap-4 w-full"
+                  >
+                    <div
+                      className={`cursor-pointer border-2 rounded-sm w-6 h-6 
                         ${theme === "light" ? "border-black" : "border-white"}
                         ${
                           todo.isChecked
@@ -657,30 +661,30 @@ export default function Home() {
                               : "bg-white"
                             : ""
                         }`}
-                    onClick={() => toggleTodo(index)}
-                  ></div>
-                  <div
-                    ref={index === todos.length - 1 ? editableRef : null}
-                    className="whitespace-pre-wrap w-full outline-none font-normal leading-8 text-xl relative"
-                    contentEditable={true}
-                    suppressContentEditableWarning={true}
-                    onKeyPress={handleKeyPress}
-                    onFocus={(event) => {
-                      setActiveTodoIndex(index);
-                      if (event.currentTarget.innerHTML === "") {
-                        event.currentTarget.innerHTML = "<br>";
-                      }
-                    }}
-                    onBlur={(event) => {
-                      setActiveTodoIndex(null);
-                      // Save changes to todo.text here
-                      // Consider updating the todo list with the edited text
-                    }}
-                  >
-                    {todo.text}
+                      onClick={() => toggleTodo(index)}
+                    ></div>
+                    <div
+                      ref={index === todos.length - 1 ? editableRef : null}
+                      className="whitespace-pre-wrap w-full outline-none font-normal leading-8 text-xl relative"
+                      contentEditable={true}
+                      suppressContentEditableWarning={true}
+                      onKeyPress={handleKeyPress}
+                      onFocus={(event) => {
+                        setActiveTodoIndex(index);
+                        if (event.currentTarget.innerHTML === "") {
+                          event.currentTarget.innerHTML = "<br>";
+                        }
+                      }}
+                      onBlur={(event) => {
+                        setActiveTodoIndex(null);
+                        // Save changes to todo.text here
+                        // Consider updating the todo list with the edited text
+                      }}
+                    >
+                      {todo.text}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         )}
@@ -699,42 +703,46 @@ export default function Home() {
         {view === "gratitude" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
             <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
-              {gratitudeEntries.map((entry, index) => (
-                <div
-                  key={index}
-                  className="flex flex-row items-center justify-start gap-1 w-full"
-                >
+              {gratitudeEntries &&
+                gratitudeEntries.length > 0 &&
+                gratitudeEntries.map((entry, index) => (
                   <div
-                    ref={
-                      index === gratitudeEntries.length - 1 ? editableRef : null
-                    }
-                    className="whitespace-pre-wrap w-full outline-none font-normal leading-8 text-xl relative gratitude-entry"
-                    contentEditable={true}
-                    suppressContentEditableWarning={true}
-                    onKeyPress={handleGratitudeKeyPress}
-                    onFocus={(event) => {
-                      setActiveEntryIndex(index);
-                      if (event.currentTarget.innerHTML === "") {
-                        event.currentTarget.innerHTML = "<br>";
-                      }
-                    }}
-                    onBlur={(event) => {
-                      setActiveEntryIndex(null);
-                      let content = event.currentTarget.innerHTML;
-                      content = content.replace(/<br>/g, "");
-                      const textarea = document.createElement("textarea");
-                      textarea.innerHTML = content;
-                      content = textarea.value;
-
-                      const newEntries = [...gratitudeEntries];
-                      newEntries[index].text = content;
-                      setGratitudeEntries(newEntries);
-                    }}
+                    key={index}
+                    className="flex flex-row items-center justify-start gap-1 w-full"
                   >
-                    {entry.text}
+                    <div
+                      ref={
+                        index === gratitudeEntries.length - 1
+                          ? editableRef
+                          : null
+                      }
+                      className="whitespace-pre-wrap w-full outline-none font-normal leading-8 text-xl relative gratitude-entry"
+                      contentEditable={true}
+                      suppressContentEditableWarning={true}
+                      onKeyPress={handleGratitudeKeyPress}
+                      onFocus={(event) => {
+                        setActiveEntryIndex(index);
+                        if (event.currentTarget.innerHTML === "") {
+                          event.currentTarget.innerHTML = "<br>";
+                        }
+                      }}
+                      onBlur={(event) => {
+                        setActiveEntryIndex(null);
+                        let content = event.currentTarget.innerHTML;
+                        content = content.replace(/<br>/g, "");
+                        const textarea = document.createElement("textarea");
+                        textarea.innerHTML = content;
+                        content = textarea.value;
+
+                        const newEntries = [...gratitudeEntries];
+                        newEntries[index].text = content;
+                        setGratitudeEntries(newEntries);
+                      }}
+                    >
+                      {entry.text}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         )}
