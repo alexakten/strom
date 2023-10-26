@@ -9,6 +9,7 @@ import Quotes from "../../data/quotes";
 import { useState, useEffect, useCallback } from "react";
 
 export default function Home() {
+  // #region 
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   const [viewportHeight, setViewportHeight] = useState(0);
@@ -290,6 +291,7 @@ export default function Home() {
       localStorage.removeItem("gratitudeEntries");
     }
   };
+  // #endregion
 
   return (
     <main
