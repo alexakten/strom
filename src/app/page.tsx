@@ -565,13 +565,13 @@ export default function Home() {
                 {" "}
                 {/* Constant outer circle */}
                 <div
-                  className={`w-56 h-56 rounded-full border-2 ${
+                  className={`w-64 h-64 rounded-full border-2 ${
                     theme === "light" ? "border-black" : "border-zinc-50"
                   }`}
                 ></div>
                 {/* Animated inner circle */}
                 <div
-                  className={`h-56 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                  className={`h-64 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
     ${
       isBreathing
         ? selectedSpeed === "relax"
@@ -608,16 +608,32 @@ export default function Home() {
         {view === "meditate" && (
           <div className="w-full overflow-hidden flex flex-col gap-12 items-center justify-center h-full relative">
             <div
-              className={`w-56 h-56 border-2 relative box-border ${
+              className={`w-64 h-64 border-2 rounded-full flex items-center justify-center relative box-border ${
                 theme === "light" ? "border-black" : "border-zinc-50"
               }`}
-            ></div>
-
-            <div
-              className={`w-56 h-4 ${
-                theme === "light" ? "bg-black" : "bg-zinc-50"
-              } relative rounded-full`}
             >
+              <div
+                className={`w-48 h-48 border-2 rounded-full flex items-center justify-center box-border ${
+                  theme === "light" ? "border-black" : "border-zinc-50"
+                }`}
+              >
+                <div
+                  className={`w-32 h-32 border-2 rounded-full flex items-center justify-center box-border ${
+                    theme === "light" ? "border-black" : "border-zinc-50"
+                  }`}
+                >
+                  {/* Sun in the middle */}
+                  <div
+                    className={`w-12 h-12 rounded-full box-border ${
+                      theme === "light" ? "bg-black" : "bg-zinc-50"
+                    }`}
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div className="absolute"></div>
+
+            {/* <div className="w-64 h-4 relative rounded-full">
               <div
                 className={`w-full h-full absolute rounded-full ${
                   theme === "light" ? "bg-zinc-50" : "bg-black"
@@ -640,11 +656,11 @@ export default function Home() {
                 }`}
               ></div>
               <div
-                className={`w-56 h-4 border-2 ${
+                className={`w-64 h-4 border-2 ${
                   theme === "light" ? "border-black" : "border-zinc-50"
                 } absolute rounded-full`}
               ></div>
-            </div>
+            </div> */}
           </div>
         )}
 

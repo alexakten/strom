@@ -26,8 +26,8 @@
     height: 0;
   }
   25%, 50% {
-    width: 224px;
-    height: 224px;
+    width: 256px;
+    height: 256px;
   }
   75% {
     width: 0;
@@ -46,12 +46,12 @@
     height: 0;
   }
   22.22% {  /* Breathe in complete */
-    width: 224px;
-    height: 224px;
+    width: 256px;
+    height: 256px;
   }
   33.33% {  /* 22.22 + 11.11 (Hold after breathe in) */
-    width: 224px;
-    height: 224px;
+    width: 256px;
+    height: 256px;
   }
   100% {
     width: 0;
@@ -70,12 +70,12 @@
     height: 0;
   }
   21.05% {  /* Breathe in complete */
-    width: 224px;
-    height: 224px;
+    width: 256px;
+    height: 256px;
   }
   57.89% {  /* 21.05 + 36.84 */
-    width: 224px;
-    height: 224px;
+    width: 256px;
+    height: 256px;
   }
   100% {
     width: 0;
@@ -169,6 +169,16 @@
   transform-origin: left;
   animation-timing-function: linear; 
 }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 @keyframes meditateShrink {
   to {
