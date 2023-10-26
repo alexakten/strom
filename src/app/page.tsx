@@ -177,7 +177,7 @@ export default function Home() {
     if (editableRef && editableRef.current) {
       editableRef.current.focus();
     }
-  }, [todos.length]);
+  }, [todos?.length]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
