@@ -311,6 +311,8 @@ export default function Home() {
         <link rel="preload" href="/icons/todo-white.png" as="image" />
         <link rel="preload" href="/icons/quotes.png" as="image" />
         <link rel="preload" href="/icons/quotes-white.png" as="image" />
+        <link rel="preload" href="/icons/gratitude.png" as="image" />
+        <link rel="preload" href="/icons/gratitude-white.png" as="image" />
         {/* ... other head elements ... */}
       </Head>
       {/* ——————————————————————————————————————————————————————————————————— */}
@@ -606,7 +608,7 @@ export default function Home() {
         {view === "meditate" && (
           <div className="w-full overflow-hidden flex flex-col gap-12 items-center justify-center h-full relative">
             <div
-              className={`w-56 h-56 square-1 border-2 ${
+              className={`w-56 h-56 border-2 relative box-border ${
                 theme === "light" ? "border-black" : "border-zinc-50"
               }`}
             ></div>
