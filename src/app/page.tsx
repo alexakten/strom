@@ -606,22 +606,41 @@ export default function Home() {
         )}
 
         {view === "meditate" && (
-          <div className="w-full overflow-hidden flex flex-col gap-12 items-center justify-center h-full relative">
+          <div className="w-full pb-8 overflow-hidden flex flex-col gap-12 items-center justify-center h-full relative">
             <div
-              className={`w-64 h-64 border-2 rounded-full flex items-center justify-center relative box-border ${
+              className={`w-64 h-64 planet-1 border-2 rounded-full flex items-center justify-center relative box-border ${
                 theme === "light" ? "border-black" : "border-zinc-50"
               }`}
             >
               <div
-                className={`w-48 h-48 border-2 rounded-full flex items-center justify-center box-border ${
+                className={`w-4 h-4 rounded-full absolute top-0 box-border ${
+                  theme === "light" ? "bg-black" : "bg-zinc-50"
+                }`}
+                style={{ transform: "translateY(-9px)" }}
+              ></div>
+              <div
+                className={`w-48 h-48 planet-2 border-2 rounded-full flex  items-center justify-center relative box-border ${
                   theme === "light" ? "border-black" : "border-zinc-50"
                 }`}
               >
                 <div
-                  className={`w-32 h-32 border-2 rounded-full flex items-center justify-center box-border ${
+                  className={`w-4 h-4 rounded-full absolute top-0 box-border ${
+                    theme === "light" ? "bg-black" : "bg-zinc-50"
+                  }`}
+                  style={{ transform: "translateY(-9px)" }}
+                ></div>
+                <div
+                  className={`w-32 h-32 planet-3 border-2 rounded-full flex items-center justify-center relative box-border ${
                     theme === "light" ? "border-black" : "border-zinc-50"
                   }`}
                 >
+                  <div
+                    className={`w-4 h-4 rounded-full absolute top-0 box-border ${
+                      theme === "light" ? "bg-black" : "bg-zinc-50"
+                    }`}
+                    style={{ transform: "translateY(-9px)" }}
+                  ></div>
+
                   {/* Sun in the middle */}
                   <div
                     className={`w-12 h-12 rounded-full box-border ${

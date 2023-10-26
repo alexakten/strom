@@ -179,6 +179,17 @@
   }
 }
 
+.planet-1 {
+  animation: rotate 60s linear infinite;
+}
+
+.planet-2 {
+  animation: rotate 120s linear infinite;
+}
+
+.planet-3 {
+  animation: rotate 180s linear infinite;
+}
 
 @keyframes meditateShrink {
   to {
