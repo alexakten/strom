@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Head from "next/head";
 
-import Quotes from "../../public/quotes";
+import Quotes from "../../data/quotes";
 
 import { useState, useEffect, useCallback } from "react";
 
@@ -97,7 +97,6 @@ export default function Home() {
     // Try getting todos from localStorage on initial load
     if (typeof window !== "undefined") {
       const savedTodos = localStorage.getItem("todos");
-
       return savedTodos
         ? JSON.parse(savedTodos)
         : [{ text: "", isChecked: false }];
