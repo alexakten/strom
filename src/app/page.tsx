@@ -696,7 +696,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* {view === "gratitude" && (
+        {view === "gratitude" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
             <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
               {gratitudeEntries.map((entry, index) => (
@@ -737,7 +737,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-        )} */}
+        )}
       </div>
 
       {/* ——————————————————————————————————————————————————————————————————— */}
