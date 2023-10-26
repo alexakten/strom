@@ -43,7 +43,9 @@ export default function Home() {
     let target = e.target as HTMLDivElement;
     const currentText = target.textContent || "";
     setText(currentText);
+    if (typeof window !== 'undefined') {
     localStorage.setItem("savedText", currentText);
+    }
   };
 
   const toggleTheme = () => {
@@ -68,7 +70,9 @@ export default function Home() {
 
   const clearText = () => {
     setText(""); // Update state to empty string
+    if (typeof window !== 'undefined') {
     localStorage.removeItem("savedText"); // Remove the savedText from localStorage
+    }
 
     if (editableRef.current) {
       editableRef.current.innerHTML = ""; // Directly clear the innerHTML of the contentEditable div
@@ -91,17 +95,22 @@ export default function Home() {
 
   const [todos, setTodos] = useState<Todo[]>(() => {
     // Try getting todos from localStorage on initial load
+    if (typeof window !== 'undefined') {
     const savedTodos = localStorage.getItem("todos");
+    
     return savedTodos
       ? JSON.parse(savedTodos)
       : [{ text: "", isChecked: false }];
+    }
   });
 
   const [activeTodoIndex, setActiveTodoIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    // Any time the todos change, update them in localStorage
-    localStorage.setItem("todos", JSON.stringify(todos));
+    if (typeof window !== "undefined") {
+      // Any time the todos change, update them in localStorage
+      localStorage.setItem("todos", JSON.stringify(todos));
+    }
   }, [todos]);
 
   const addTodo = (text: string): void => {
@@ -170,17 +179,19 @@ export default function Home() {
   }, [todos.length]);
 
   useEffect(() => {
-    const savedText = localStorage.getItem("savedText");
-    if (savedText) {
-      setText(savedText);
-    }
+    if (typeof window !== "undefined") {
+      const savedText = localStorage.getItem("savedText");
+      if (savedText) {
+        setText(savedText);
+      }
 
-    const setVH = () => {
-      setViewportHeight(window.innerHeight);
-    };
-    setVH();
-    window.addEventListener("resize", setVH);
-    return () => window.removeEventListener("resize", setVH);
+      const setVH = () => {
+        setViewportHeight(window.innerHeight);
+      };
+      setVH();
+      window.addEventListener("resize", setVH);
+      return () => window.removeEventListener("resize", setVH);
+    }
   }, []);
 
   useEffect(() => {
@@ -234,6 +245,7 @@ export default function Home() {
   const [gratitudeEntries, setGratitudeEntries] = useState<
     Array<{ text: string }>
   >([{ text: "" }]);
+
   const [activeEntryIndex, setActiveEntryIndex] = useState<number | null>(null);
 
   const handleGratitudeKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -251,20 +263,31 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Check local storage and update gratitudeEntries with saved data if present
-    const savedEntries = localStorage.getItem("gratitudeEntries");
-    if (savedEntries) {
-      setGratitudeEntries(JSON.parse(savedEntries));
+    // Check if we're in the browser
+    if (typeof window !== "undefined") {
+      // Check local storage and update gratitudeEntries with saved data if present
+      const savedEntries = localStorage.getItem("gratitudeEntries");
+      if (savedEntries) {
+        setGratitudeEntries(JSON.parse(savedEntries));
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("gratitudeEntries", JSON.stringify(gratitudeEntries));
+    // Check if we're in the browser
+    if (typeof window !== "undefined") {
+      localStorage.setItem(
+        "gratitudeEntries",
+        JSON.stringify(gratitudeEntries)
+      );
+    }
   }, [gratitudeEntries]);
 
   const clearGratitude = () => {
     setGratitudeEntries([{ text: "" }]);
-    localStorage.removeItem("gratitudeEntries");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("gratitudeEntries");
+    }
   };
 
   return (
