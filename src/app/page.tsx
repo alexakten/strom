@@ -662,7 +662,7 @@ export default function Home() {
         )}
 
         {view === "meditate" && (
-          <div className="w-full overflow-hidden flex flex-col gap-12 items-center justify-center h-full relative">
+          <div className="w-full top-4 overflow-hidden flex flex-col gap-12 items-center justify-center h-full relative">
             <div
               className={`w-64 h-64 planet-1 border-2 rounded-full flex items-center justify-center relative box-border ${
                 theme === "light" ? "border-black" : "border-zinc-50"
