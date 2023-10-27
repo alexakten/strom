@@ -180,15 +180,15 @@
 }
 
 .planet-1 {
-  animation: rotate 50s linear infinite;
+  animation: rotate 24s linear infinite;
 }
 
 .planet-2 {
-  animation: rotate 60s linear infinite;
+  animation: rotate 30s linear infinite;
 }
 
 .planet-3 {
-  animation: rotate 70s linear infinite;
+  animation: rotate 36s linear infinite;
 }
 
 @keyframes meditateShrink {
