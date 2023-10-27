@@ -9,7 +9,7 @@ import Quotes from "../../data/quotes";
 import { useState, useEffect, useCallback } from "react";
 
 export default function Home() {
-  // #region 
+  // #region
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   const [viewportHeight, setViewportHeight] = useState(0);
@@ -357,6 +357,15 @@ export default function Home() {
                 height={20}
               />
             </div>
+            {view === "text" && (
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Reflect
+              </div>
+            )}
           </button>
 
           <button
@@ -389,6 +398,15 @@ export default function Home() {
                 height={20}
               />
             </div>
+            {view === "breathe" && (
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Breathe
+              </div>
+            )}
           </button>
 
           <button
@@ -421,6 +439,15 @@ export default function Home() {
                 height={24}
               />
             </div>
+            {view === "meditate" && (
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Meditate
+              </div>
+            )}
           </button>
 
           <button
@@ -453,6 +480,15 @@ export default function Home() {
                 height={22}
               />
             </div>
+            {view === "todo" && (
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Todo
+              </div>
+            )}
           </button>
 
           <button
@@ -485,6 +521,15 @@ export default function Home() {
                 height={14}
               />
             </div>
+            {view === "quotes" && (
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Quotes
+              </div>
+            )}
           </button>
 
           <button
@@ -517,6 +562,15 @@ export default function Home() {
                 height={17}
               />
             </div>
+            {view === "gratitude" && (
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Gratitude
+              </div>
+            )}
           </button>
         </div>
       </nav>
@@ -739,7 +793,7 @@ export default function Home() {
         {view === "quotes" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
             <div className="flex flex-col gap-4 w-full">
-              <p className="font-medium leading-8 text-xl">
+              <p className="font-regular leading-8 text-xl">
                 “{currentQuote.quote}”
               </p>
               <p className="pl-12 font-regular">—{currentQuote.person}</p>
