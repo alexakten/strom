@@ -317,7 +317,7 @@ body {
 }
 
 input:checked + .slider {
-  background-color: #424242;
+  background-color: #353535;
 }
 
 input:focus + .slider {
