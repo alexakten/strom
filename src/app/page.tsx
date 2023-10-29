@@ -232,7 +232,7 @@ export default function Home() {
     }
   }, [theme, view]);
 
-  // Can't edit old tasks or 
+  // Can't edit old tasks when this is live 
   // useEffect(() => {
   //   const handleKeyDown = () => {
   //     if (
@@ -322,8 +322,8 @@ export default function Home() {
       }`}
     >
       <Head>
-        <link rel="preload" href="/icons/text.png" as="image" />
-        <link rel="preload" href="/icons/text-white.png" as="image" />
+        <link rel="preload" href="/icons/reflect.png" as="image" />
+        <link rel="preload" href="/icons/reflect-white.png" as="image" />
         <link rel="preload" href="/icons/breathe.png" as="image" />
         <link rel="preload" href="/icons/breathe-white.png" as="image" />
         <link rel="preload" href="/icons/meditate.png" as="image" />
