@@ -232,35 +232,36 @@ export default function Home() {
     }
   }, [theme, view]);
 
-  useEffect(() => {
-    const handleKeyDown = () => {
-      if (
-        editableRef.current &&
-        document.activeElement !== editableRef.current
-      ) {
-        editableRef.current.focus();
+  // Can't edit old tasks or 
+  // useEffect(() => {
+  //   const handleKeyDown = () => {
+  //     if (
+  //       editableRef.current &&
+  //       document.activeElement !== editableRef.current
+  //     ) {
+  //       editableRef.current.focus();
 
-        // Set cursor to the end
-        const range = document.createRange();
-        range.selectNodeContents(editableRef.current);
-        range.collapse(false); // false means collapse to the end
-        const sel = window.getSelection();
+  //       // Set cursor to the end
+  //       const range = document.createRange();
+  //       range.selectNodeContents(editableRef.current);
+  //       range.collapse(false); // false means collapse to the end
+  //       const sel = window.getSelection();
 
-        if (sel) {
-          // null check here
-          sel.removeAllRanges();
-          sel.addRange(range);
-        }
-      }
-    };
+  //       if (sel) {
+  //         // null check here
+  //         sel.removeAllRanges();
+  //         sel.addRange(range);
+  //       }
+  //     }
+  //   };
 
-    document.addEventListener("keydown", handleKeyDown);
+  //   document.addEventListener("keydown", handleKeyDown);
 
-    // Cleanup
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  //   // Cleanup
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
 
   const [gratitudeEntries, setGratitudeEntries] = useState<
     Array<{ text: string }>
