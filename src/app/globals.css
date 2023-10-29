@@ -19,6 +19,17 @@
   font-style: normal;
 }
 
+/* Add these styles to your stylesheet */
+.settings-window {
+  transform: translateX(110%);  /* Initially push it off the screen */
+  transition: transform 0.3s ease;  /* Animation effect */
+}
+
+.settings-window.open {
+  transform: translateX(0);  /* Show it */
+}
+
+
 /* Relax */
 @keyframes breatheAnimationRelax {
   0%, 100% {

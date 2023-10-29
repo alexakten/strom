@@ -16,6 +16,11 @@ export default function Home() {
   const [view, setView] = useState("text"); // default to text view
 
   const [text, setText] = useState("");
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  const toggleSettings = () => {
+    setSettingsOpen(!settingsOpen);
+  };
 
   const [selectedDuration, setSelectedDuration] = useState(5);
   const [isMeditating, setIsMeditating] = useState(false);
@@ -319,11 +324,38 @@ export default function Home() {
       </Head>
       {/* ——————————————————————————————————————————————————————————————————— */}
 
+      <div
+        className={`settings-window rounded-md fixed w-96 top-8 bottom-8 right-8 border-2 ${
+          theme === "light" ? "border-black" : "border-white"
+        } ${settingsOpen ? "open" : ""}`}
+        
+      ></div>
+
+      {/* ——————————————————————————————————————————————————————————————————— */}
+
       <nav className="flex justify-between items-center relative">
         <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
-        <div className="font-medium">
+        <div className="flex flex-row gap-8 font-medium">
           <button type="button" onClick={toggleTheme}>
             {theme === "light" ? "◖ dark" : "● light"}
+          </button>
+          <button type="button" aria-label="settings" onClick={toggleSettings}>
+            <div className="inset-0 flex items-center justify-center">
+              <Image
+                src={
+                  settingsOpen
+                    ? theme === "light"
+                      ? "/icons/close.png"
+                      : "/icons/close-white.png"
+                    : theme === "light"
+                    ? "/icons/settings.png"
+                    : "/icons/settings-white.png"
+                }
+                alt="Settings Icon"
+                width={18}
+                height={18}
+              />
+            </div>
           </button>
         </div>
         <div className="flex flex-row gap-4 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -486,7 +518,7 @@ export default function Home() {
                   theme === "light" ? "text-black" : "text-white"
                 }`}
               >
-                Todo
+                Tasks
               </div>
             )}
           </button>
