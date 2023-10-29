@@ -331,6 +331,7 @@ export default function Home() {
       </Head>
       {/* ——————————————————————————————————————————————————————————————————— */}
 
+      {/* Settings */}
       <div
         className={`settings-window rounded-md fixed w-64 top-8 bottom-8 right-8 border-2 ${
           theme === "light" ? "border-black" : "border-white"
@@ -586,7 +587,7 @@ export default function Home() {
       </div>
 
       {/* ——————————————————————————————————————————————————————————————————— */}
-
+ƒ
       <nav className="flex justify-between items-center relative">
         <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
         <div className="flex flex-row gap-8 font-medium">
