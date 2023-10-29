@@ -101,41 +101,41 @@ export default function Home() {
     }
   };
 
-  type tasks = {
+  type Tasks = {
     text: string;
     isChecked: boolean;
   };
 
-  const [taskss, settaskss] = useState<tasks[]>(() => {
-    // Try getting taskss from localStorage on initial load
+  const [tasks, setTasks] = useState<Tasks[]>(() => {
+    // Try getting tasks from localStorage on initial load
     if (typeof window !== "undefined") {
-      const savedtaskss = localStorage.getItem("taskss");
-      return savedtaskss
-        ? JSON.parse(savedtaskss)
+      const savedTasks = localStorage.getItem("tasks");
+      return savedTasks
+        ? JSON.parse(savedTasks)
         : [{ text: "", isChecked: false }];
     }
   });
 
-  const [activetasksIndex, setActivetasksIndex] = useState<number | null>(null);
+  const [ActiveTasksIndex, setActivetasksIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Any time the taskss change, update them in localStorage
-      localStorage.setItem("taskss", JSON.stringify(taskss));
+      // Any time the tasks change, update them in localStorage
+      localStorage.setItem("tasks", JSON.stringify(tasks));
     }
-  }, [taskss]);
+  }, [tasks]);
 
-  const addtasks = (text: string): void => {
-    settaskss((prevtaskss: tasks[]) => [
-      ...prevtaskss,
+  const addTasks = (text: string): void => {
+    setTasks((prevTask: Tasks[]) => [
+      ...prevTask,
       { text, isChecked: false },
     ]);
   };
 
-  const toggletasks = (index: number): void => {
-    const newtaskss = [...taskss];
-    newtaskss[index].isChecked = !newtaskss[index].isChecked;
-    settaskss(newtaskss);
+  const toggleTasks = (index: number): void => {
+    const newTask = [...tasks];
+    newTask[index].isChecked = !newTask[index].isChecked;
+    setTasks(newTask);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
@@ -143,10 +143,10 @@ export default function Home() {
       event.preventDefault();
       const value = event.currentTarget.innerText;
       if (value.trim() !== "") {
-        const newtaskss = [...taskss];
-        newtaskss[newtaskss.length - 1].text = value.trim();
-        settaskss(newtaskss);
-        addtasks("");
+        const newTask = [...tasks];
+        newTask[newTask.length - 1].text = value.trim();
+        setTasks(newTask);
+        addTasks("");
         // Immediately focus on the new tasks
         if (editableRef.current) {
           editableRef.current.innerHTML = "";
@@ -161,27 +161,27 @@ export default function Home() {
       const keyEvent = event as KeyboardEvent;
       // Check if the target isn't any contentEditable div
       if (
-        taskss[taskss.length - 1].text === "" &&
+        tasks[tasks.length - 1].text === "" &&
         editableRef.current &&
         !(keyEvent.target as HTMLElement).contentEditable
       ) {
         editableRef.current.focus();
       }
     },
-    [taskss]
+    [tasks]
   );
 
-  const cleartaskss = (): void => {
-    settaskss([{ text: "", isChecked: false }]);
+  const clearTasks = (): void => {
+    setTasks([{ text: "", isChecked: false }]);
   };
 
   const markAllDone = (): void => {
-    if (taskss && taskss.length) {
-      const updatedtaskss = taskss.map((tasks) => ({
+    if (tasks && tasks.length) {
+      const updatedtaskss = tasks.map((tasks) => ({
         ...tasks,
         isChecked: true,
       }));
-      settaskss(updatedtaskss);
+      setTasks(updatedtaskss);
     }
   };
 
@@ -190,13 +190,13 @@ export default function Home() {
     return () => {
       document.removeEventListener("keypress", handleDocumentKeyPress);
     };
-  }, [taskss, handleDocumentKeyPress]);
+  }, [tasks, handleDocumentKeyPress]);
 
   useEffect(() => {
     if (editableRef && editableRef.current) {
       editableRef.current.focus();
     }
-  }, [taskss?.length]);
+  }, [tasks?.length]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -1076,9 +1076,9 @@ export default function Home() {
         {view === "tasks" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
             <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
-              {taskss &&
-                taskss.length > 0 &&
-                taskss.map((tasks, index) => (
+              {tasks &&
+                tasks.length > 0 &&
+                tasks.map((task, index) => (
                   <div
                     key={index}
                     className="flex flex-row items-center justify-start gap-4 w-full"
@@ -1087,16 +1087,16 @@ export default function Home() {
                       className={`cursor-pointer border-2 rounded-sm w-6 h-6 
                         ${theme === "light" ? "border-black" : "border-white"}
                         ${
-                          tasks.isChecked
+                          task.isChecked
                             ? theme === "light"
                               ? "bg-black"
                               : "bg-white"
                             : ""
                         }`}
-                      onClick={() => toggletasks(index)}
+                      onClick={() => toggleTasks(index)}
                     ></div>
                     <div
-                      ref={index === taskss.length - 1 ? editableRef : null}
+                      ref={index === tasks.length - 1 ? editableRef : null}
                       className="whitespace-pre-wrap w-full outline-none font-normal leading-8 text-xl relative"
                       contentEditable={true}
                       suppressContentEditableWarning={true}
@@ -1113,7 +1113,7 @@ export default function Home() {
                         // Consider updating the tasks list with the edited text
                       }}
                     >
-                      {tasks.text}
+                      {task.text}
                     </div>
                   </div>
                 ))}
@@ -1342,7 +1342,7 @@ export default function Home() {
             >
               all done
             </button>
-            <button type="button" onClick={cleartaskss}>
+            <button type="button" onClick={clearTasks}>
               clear
             </button>
           </div>
