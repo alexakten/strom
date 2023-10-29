@@ -587,7 +587,7 @@ export default function Home() {
       </div>
 
       {/* ——————————————————————————————————————————————————————————————————— */}
-ƒ
+      
       <nav className="flex justify-between items-center relative">
         <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
         <div className="flex flex-row gap-8 font-medium">
