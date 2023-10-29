@@ -1378,11 +1378,11 @@ export default function Home() {
         )}
 
         <a
-          href="https://portfolio-alexakten.vercel.app/"
+          href="mailto:alex.akten@outlook.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <p>© 2023</p>
+          <p>feedback</p>
         </a>
       </div>
     </main>
