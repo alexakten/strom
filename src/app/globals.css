@@ -292,6 +292,7 @@ body {
   height: 0;
 }
 
+/* Default styles for both sliders */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -299,9 +300,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #e1e1e1;
   transition: .2s;
-  border-radius: 34px; /* Making the toggle fully rounded */
+  border-radius: 34px; 
 }
 
 .slider:before {
@@ -311,20 +311,49 @@ body {
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
   transition: .1s;
-  border-radius: 50%; /* Making the slider inside it fully rounded */
+  border-radius: 50%; 
 }
 
-input:checked + .slider {
-  background-color: #353535;
+/* Styles for slider-light */
+.slider-light {
+  background-color: #e1e1e1;
 }
 
+.slider-light:before {
+  background-color: white;
+}
+
+input:checked + .slider-light {
+  background-color: #000;
+}
+
+input:checked + .slider-light:before {
+  background-color: white;
+  transform: translateX(26px);
+}
+
+/* Styles for slider-dark */
+.slider-dark {
+  background-color: #252525; /* Dark gray background */
+}
+
+.slider-dark:before {
+  background-color: #000; /* Black toggle when off */
+}
+
+input:checked + .slider-dark {
+  background-color: white; /* White background with toggle on */
+}
+
+input:checked + .slider-dark:before {
+  background-color: #000; /* Black toggle when on */
+  transform: translateX(26px);
+}
+
+/* Focus effect for both sliders */
 input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
 

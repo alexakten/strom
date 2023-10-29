@@ -101,38 +101,41 @@ export default function Home() {
     }
   };
 
-  type Todo = {
+  type tasks = {
     text: string;
     isChecked: boolean;
   };
 
-  const [todos, setTodos] = useState<Todo[]>(() => {
-    // Try getting todos from localStorage on initial load
+  const [taskss, settaskss] = useState<tasks[]>(() => {
+    // Try getting taskss from localStorage on initial load
     if (typeof window !== "undefined") {
-      const savedTodos = localStorage.getItem("todos");
-      return savedTodos
-        ? JSON.parse(savedTodos)
+      const savedtaskss = localStorage.getItem("taskss");
+      return savedtaskss
+        ? JSON.parse(savedtaskss)
         : [{ text: "", isChecked: false }];
     }
   });
 
-  const [activeTodoIndex, setActiveTodoIndex] = useState<number | null>(null);
+  const [activetasksIndex, setActivetasksIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Any time the todos change, update them in localStorage
-      localStorage.setItem("todos", JSON.stringify(todos));
+      // Any time the taskss change, update them in localStorage
+      localStorage.setItem("taskss", JSON.stringify(taskss));
     }
-  }, [todos]);
+  }, [taskss]);
 
-  const addTodo = (text: string): void => {
-    setTodos((prevTodos: Todo[]) => [...prevTodos, { text, isChecked: false }]);
+  const addtasks = (text: string): void => {
+    settaskss((prevtaskss: tasks[]) => [
+      ...prevtaskss,
+      { text, isChecked: false },
+    ]);
   };
 
-  const toggleTodo = (index: number): void => {
-    const newTodos = [...todos];
-    newTodos[index].isChecked = !newTodos[index].isChecked;
-    setTodos(newTodos);
+  const toggletasks = (index: number): void => {
+    const newtaskss = [...taskss];
+    newtaskss[index].isChecked = !newtaskss[index].isChecked;
+    settaskss(newtaskss);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
@@ -140,11 +143,11 @@ export default function Home() {
       event.preventDefault();
       const value = event.currentTarget.innerText;
       if (value.trim() !== "") {
-        const newTodos = [...todos];
-        newTodos[newTodos.length - 1].text = value.trim();
-        setTodos(newTodos);
-        addTodo("");
-        // Immediately focus on the new todo
+        const newtaskss = [...taskss];
+        newtaskss[newtaskss.length - 1].text = value.trim();
+        settaskss(newtaskss);
+        addtasks("");
+        // Immediately focus on the new tasks
         if (editableRef.current) {
           editableRef.current.innerHTML = "";
           editableRef.current.focus();
@@ -158,24 +161,27 @@ export default function Home() {
       const keyEvent = event as KeyboardEvent;
       // Check if the target isn't any contentEditable div
       if (
-        todos[todos.length - 1].text === "" &&
+        taskss[taskss.length - 1].text === "" &&
         editableRef.current &&
         !(keyEvent.target as HTMLElement).contentEditable
       ) {
         editableRef.current.focus();
       }
     },
-    [todos]
+    [taskss]
   );
 
-  const clearTodos = (): void => {
-    setTodos([{ text: "", isChecked: false }]);
+  const cleartaskss = (): void => {
+    settaskss([{ text: "", isChecked: false }]);
   };
 
   const markAllDone = (): void => {
-    if (todos && todos.length) {
-      const updatedTodos = todos.map((todo) => ({ ...todo, isChecked: true }));
-      setTodos(updatedTodos);
+    if (taskss && taskss.length) {
+      const updatedtaskss = taskss.map((tasks) => ({
+        ...tasks,
+        isChecked: true,
+      }));
+      settaskss(updatedtaskss);
     }
   };
 
@@ -184,13 +190,13 @@ export default function Home() {
     return () => {
       document.removeEventListener("keypress", handleDocumentKeyPress);
     };
-  }, [todos, handleDocumentKeyPress]);
+  }, [taskss, handleDocumentKeyPress]);
 
   useEffect(() => {
     if (editableRef && editableRef.current) {
       editableRef.current.focus();
     }
-  }, [todos?.length]);
+  }, [taskss?.length]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -321,8 +327,8 @@ export default function Home() {
         <link rel="preload" href="/icons/breathe-white.png" as="image" />
         <link rel="preload" href="/icons/meditate.png" as="image" />
         <link rel="preload" href="/icons/meditate-white.png" as="image" />
-        <link rel="preload" href="/icons/todo.png" as="image" />
-        <link rel="preload" href="/icons/todo-white.png" as="image" />
+        <link rel="preload" href="/icons/tasks.png" as="image" />
+        <link rel="preload" href="/icons/tasks-white.png" as="image" />
         <link rel="preload" href="/icons/quotes.png" as="image" />
         <link rel="preload" href="/icons/quotes-white.png" as="image" />
         <link rel="preload" href="/icons/gratitude.png" as="image" />
@@ -374,7 +380,11 @@ export default function Home() {
                   onChange={() => setIsTextVisible(!isTextVisible)}
                   aria-label="Toggle Text Visibility"
                 />
-                <span className="slider"></span>
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
               </label>
             </div>
           </div>
@@ -415,7 +425,11 @@ export default function Home() {
                   onChange={() => setIsBreatheVisible(!isBreatheVisible)}
                   aria-label="Toggle Breathe Visibility"
                 />
-                <span className="slider"></span>
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
               </label>
             </div>
           </div>
@@ -456,7 +470,11 @@ export default function Home() {
                   onChange={() => setIsMeditateVisible(!isMeditateVisible)}
                   aria-label="Toggle Meditate Visibility"
                 />
-                <span className="slider"></span>
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
               </label>
             </div>
           </div>
@@ -473,10 +491,10 @@ export default function Home() {
                 <Image
                   src={
                     theme === "dark"
-                      ? "/icons/todo-white.png"
-                      : "/icons/todo.png"
+                      ? "/icons/tasks-white.png"
+                      : "/icons/tasks.png"
                   }
-                  alt="Todo Icon"
+                  alt="tasks Icon"
                   width={20}
                   height={20}
                 />
@@ -497,7 +515,11 @@ export default function Home() {
                   onChange={() => setIsTasksVisible(!isTasksVisible)}
                   aria-label="Toggle Tasks Visibility"
                 />
-                <span className="slider"></span>
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
               </label>
             </div>
           </div>
@@ -538,7 +560,11 @@ export default function Home() {
                   onChange={() => setIsQuotesVisible(!isQuotesVisible)}
                   aria-label="Toggle Quotes Visibility"
                 />
-                <span className="slider"></span>
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
               </label>
             </div>
           </div>
@@ -579,7 +605,11 @@ export default function Home() {
                   onChange={() => setIsGratitudeVisible(!isGratitudeVisible)}
                   aria-label="Toggle Gratitude Visibility"
                 />
-                <span className="slider"></span>
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
               </label>
             </div>
           </div>
@@ -587,7 +617,7 @@ export default function Home() {
       </div>
 
       {/* ——————————————————————————————————————————————————————————————————— */}
-      
+
       <nav className="flex justify-between items-center relative">
         <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
         <div className="flex flex-row gap-8 font-medium">
@@ -746,12 +776,12 @@ export default function Home() {
           {isTasksVisible && (
             <button
               type="button"
-              aria-label="todo"
-              onClick={() => setView("todo")}
+              aria-label="tasks"
+              onClick={() => setView("tasks")}
               className={`p-4 border-sm border-2 rounded-md ${
                 theme === "dark" ? "border-white" : "border-black"
               } relative ${
-                view === "todo"
+                view === "tasks"
                   ? theme === "dark"
                     ? "bg-white text-black"
                     : "bg-black text-white"
@@ -762,19 +792,19 @@ export default function Home() {
                 <Image
                   src={
                     theme === "dark"
-                      ? view === "todo"
-                        ? "/icons/todo.png"
-                        : "/icons/todo-white.png"
-                      : view === "todo"
-                      ? "/icons/todo-white.png"
-                      : "/icons/todo.png"
+                      ? view === "tasks"
+                        ? "/icons/tasks.png"
+                        : "/icons/tasks-white.png"
+                      : view === "tasks"
+                      ? "/icons/tasks-white.png"
+                      : "/icons/tasks.png"
                   }
-                  alt="todo Icon"
+                  alt="tasks Icon"
                   width={22}
                   height={22}
                 />
               </div>
-              {view === "todo" && (
+              {view === "tasks" && (
                 <div
                   className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
                     theme === "light" ? "text-black" : "text-white"
@@ -1043,12 +1073,12 @@ export default function Home() {
           </div>
         )}
 
-        {view === "todo" && (
+        {view === "tasks" && (
           <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
             <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
-              {todos &&
-                todos.length > 0 &&
-                todos.map((todo, index) => (
+              {taskss &&
+                taskss.length > 0 &&
+                taskss.map((tasks, index) => (
                   <div
                     key={index}
                     className="flex flex-row items-center justify-start gap-4 w-full"
@@ -1057,33 +1087,33 @@ export default function Home() {
                       className={`cursor-pointer border-2 rounded-sm w-6 h-6 
                         ${theme === "light" ? "border-black" : "border-white"}
                         ${
-                          todo.isChecked
+                          tasks.isChecked
                             ? theme === "light"
                               ? "bg-black"
                               : "bg-white"
                             : ""
                         }`}
-                      onClick={() => toggleTodo(index)}
+                      onClick={() => toggletasks(index)}
                     ></div>
                     <div
-                      ref={index === todos.length - 1 ? editableRef : null}
+                      ref={index === taskss.length - 1 ? editableRef : null}
                       className="whitespace-pre-wrap w-full outline-none font-normal leading-8 text-xl relative"
                       contentEditable={true}
                       suppressContentEditableWarning={true}
                       onKeyPress={handleKeyPress}
                       onFocus={(event) => {
-                        setActiveTodoIndex(index);
+                        setActivetasksIndex(index);
                         if (event.currentTarget.innerHTML === "") {
                           event.currentTarget.innerHTML = "<br>";
                         }
                       }}
                       onBlur={(event) => {
-                        setActiveTodoIndex(null);
-                        // Save changes to todo.text here
-                        // Consider updating the todo list with the edited text
+                        setActivetasksIndex(null);
+                        // Save changes to tasks.text here
+                        // Consider updating the tasks list with the edited text
                       }}
                     >
-                      {todo.text}
+                      {tasks.text}
                     </div>
                   </div>
                 ))}
@@ -1300,7 +1330,7 @@ export default function Home() {
           <div style={{ display: "none" }}></div>
         )}
 
-        {view === "todo" ? (
+        {view === "tasks" ? (
           <div className="flex flex-row gap-8">
             <button
               type="button"
@@ -1312,7 +1342,7 @@ export default function Home() {
             >
               all done
             </button>
-            <button type="button" onClick={clearTodos}>
+            <button type="button" onClick={cleartaskss}>
               clear
             </button>
           </div>
