@@ -336,7 +336,7 @@ export default function Home() {
           theme === "light" ? "border-black" : "border-white"
         } ${settingsOpen ? "open" : ""}`}
       >
-        <div className="py-20 px-8 flex flex-col gap-16">
+        <div className="py-28 px-8 flex flex-col gap-16">
           <div className="flex justify-between">
             <div
               className={`relative p-4 border-sm border-2 rounded-md ${

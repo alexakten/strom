@@ -299,8 +299,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
+  background-color: #e1e1e1;
+  transition: .2s;
   border-radius: 34px; /* Making the toggle fully rounded */
 }
 
@@ -312,12 +312,12 @@ body {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  transition: .2s;
+  transition: .1s;
   border-radius: 50%; /* Making the slider inside it fully rounded */
 }
 
 input:checked + .slider {
-  background-color: #000;
+  background-color: #424242;
 }
 
 input:focus + .slider {
