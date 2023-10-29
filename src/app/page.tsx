@@ -16,11 +16,18 @@ export default function Home() {
   const [view, setView] = useState("text"); // default to text view
 
   const [text, setText] = useState("");
-  const [settingsOpen, setSettingsOpen] = useState(false);
 
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const toggleSettings = () => {
     setSettingsOpen(!settingsOpen);
   };
+
+  const [isTextVisible, setIsTextVisible] = useState(true);
+  const [isBreatheVisible, setIsBreatheVisible] = useState(true);
+  const [isMeditateVisible, setIsMeditateVisible] = useState(true);
+  const [isTasksVisible, setIsTasksVisible] = useState(true);
+  const [isQuotesVisible, setIsQuotesVisible] = useState(true);
+  const [isGratitudeVisible, setIsGratitudeVisible] = useState(true);
 
   const [selectedDuration, setSelectedDuration] = useState(5);
   const [isMeditating, setIsMeditating] = useState(false);
@@ -325,11 +332,258 @@ export default function Home() {
       {/* ——————————————————————————————————————————————————————————————————— */}
 
       <div
-        className={`settings-window rounded-md fixed w-96 top-8 bottom-8 right-8 border-2 ${
+        className={`settings-window rounded-md fixed w-64 top-8 bottom-8 right-8 border-2 ${
           theme === "light" ? "border-black" : "border-white"
         } ${settingsOpen ? "open" : ""}`}
-        
-      ></div>
+      >
+        <div className="py-20 px-8 flex flex-col gap-16">
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/text-white.png"
+                      : "/icons/text.png"
+                  }
+                  alt="Text Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Reflect
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isTextVisible}
+                  onChange={() => setIsTextVisible(!isTextVisible)}
+                  aria-label="Toggle Text Visibility"
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/breathe-white.png"
+                      : "/icons/breathe.png"
+                  }
+                  alt="Breathe Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Breathe
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isBreatheVisible}
+                  onChange={() => setIsBreatheVisible(!isBreatheVisible)}
+                  aria-label="Toggle Breathe Visibility"
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/meditate-white.png"
+                      : "/icons/meditate.png"
+                  }
+                  alt="Meditate Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Meditate
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isMeditateVisible}
+                  onChange={() => setIsMeditateVisible(!isMeditateVisible)}
+                  aria-label="Toggle Meditate Visibility"
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/todo-white.png"
+                      : "/icons/todo.png"
+                  }
+                  alt="Todo Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Tasks
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isTasksVisible}
+                  onChange={() => setIsTasksVisible(!isTasksVisible)}
+                  aria-label="Toggle Tasks Visibility"
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/quotes-white.png"
+                      : "/icons/quotes.png"
+                  }
+                  alt="Quotes Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Quotes
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isQuotesVisible}
+                  onChange={() => setIsQuotesVisible(!isQuotesVisible)}
+                  aria-label="Toggle Quotes Visibility"
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/gratitude-white.png"
+                      : "/icons/gratitude.png"
+                  }
+                  alt="Gratitude Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Gratitude
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isGratitudeVisible}
+                  onChange={() => setIsGratitudeVisible(!isGratitudeVisible)}
+                  aria-label="Toggle Gratitude Visibility"
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* ——————————————————————————————————————————————————————————————————— */}
 
@@ -359,251 +613,263 @@ export default function Home() {
           </button>
         </div>
         <div className="flex flex-row gap-4 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <button
-            type="button"
-            aria-label="Text"
-            onClick={() => setView("text")}
-            className={`p-4 border-sm border-2 rounded-md ${
-              theme === "dark" ? "border-white" : "border-black"
-            } relative ${
-              view === "text"
-                ? theme === "dark"
-                  ? "bg-white text-black"
-                  : "bg-black text-white"
-                : ""
-            }`}
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Image
-                src={
-                  theme === "dark"
-                    ? view === "text"
-                      ? "/icons/text.png"
-                      : "/icons/text-white.png"
-                    : view === "text"
-                    ? "/icons/text-white.png"
-                    : "/icons/text.png"
-                }
-                alt="Text Icon"
-                width={20}
-                height={20}
-              />
-            </div>
-            {view === "text" && (
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Reflect
+          {isTextVisible && (
+            <button
+              type="button"
+              aria-label="Text"
+              onClick={() => setView("text")}
+              className={`p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } relative ${
+                view === "text"
+                  ? theme === "dark"
+                    ? "bg-white text-black"
+                    : "bg-black text-white"
+                  : ""
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? view === "text"
+                        ? "/icons/text.png"
+                        : "/icons/text-white.png"
+                      : view === "text"
+                      ? "/icons/text-white.png"
+                      : "/icons/text.png"
+                  }
+                  alt="Text Icon"
+                  width={20}
+                  height={20}
+                />
               </div>
-            )}
-          </button>
+              {view === "text" && (
+                <div
+                  className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                    theme === "light" ? "text-black" : "text-white"
+                  }`}
+                >
+                  Reflect
+                </div>
+              )}
+            </button>
+          )}
 
-          <button
-            type="button"
-            aria-label="Breathe"
-            onClick={() => setView("breathe")}
-            className={`p-4 border-sm border-2 rounded-md ${
-              theme === "dark" ? "border-white" : "border-black"
-            } relative ${
-              view === "breathe"
-                ? theme === "dark"
-                  ? "bg-white text-black"
-                  : "bg-black text-white"
-                : ""
-            }`}
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Image
-                src={
-                  theme === "dark"
-                    ? view === "breathe"
-                      ? "/icons/breathe.png"
-                      : "/icons/breathe-white.png"
-                    : view === "breathe"
-                    ? "/icons/breathe-white.png"
-                    : "/icons/breathe.png"
-                }
-                alt="Breathe Icon"
-                width={20}
-                height={20}
-              />
-            </div>
-            {view === "breathe" && (
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Breathe
+          {isBreatheVisible && (
+            <button
+              type="button"
+              aria-label="Breathe"
+              onClick={() => setView("breathe")}
+              className={`p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } relative ${
+                view === "breathe"
+                  ? theme === "dark"
+                    ? "bg-white text-black"
+                    : "bg-black text-white"
+                  : ""
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? view === "breathe"
+                        ? "/icons/breathe.png"
+                        : "/icons/breathe-white.png"
+                      : view === "breathe"
+                      ? "/icons/breathe-white.png"
+                      : "/icons/breathe.png"
+                  }
+                  alt="Breathe Icon"
+                  width={20}
+                  height={20}
+                />
               </div>
-            )}
-          </button>
+              {view === "breathe" && (
+                <div
+                  className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                    theme === "light" ? "text-black" : "text-white"
+                  }`}
+                >
+                  Breathe
+                </div>
+              )}
+            </button>
+          )}
 
-          <button
-            type="button"
-            aria-label="Meditate"
-            onClick={() => setView("meditate")}
-            className={`p-4 border-sm border-2 rounded-md ${
-              theme === "dark" ? "border-white" : "border-black"
-            } relative ${
-              view === "meditate"
-                ? theme === "dark"
-                  ? "bg-white text-black"
-                  : "bg-black text-white"
-                : ""
-            }`}
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Image
-                src={
-                  theme === "dark"
-                    ? view === "meditate"
-                      ? "/icons/meditate.png"
-                      : "/icons/meditate-white.png"
-                    : view === "meditate"
-                    ? "/icons/meditate-white.png"
-                    : "/icons/meditate.png"
-                }
-                alt="Meditate Icon"
-                width={24}
-                height={24}
-              />
-            </div>
-            {view === "meditate" && (
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Meditate
+          {isMeditateVisible && (
+            <button
+              type="button"
+              aria-label="Meditate"
+              onClick={() => setView("meditate")}
+              className={`p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } relative ${
+                view === "meditate"
+                  ? theme === "dark"
+                    ? "bg-white text-black"
+                    : "bg-black text-white"
+                  : ""
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? view === "meditate"
+                        ? "/icons/meditate.png"
+                        : "/icons/meditate-white.png"
+                      : view === "meditate"
+                      ? "/icons/meditate-white.png"
+                      : "/icons/meditate.png"
+                  }
+                  alt="Meditate Icon"
+                  width={24}
+                  height={24}
+                />
               </div>
-            )}
-          </button>
+              {view === "meditate" && (
+                <div
+                  className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                    theme === "light" ? "text-black" : "text-white"
+                  }`}
+                >
+                  Meditate
+                </div>
+              )}
+            </button>
+          )}
 
-          <button
-            type="button"
-            aria-label="todo"
-            onClick={() => setView("todo")}
-            className={`p-4 border-sm border-2 rounded-md ${
-              theme === "dark" ? "border-white" : "border-black"
-            } relative ${
-              view === "todo"
-                ? theme === "dark"
-                  ? "bg-white text-black"
-                  : "bg-black text-white"
-                : ""
-            }`}
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Image
-                src={
-                  theme === "dark"
-                    ? view === "todo"
-                      ? "/icons/todo.png"
-                      : "/icons/todo-white.png"
-                    : view === "todo"
-                    ? "/icons/todo-white.png"
-                    : "/icons/todo.png"
-                }
-                alt="todo Icon"
-                width={22}
-                height={22}
-              />
-            </div>
-            {view === "todo" && (
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Tasks
+          {isTasksVisible && (
+            <button
+              type="button"
+              aria-label="todo"
+              onClick={() => setView("todo")}
+              className={`p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } relative ${
+                view === "todo"
+                  ? theme === "dark"
+                    ? "bg-white text-black"
+                    : "bg-black text-white"
+                  : ""
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? view === "todo"
+                        ? "/icons/todo.png"
+                        : "/icons/todo-white.png"
+                      : view === "todo"
+                      ? "/icons/todo-white.png"
+                      : "/icons/todo.png"
+                  }
+                  alt="todo Icon"
+                  width={22}
+                  height={22}
+                />
               </div>
-            )}
-          </button>
+              {view === "todo" && (
+                <div
+                  className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                    theme === "light" ? "text-black" : "text-white"
+                  }`}
+                >
+                  Tasks
+                </div>
+              )}
+            </button>
+          )}
 
-          <button
-            type="button"
-            aria-label="quotes"
-            onClick={() => setView("quotes")}
-            className={`p-4 border-sm border-2 rounded-md ${
-              theme === "dark" ? "border-white" : "border-black"
-            } relative ${
-              view === "quotes"
-                ? theme === "dark"
-                  ? "bg-white text-black"
-                  : "bg-black text-white"
-                : ""
-            }`}
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Image
-                src={
-                  theme === "dark"
-                    ? view === "quotes"
-                      ? "/icons/quotes.png"
-                      : "/icons/quotes-white.png"
-                    : view === "quotes"
-                    ? "/icons/quotes-white.png"
-                    : "/icons/quotes.png"
-                }
-                alt="Quotes Icon"
-                width={14}
-                height={14}
-              />
-            </div>
-            {view === "quotes" && (
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Quotes
+          {isQuotesVisible && (
+            <button
+              type="button"
+              aria-label="quotes"
+              onClick={() => setView("quotes")}
+              className={`p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } relative ${
+                view === "quotes"
+                  ? theme === "dark"
+                    ? "bg-white text-black"
+                    : "bg-black text-white"
+                  : ""
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? view === "quotes"
+                        ? "/icons/quotes.png"
+                        : "/icons/quotes-white.png"
+                      : view === "quotes"
+                      ? "/icons/quotes-white.png"
+                      : "/icons/quotes.png"
+                  }
+                  alt="Quotes Icon"
+                  width={14}
+                  height={14}
+                />
               </div>
-            )}
-          </button>
+              {view === "quotes" && (
+                <div
+                  className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                    theme === "light" ? "text-black" : "text-white"
+                  }`}
+                >
+                  Quotes
+                </div>
+              )}
+            </button>
+          )}
 
-          <button
-            type="button"
-            aria-label="gratitude"
-            onClick={() => setView("gratitude")}
-            className={`p-4 border-sm border-2 rounded-md ${
-              theme === "dark" ? "border-white" : "border-black"
-            } relative ${
-              view === "gratitude"
-                ? theme === "dark"
-                  ? "bg-white text-black"
-                  : "bg-black text-white"
-                : ""
-            }`}
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Image
-                src={
-                  theme === "dark"
-                    ? view === "gratitude"
-                      ? "/icons/gratitude.png"
-                      : "/icons/gratitude-white.png"
-                    : view === "gratitude"
-                    ? "/icons/gratitude-white.png"
-                    : "/icons/gratitude.png"
-                }
-                alt="Gratitude Icon"
-                width={17}
-                height={17}
-              />
-            </div>
-            {view === "gratitude" && (
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Gratitude
+          {isGratitudeVisible && (
+            <button
+              type="button"
+              aria-label="gratitude"
+              onClick={() => setView("gratitude")}
+              className={`p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } relative ${
+                view === "gratitude"
+                  ? theme === "dark"
+                    ? "bg-white text-black"
+                    : "bg-black text-white"
+                  : ""
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? view === "gratitude"
+                        ? "/icons/gratitude.png"
+                        : "/icons/gratitude-white.png"
+                      : view === "gratitude"
+                      ? "/icons/gratitude-white.png"
+                      : "/icons/gratitude.png"
+                  }
+                  alt="Gratitude Icon"
+                  width={17}
+                  height={17}
+                />
               </div>
-            )}
-          </button>
+              {view === "gratitude" && (
+                <div
+                  className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                    theme === "light" ? "text-black" : "text-white"
+                  }`}
+                >
+                  Gratitude
+                </div>
+              )}
+            </button>
+          )}
         </div>
       </nav>
 
