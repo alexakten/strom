@@ -315,7 +315,7 @@ export default function Home() {
   return (
     <main
       style={{ userSelect: "none", height: `${viewportHeight}px` }}
-      className={`flex flex-col justify-between w-screen h-screen overflow-hidden overflow-y-hidden px-4 xs:px-12 py-10 ${
+      className={`flex relative flex-col justify-between w-screen h-screen overflow-hidden overflow-y-hidden px-4 xs:px-12 py-10 ${
         theme === "light"
           ? "bg-zinc-50 text-black"
           : "bg-neutral-950 text-white"
@@ -1183,7 +1183,7 @@ export default function Home() {
 
       {/* ——————————————————————————————————————————————————————————————————— */}
 
-      <div className="flex font-neue-haas font-medium justify-between items-end">
+      <div className="flex w-full absolute bottom-8 font-neue-haas font-medium justify-between items-end">
         {view === "text" ? (
           <div className="flex flex-row gap-8">
             <button
@@ -1383,7 +1383,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <p>feedback</p>
+          <p className="px-24">feedback</p>
         </a>
       </div>
     </main>
