@@ -338,6 +338,286 @@ export default function Home() {
       </Head>
       {/* ——————————————————————————————————————————————————————————————————— */}
 
+
+       {/* Settings */}
+       <div
+        className={`settings-window rounded-md fixed w-64 top-8 bottom-8 right-8 border-2 ${
+          theme === "light" ? "border-black" : "border-white"
+        } ${settingsOpen ? "open" : ""}`}
+      >
+        <div className="py-28 px-8 flex flex-col gap-16">
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/text-white.png"
+                      : "/icons/text.png"
+                  }
+                  alt="Text Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Reflect
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isTextVisible}
+                  onChange={() => setIsTextVisible(!isTextVisible)}
+                  aria-label="Toggle Text Visibility"
+                />
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/breathe-white.png"
+                      : "/icons/breathe.png"
+                  }
+                  alt="Breathe Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Breathe
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isBreatheVisible}
+                  onChange={() => setIsBreatheVisible(!isBreatheVisible)}
+                  aria-label="Toggle Breathe Visibility"
+                />
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/meditate-white.png"
+                      : "/icons/meditate.png"
+                  }
+                  alt="Meditate Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Meditate
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isMeditateVisible}
+                  onChange={() => setIsMeditateVisible(!isMeditateVisible)}
+                  aria-label="Toggle Meditate Visibility"
+                />
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/tasks-white.png"
+                      : "/icons/tasks.png"
+                  }
+                  alt="tasks Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Tasks
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isTasksVisible}
+                  onChange={() => setIsTasksVisible(!isTasksVisible)}
+                  aria-label="Toggle Tasks Visibility"
+                />
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/quotes-white.png"
+                      : "/icons/quotes.png"
+                  }
+                  alt="Quotes Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Quotes
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isQuotesVisible}
+                  onChange={() => setIsQuotesVisible(!isQuotesVisible)}
+                  aria-label="Toggle Quotes Visibility"
+                />
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
+              </label>
+            </div>
+          </div>
+          {/* ——————————————————————————————————————————————————————————————————— */}
+          <div className="flex justify-between">
+            <div
+              className={`relative p-4 border-sm border-2 rounded-md ${
+                theme === "dark" ? "border-white" : "border-black"
+              } ${
+                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+              }`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/icons/gratitude-white.png"
+                      : "/icons/gratitude.png"
+                  }
+                  alt="Gratitude Icon"
+                  width={20}
+                  height={20}
+                />
+              </div>
+              <div
+                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              >
+                Gratitude
+              </div>
+            </div>
+            <div>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isGratitudeVisible}
+                  onChange={() => setIsGratitudeVisible(!isGratitudeVisible)}
+                  aria-label="Toggle Gratitude Visibility"
+                />
+                <span
+                  className={`slider ${
+                    theme === "light" ? "slider-light" : "slider-dark"
+                  }`}
+                ></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <nav className="flex justify-between items-center relative">
         <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
         <div className="flex flex-row gap-8 font-medium">
