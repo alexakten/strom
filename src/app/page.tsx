@@ -230,7 +230,7 @@ export default function Home() {
         sel.addRange(range);
       }
     }
-  }, [theme, view]);
+  }, [view]);
 
   // Can't edit old tasks when this is live 
   // useEffect(() => {
@@ -336,8 +336,6 @@ export default function Home() {
         <link rel="preload" href="/icons/gratitude-white.png" as="image" />
         {/* ... other head elements ... */}
       </Head>
-      {/* ——————————————————————————————————————————————————————————————————— */}
-
       {/* ——————————————————————————————————————————————————————————————————— */}
 
       <nav className="flex justify-between items-center relative">
