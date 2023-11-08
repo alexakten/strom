@@ -126,10 +126,7 @@ export default function Home() {
   }, [tasks]);
 
   const addTasks = (text: string): void => {
-    setTasks((prevTask: Tasks[]) => [
-      ...prevTask,
-      { text, isChecked: false },
-    ]);
+    setTasks((prevTask: Tasks[]) => [...prevTask, { text, isChecked: false }]);
   };
 
   const toggleTasks = (index: number): void => {
@@ -232,7 +229,7 @@ export default function Home() {
     }
   }, [theme, view]);
 
-  // Can't edit old tasks when this is live 
+  // Can't edit old tasks when this is live
   // useEffect(() => {
   //   const handleKeyDown = () => {
   //     if (
@@ -907,7 +904,7 @@ export default function Home() {
 
       {/* ——————————————————————————————————————————————————————————————————— */}
 
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex justify-center items-center h-screen">
         {view === "text" && (
           <div
             className="w-full flex items-end h-32 overflow-hidden select-none cursor-text max-w-lg relative transform -translate-y-1/2"
@@ -1183,7 +1180,7 @@ export default function Home() {
 
       {/* ——————————————————————————————————————————————————————————————————— */}
 
-      <div className="flex w-full absolute bottom-8 font-neue-haas font-medium justify-between items-end">
+      <div className="flex w-full font-medium justify-between items-end">
         {view === "text" ? (
           <div className="flex flex-row gap-8">
             <button
