@@ -319,18 +319,18 @@ export default function Home() {
       }`}
     >
       <Head>
-        <link rel="preload" href="/icons/text.png" as="image" />
-        <link rel="preload" href="/icons/text-white.png" as="image" />
-        <link rel="preload" href="/icons/breathe.png" as="image" />
-        <link rel="preload" href="/icons/breathe-white.png" as="image" />
-        <link rel="preload" href="/icons/meditate.png" as="image" />
-        <link rel="preload" href="/icons/meditate-white.png" as="image" />
-        <link rel="preload" href="/icons/tasks.png" as="image" />
-        <link rel="preload" href="/icons/tasks-white.png" as="image" />
-        <link rel="preload" href="/icons/quotes.png" as="image" />
-        <link rel="preload" href="/icons/quotes-white.png" as="image" />
-        <link rel="preload" href="/icons/gratitude.png" as="image" />
-        <link rel="preload" href="/icons/gratitude-white.png" as="image" />
+        <link rel="preload" href="../../public/icons/text.png" as="image" />
+        <link rel="preload" href="../../public/icons/text-white.png" as="image" />
+        <link rel="preload" href="../../public/icons/breathe.png" as="image" />
+        <link rel="preload" href="../../public/icons/breathe-white.png" as="image" />
+        <link rel="preload" href="../../public/icons/meditate.png" as="image" />
+        <link rel="preload" href="../../public/icons/meditate-white.png" as="image" />
+        <link rel="preload" href="../../public/icons/tasks.png" as="image" />
+        <link rel="preload" href="../../public/icons/tasks-white.png" as="image" />
+        <link rel="preload" href="../../public/icons/quotes.png" as="image" />
+        <link rel="preload" href="../../public/icons/quotes-white.png" as="image" />
+        <link rel="preload" href="../../public/icons/gratitude.png" as="image" />
+        <link rel="preload" href="../../public/icons/gratitude-white.png" as="image" />
         {/* ... other head elements ... */}
       </Head>
       {/* ——————————————————————————————————————————————————————————————————— */}
