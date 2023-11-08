@@ -312,7 +312,7 @@ export default function Home() {
   return (
     <main
       style={{ userSelect: "none", height: `${viewportHeight}px` }}
-      className={`flex relative flex-col justify-between w-screen h-screen overflow-hidden overflow-y-hidden px-4 xs:px-12 py-10 ${
+      className={`flex flex-col justify-between w-screen h-screen px-4 xs:px-12 py-10 ${
         theme === "light"
           ? "bg-zinc-50 text-black"
           : "bg-neutral-950 text-white"
@@ -334,311 +334,12 @@ export default function Home() {
         {/* ... other head elements ... */}
       </Head>
       {/* ——————————————————————————————————————————————————————————————————— */}
-
-      {/* Settings */}
-      <div
-        className={`settings-window rounded-md fixed w-64 top-8 bottom-8 right-8 border-2 ${
-          theme === "light" ? "border-black" : "border-white"
-        } ${settingsOpen ? "open" : ""}`}
-      >
-        <div className="py-28 px-8 flex flex-col gap-16">
-          <div className="flex justify-between">
-            <div
-              className={`relative p-4 border-sm border-2 rounded-md ${
-                theme === "dark" ? "border-white" : "border-black"
-              } ${
-                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
-              }`}
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  src={
-                    theme === "dark"
-                      ? "/icons/text-white.png"
-                      : "/icons/text.png"
-                  }
-                  alt="Text Icon"
-                  width={20}
-                  height={20}
-                />
-              </div>
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Reflect
-              </div>
-            </div>
-            <div>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={isTextVisible}
-                  onChange={() => setIsTextVisible(!isTextVisible)}
-                  aria-label="Toggle Text Visibility"
-                />
-                <span
-                  className={`slider ${
-                    theme === "light" ? "slider-light" : "slider-dark"
-                  }`}
-                ></span>
-              </label>
-            </div>
-          </div>
-          {/* ——————————————————————————————————————————————————————————————————— */}
-          <div className="flex justify-between">
-            <div
-              className={`relative p-4 border-sm border-2 rounded-md ${
-                theme === "dark" ? "border-white" : "border-black"
-              } ${
-                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
-              }`}
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  src={
-                    theme === "dark"
-                      ? "/icons/breathe-white.png"
-                      : "/icons/breathe.png"
-                  }
-                  alt="Breathe Icon"
-                  width={20}
-                  height={20}
-                />
-              </div>
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Breathe
-              </div>
-            </div>
-            <div>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={isBreatheVisible}
-                  onChange={() => setIsBreatheVisible(!isBreatheVisible)}
-                  aria-label="Toggle Breathe Visibility"
-                />
-                <span
-                  className={`slider ${
-                    theme === "light" ? "slider-light" : "slider-dark"
-                  }`}
-                ></span>
-              </label>
-            </div>
-          </div>
-          {/* ——————————————————————————————————————————————————————————————————— */}
-          <div className="flex justify-between">
-            <div
-              className={`relative p-4 border-sm border-2 rounded-md ${
-                theme === "dark" ? "border-white" : "border-black"
-              } ${
-                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
-              }`}
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  src={
-                    theme === "dark"
-                      ? "/icons/meditate-white.png"
-                      : "/icons/meditate.png"
-                  }
-                  alt="Meditate Icon"
-                  width={20}
-                  height={20}
-                />
-              </div>
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Meditate
-              </div>
-            </div>
-            <div>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={isMeditateVisible}
-                  onChange={() => setIsMeditateVisible(!isMeditateVisible)}
-                  aria-label="Toggle Meditate Visibility"
-                />
-                <span
-                  className={`slider ${
-                    theme === "light" ? "slider-light" : "slider-dark"
-                  }`}
-                ></span>
-              </label>
-            </div>
-          </div>
-          {/* ——————————————————————————————————————————————————————————————————— */}
-          <div className="flex justify-between">
-            <div
-              className={`relative p-4 border-sm border-2 rounded-md ${
-                theme === "dark" ? "border-white" : "border-black"
-              } ${
-                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
-              }`}
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  src={
-                    theme === "dark"
-                      ? "/icons/tasks-white.png"
-                      : "/icons/tasks.png"
-                  }
-                  alt="tasks Icon"
-                  width={20}
-                  height={20}
-                />
-              </div>
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Tasks
-              </div>
-            </div>
-            <div>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={isTasksVisible}
-                  onChange={() => setIsTasksVisible(!isTasksVisible)}
-                  aria-label="Toggle Tasks Visibility"
-                />
-                <span
-                  className={`slider ${
-                    theme === "light" ? "slider-light" : "slider-dark"
-                  }`}
-                ></span>
-              </label>
-            </div>
-          </div>
-          {/* ——————————————————————————————————————————————————————————————————— */}
-          <div className="flex justify-between">
-            <div
-              className={`relative p-4 border-sm border-2 rounded-md ${
-                theme === "dark" ? "border-white" : "border-black"
-              } ${
-                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
-              }`}
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  src={
-                    theme === "dark"
-                      ? "/icons/quotes-white.png"
-                      : "/icons/quotes.png"
-                  }
-                  alt="Quotes Icon"
-                  width={20}
-                  height={20}
-                />
-              </div>
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Quotes
-              </div>
-            </div>
-            <div>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={isQuotesVisible}
-                  onChange={() => setIsQuotesVisible(!isQuotesVisible)}
-                  aria-label="Toggle Quotes Visibility"
-                />
-                <span
-                  className={`slider ${
-                    theme === "light" ? "slider-light" : "slider-dark"
-                  }`}
-                ></span>
-              </label>
-            </div>
-          </div>
-          {/* ——————————————————————————————————————————————————————————————————— */}
-          <div className="flex justify-between">
-            <div
-              className={`relative p-4 border-sm border-2 rounded-md ${
-                theme === "dark" ? "border-white" : "border-black"
-              } ${
-                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
-              }`}
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  src={
-                    theme === "dark"
-                      ? "/icons/gratitude-white.png"
-                      : "/icons/gratitude.png"
-                  }
-                  alt="Gratitude Icon"
-                  width={20}
-                  height={20}
-                />
-              </div>
-              <div
-                className={`absolute font-medium left-1/2 top-14 transform -translate-x-1/2 -translate-y-1/2 ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              >
-                Gratitude
-              </div>
-            </div>
-            <div>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={isGratitudeVisible}
-                  onChange={() => setIsGratitudeVisible(!isGratitudeVisible)}
-                  aria-label="Toggle Gratitude Visibility"
-                />
-                <span
-                  className={`slider ${
-                    theme === "light" ? "slider-light" : "slider-dark"
-                  }`}
-                ></span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ——————————————————————————————————————————————————————————————————— */}
-
+      
       <nav className="flex justify-between items-center relative">
         <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
         <div className="flex flex-row gap-8 font-medium">
           <button type="button" onClick={toggleTheme}>
             {theme === "light" ? "◖ dark" : "● light"}
-          </button>
-          <button type="button" aria-label="settings" onClick={toggleSettings}>
-            <div className="inset-0 flex items-center justify-center">
-              <Image
-                src={
-                  settingsOpen
-                    ? theme === "light"
-                      ? "/icons/close.png"
-                      : "/icons/close-white.png"
-                    : theme === "light"
-                    ? "/icons/settings.png"
-                    : "/icons/settings-white.png"
-                }
-                alt="Settings Icon"
-                width={18}
-                height={18}
-              />
-            </div>
           </button>
         </div>
         <div className="flex flex-row gap-4 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -904,7 +605,7 @@ export default function Home() {
 
       {/* ——————————————————————————————————————————————————————————————————— */}
 
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex items-center justify-center h-screen">
         {view === "text" && (
           <div
             className="w-full flex items-end h-32 overflow-hidden select-none cursor-text max-w-lg relative transform -translate-y-1/2"
@@ -941,7 +642,7 @@ export default function Home() {
         )}
 
         {view === "breathe" && (
-          <div className="w-full h-full flex flex-col items-center justify-center">
+          <div className="w-full flex flex-col items-center justify-center ">
             <div className="flex flex-col gap-8 items-center">
               {/* Container for Circle */}
               <div className="relative">
@@ -989,7 +690,7 @@ export default function Home() {
         )}
 
         {view === "meditate" && (
-          <div className="w-full top-4 overflow-hidden flex flex-col gap-12 items-center justify-center h-full relative">
+          <div className="w-full top-4 flex flex-col gap-12 items-center justify-center relative">
             <div className="flex justify-center items-center relative">
               <div
                 className={`absolute w-64 h-64 planet-3 border-2 rounded-full flex items-center justify-center box-border ${
@@ -1072,7 +773,7 @@ export default function Home() {
         )}
 
         {view === "tasks" && (
-          <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
+          <div className="w-full flex items-center justify-center max-w-lg">
             <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
               {tasks &&
                 tasks.length > 0 &&
@@ -1120,7 +821,7 @@ export default function Home() {
         )}
 
         {view === "quotes" && (
-          <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
+          <div className="w-full flex items-center justify-center max-w-lg">
             <div className="flex flex-col gap-4 w-full">
               <p className="font-medium leading-8 text-xl">
                 “{currentQuote.quote}”
@@ -1131,7 +832,7 @@ export default function Home() {
         )}
 
         {view === "gratitude" && (
-          <div className="w-full overflow-hidden flex items-center justify-center h-full max-w-lg">
+          <div className="w-full flex items-center justify-center max-w-lg">
             <div className="flex flex-col gap-2 max-h-120 overflow-y-auto w-full">
               {gratitudeEntries &&
                 gratitudeEntries.length > 0 &&
@@ -1380,7 +1081,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <p className="px-24">feedback</p>
+          <p className="">feedback</p>
         </a>
       </div>
     </main>
