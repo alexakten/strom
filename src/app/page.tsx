@@ -311,7 +311,8 @@ export default function Home() {
 
   return (
     <main
-      style={{ userSelect: "none", height: `${viewportHeight}px` }}
+      style={{ userSelect: "none", }}
+      // height: `${viewportHeight}px`
       className={`flex flex-col justify-between w-screen h-screen px-4 xs:px-12 py-10 ${
         theme === "light"
           ? "bg-zinc-50 text-black"
