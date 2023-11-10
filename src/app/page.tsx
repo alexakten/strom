@@ -903,7 +903,7 @@ export default function Home() {
         )}
 
         {view === "breathe" ? (
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button
               type="button"
               aria-label="toggleBreathing"
@@ -981,7 +981,7 @@ export default function Home() {
         )}
 
         {view === "meditate" ? (
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button
               type="button"
               aria-label="toggleMeditation"
