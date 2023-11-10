@@ -903,7 +903,7 @@ export default function Home() {
         )}
 
         {view === "breathe" ? (
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="grid sm:grid-cols-4 grid-cols-2 gap-2">
             <button
               type="button"
               aria-label="toggleBreathing"
@@ -981,7 +981,7 @@ export default function Home() {
         )}
 
         {view === "meditate" ? (
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="grid md:grid-cols-6 grid-cols-3 gap-2">
             <button
               type="button"
               aria-label="toggleMeditation"
@@ -1002,7 +1002,7 @@ export default function Home() {
 
             {
               // Using map to reduce code repetition
-              [5, 10, 15, 20, 30, 60].map((duration) => (
+              [5, 10, 15, 30, 60].map((duration) => (
                 <button
                   key={duration}
                   type="button"
