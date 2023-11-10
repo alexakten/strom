@@ -336,8 +336,8 @@ export default function Home() {
       {/* ——————————————————————————————————————————————————————————————————— */}
       
       <nav className="flex justify-between items-center relative">
-        <h1 className="text-4xl tracking-normal font-medium">strōm</h1>
-        <div className="flex flex-row gap-8 font-medium">
+        <h1 className="hidden md:block text-4xl tracking-normal font-medium">strōm</h1>
+        <div className="hidden md:flex flex-row gap-8 font-medium">
           <button type="button" onClick={toggleTheme}>
             {theme === "light" ? "◖ dark" : "● light"}
           </button>
