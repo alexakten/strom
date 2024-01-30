@@ -5,10 +5,8 @@ import { useEffect, useState, useContext } from "react";
 
 import ThemeContext from "../components/ThemeContext";
 
-export default function Home() {
+export default function Type() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-
-  const [viewportHeight, setViewportHeight] = useState(0);
 
   const [text, setText] = useState("");
 
@@ -54,22 +52,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedText = localStorage.getItem("savedText");
-      if (savedText) {
-        setText(savedText);
-      }
-
-      const setVH = () => {
-        setViewportHeight(window.innerHeight);
-      };
-      setVH();
-      window.addEventListener("resize", setVH);
-      return () => window.removeEventListener("resize", setVH);
-    }
-  }, []);
-
-  useEffect(() => {
     if (editableRef.current !== null) {
       // Focus the contentEditable div
       editableRef.current.focus();
@@ -91,7 +73,7 @@ export default function Home() {
 
   return (
     <main
-      style={{ userSelect: "none", height: `${viewportHeight}px` }}
+      style={{ userSelect: "none", height: "100svh" }}
       className={`flex flex-col justify-between w-screen h-screen px-4 xs:px-12 py-8 ${
         theme === "light"
           ? "bg-zinc-50 text-black"
