@@ -24,7 +24,7 @@ export default function Type() {
     const href = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = href;
-    link.download = "strōm-savedText.txt"; // Name of the downloaded file
+    link.download = "mendly.txt"; // Name of the downloaded file
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
