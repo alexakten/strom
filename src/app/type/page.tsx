@@ -142,14 +142,7 @@ export default function Home() {
 
       <div className="flex w-full font-medium justify-between items-center">
         <div className="flex flex-row gap-8">
-          <button
-            type="button"
-            aria-label="save"
-            onClick={saveText}
-            className={`py-1 px-4 rounded-md ${
-              theme === "dark" ? "border-white" : "border-black"
-            }`}
-          >
+          <button type="button" onClick={saveText}>
             ( save )
           </button>
           <button type="button" onClick={clearText}>
