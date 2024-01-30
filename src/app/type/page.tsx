@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <main
       style={{ userSelect: "none", height: `${viewportHeight}px` }}
-      className={`flex flex-col justify-between w-screen h-screen px-4 xs:px-12 py-10 ${
+      className={`flex flex-col justify-between w-screen h-screen px-4 xs:px-12 py-8 ${
         theme === "light"
           ? "bg-zinc-50 text-black"
           : "bg-neutral-950 text-white"
@@ -146,7 +146,7 @@ export default function Home() {
             type="button"
             aria-label="save"
             onClick={saveText}
-            className={`py-1 px-4 border-sm border-2 rounded-md ${
+            className={`py-1 px-4 rounded-md ${
               theme === "dark" ? "border-white" : "border-black"
             }`}
           >

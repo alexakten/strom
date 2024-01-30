@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main
       style={{ userSelect: "none", height: "100svh" }}
-      className={`flex flex-col justify-between w-screen h-screen px-4 xs:px-12 py-10 ${
+      className={`flex flex-col justify-between w-screen h-screen px-4 xs:px-12 py-8 ${
         theme === "light"
           ? "bg-zinc-50 text-black"
           : "bg-neutral-950 text-white"
@@ -31,7 +31,7 @@ export default function Home() {
         </p>
         <Link href={"/type"}>
           <button
-            className={`px-4 py-3 rounded-full border border-black hover:bg-neutral-950 hover:text-white ${
+            className={`px-4 py-3 rounded-full border border-black hover:bg-neutral-950 text-medium hover:text-white ${
               theme === "light"
                 ? "border-neutral-950 text-black hover:bg-neutral-950 hover:text-white"
                 : "border-zinc-50 text-white hover:bg-zinc-50 hover:text-black"
