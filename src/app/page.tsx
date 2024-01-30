@@ -22,10 +22,11 @@ export default function Home() {
       <Navbar theme={theme} onThemeToggle={toggleTheme} />
       {/* -------------------------------------------------------------------------- */}
       <div className="h-screen flex flex-col gap-6 text-center items-center justify-center">
-        <h1 className="text-7xl tracking-tight">
-          Write with zero<br />  distractions.
+        <h1 className="text-[clamp(42px,5.5vw,84px)] leading-[1.05]">
+          Write with zero
+          <br /> distractions.
         </h1>
-        <p className="text-xl max-w-sm ">
+        <p className="text-lg sm:text-xl max-w-sm ">
           Strōm removes all fancy tools to allow you to focus on writing.
         </p>
         <Link href={"/type"}>
