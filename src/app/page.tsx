@@ -28,8 +28,8 @@ export default function Home() {
           <br /> distractions.
         </h1>
         <p className="text-lg text-medium opacity-50 sm:text-xl max-w-md ">
-          Strōm is a minimalistic & clutter-free tool that enables you to focus
-          on writing.
+          Strōm is a minimalistic & clutter-free writing tool that helps you focus
+          on your thoughts.
         </p>
         <Link href={"/type"}>
           <button
