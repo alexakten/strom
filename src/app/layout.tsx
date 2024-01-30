@@ -2,7 +2,7 @@ import "./globals.css";
 import { ThemeProvider } from "./components/ThemeContext";
 
 export const metadata = {
-  title: "strōm",
+  title: "Mendly",
   description: "Minimalistic writing tool.",
 };
 
