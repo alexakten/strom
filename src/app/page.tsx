@@ -27,7 +27,7 @@ export default function Home() {
           Write with zero
           <br /> distractions.
         </h1>
-        <p className="text-lg sm:text-xl max-w-md ">
+        <p className="text-lg opacity- sm:text-xl max-w-md ">
           Strōm is a minimalistic & clutter-free tool that enables you to focus
           on writing.
         </p>
@@ -43,16 +43,32 @@ export default function Home() {
           </button>
         </Link>
 
-        {/* <Image
-            className="rounded-xl border-4 border-black"
-            src="/images/flow.png"
-            width={"800"}
-            height={"500"}
-            objectFit="cover"
-            objectPosition="center top"
-            alt="Bild på kontorslokalerna"
-            style={{ filter: "grayscale(100%)" }}
-          /> */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-20 pt-16">
+          <div className="flex items-start text-left flex-col gap-1 max-w-[156px]">
+            <p className="font-medium">No editing</p>
+            <p className="font-thin opacity-50 leading-tight">
+              You can only edit your last line.
+            </p>
+          </div>
+          <div className="flex items-start text-left flex-col gap-1 max-w-[156px]">
+            <p className="font-medium">No distractions</p>
+            <p className="font-thin opacity-50 leading-tight">
+              One font, one color, one feature—writing.
+            </p>
+          </div>
+          <div className="flex items-start text-left flex-col gap-1 max-w-[156px]">
+            <p className="font-medium">Dark mode</p>
+            <p className="font-thin opacity-50 leading-tight">
+              Switch between light or dark mode.
+            </p>
+          </div>
+          <div className="flex items-start text-left flex-col gap-1 max-w-[156px]">
+            <p className="font-medium">Private</p>
+            <p className="font-thin opacity-50 leading-tight">
+              Everything is only saved locally.
+            </p>
+          </div>
+        </div>
       </div>
     </main>
   );
