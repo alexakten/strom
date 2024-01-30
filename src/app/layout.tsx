@@ -3,7 +3,7 @@ import { ThemeProvider } from "./components/ThemeContext";
 
 export const metadata = {
   title: "strōm",
-  description: "stream of conciousness",
+  description: "Minimalistic writing tool.",
 };
 
 export default function RootLayout({
