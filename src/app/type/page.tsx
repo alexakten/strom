@@ -150,7 +150,7 @@ export default function Home() {
               theme === "dark" ? "border-white" : "border-black"
             }`}
           >
-            save
+            ( save )
           </button>
           <button type="button" onClick={clearText}>
             clear
