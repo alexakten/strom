@@ -140,7 +140,7 @@ export default function Home() {
 
       {/* ——————————————————————————————————————————————————————————————————— */}
 
-      <div className="flex w-full font-medium justify-between items-end">
+      <div className="flex w-full font-medium justify-between items-center">
         <div className="flex flex-row gap-8">
           <button
             type="button"
