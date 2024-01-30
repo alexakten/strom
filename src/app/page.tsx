@@ -27,16 +27,16 @@ export default function Home() {
           Write with zero
           <br /> distractions.
         </h1>
-        <p className="text-lg  sm:text-xl max-w-md ">
+        <p className="text-lg text-medium opacity-50 sm:text-xl max-w-md ">
           Strōm is a minimalistic & clutter-free tool that enables you to focus
           on writing.
         </p>
         <Link href={"/type"}>
           <button
-            className={`px-4 py-2 rounded-full border font-medium ${
+            className={`px-4 py-2 rounded-full font-medium ${
               theme === "light"
-                ? "border-neutral-950 bg-neutral-950 text-white hover:bg-zinc-50 hover:text-black"
-                : "border-zinc-50 bg-zinc-50 text-black hover:bg-black hover:text-white"
+                ? "bg-blue-500 text-zinc-50 hover:bg-blue-600"
+                : "bg-blue-500 text-zinc-50 hover:bg-blue-600"
             }`}
           >
             Start writing
