@@ -26,8 +26,8 @@ export default function Home() {
           Write with zero
           <br /> distractions.
         </h1>
-        <p className="text-lg sm:text-xl max-w-sm ">
-          Strōm removes all fancy tools to allow you to focus on writing.
+        <p className="text-lg sm:text-xl max-w-md ">
+          Strōm is a minimalistic & clutter-free tool that enables you to focus on writing.
         </p>
         <Link href={"/type"}>
           <button
