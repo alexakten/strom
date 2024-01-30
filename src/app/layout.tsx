@@ -1,8 +1,5 @@
 import "./globals.css";
-// import type { Metadata } from 'next';
-// import { Inter } from 'next/font/google';
-
-// const inter = Inter({ subsets: ['latin'] });
+import { ThemeProvider } from "./components/ThemeContext";
 
 export const metadata = {
   title: "strōm",
@@ -16,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <ThemeProvider>
+        <body>{children}</body>
+      </ThemeProvider>
     </html>
   );
 }
