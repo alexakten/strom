@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        appleblue: "#3B82F7",
+        appleblue: "#387FF5",
       },
       opacity: {
         "85": "0.85",

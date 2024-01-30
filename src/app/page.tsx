@@ -35,8 +35,8 @@ export default function Home() {
           <button
             className={`px-4 py-2 rounded-full font-medium ${
               theme === "light"
-                ? "bg-blue-500 text-zinc-50 hover:bg-blue-600"
-                : "bg-blue-500 text-zinc-50 hover:bg-blue-600"
+                ? "bg-appleblue text-zinc-50 hover:bg-blue-600"
+                : "bg-appleblue text-zinc-50 hover:bg-blue-600"
             }`}
           >
             Start writing
