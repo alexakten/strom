@@ -268,6 +268,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    -webkit-font-smoothing: antialiased;
 }
 
 .no-select {
