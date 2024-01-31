@@ -13,19 +13,18 @@ export default function Type() {
   const handleInput = (e: React.SyntheticEvent) => {
     let target = e.target as HTMLDivElement;
     const htmlContent = target.innerHTML; // Get inner HTML content
-  
+
     // Convert HTML to text with line breaks
     const textWithLineBreaks = htmlContent
-      .replace(/<div>/gi, '\n') // Replace starting div tags with line breaks
-      .replace(/<\/div>/gi, '') // Remove closing div tags
-      .replace(/<br\s*\/?>/gi, '\n'); // Replace <br> tags with line breaks
-  
+      .replace(/<div>/gi, "\n") // Replace starting div tags with line breaks
+      .replace(/<\/div>/gi, "") // Remove closing div tags
+      .replace(/<br\s*\/?>/gi, "\n"); // Replace <br> tags with line breaks
+
     setText(textWithLineBreaks);
     if (typeof window !== "undefined") {
       localStorage.setItem("savedText", textWithLineBreaks);
     }
   };
-  
 
   const saveText = () => {
     const blob = new Blob([text], { type: "text/plain" });
@@ -76,6 +75,40 @@ export default function Type() {
       }
     }
   }, [theme]);
+
+  const setCursorToEnd = (element: HTMLDivElement) => {
+    const range = document.createRange();
+    const selection = window.getSelection();
+    if (selection) {
+      // Check if selection is not null
+      range.selectNodeContents(element);
+      range.collapse(false); // false collapses the range to its end
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  };
+
+  useEffect(() => {
+    const handleGlobalKeyPress = (event: KeyboardEvent) => {
+      const focusableTags = ["INPUT", "TEXTAREA", "BUTTON", "SELECT", "A"];
+      if (
+        document.activeElement !== editableRef.current &&
+        !focusableTags.includes((document.activeElement as HTMLElement).tagName)
+      ) {
+        if (editableRef.current !== null) {
+          // Ensure the ref's current property is not null
+          editableRef.current.focus();
+          setCursorToEnd(editableRef.current); // Now TypeScript knows this is not null
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleGlobalKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleGlobalKeyPress);
+    };
+  }, []);
 
   // #endregion
 
