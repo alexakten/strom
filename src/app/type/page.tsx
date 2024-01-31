@@ -113,6 +113,20 @@ export default function Type() {
     };
   }, []);
 
+   useEffect(() => {
+    const savedText = localStorage.getItem("savedText");
+    if (savedText) {
+      setText(savedText);
+    }
+  }, []);
+
+  // Update editableRef's content when text changes
+  useEffect(() => {
+    if (editableRef.current) {
+      editableRef.current.innerHTML = text;
+    }
+  }, [text]);
+
   // #endregion
 
   return (
@@ -139,7 +153,7 @@ export default function Type() {
             className="whitespace-pre-wrap w-full outline-none font-normal select-none leading-8 text-xl relative no-select"
             contentEditable={true}
             suppressContentEditableWarning={true}
-            onBlur={handleInput}
+            onBlur={handleInput}  
             dangerouslySetInnerHTML={{ __html: text }}
           ></div>
 
