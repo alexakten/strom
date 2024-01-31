@@ -9,7 +9,7 @@ const Navbar: React.FC<NavbarProps> = ({ onThemeToggle, theme }) => {
   return (
     <nav className="flex justify-between items-center relative">
       <Link href={"/"}>
-        <h1 className="text-2xl tracking-[-0.5px] font-medium">mendly</h1>
+        <h2 className="text-2xl tracking-[-0.5px] font-medium">mendly</h2>
       </Link>
 
       {/* <div className="font-medium absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"> */}

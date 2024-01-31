@@ -6,6 +6,9 @@ import { useEffect, useState, useContext } from "react";
 import ThemeContext from "../components/ThemeContext";
 
 export default function Type() {
+  
+//#region 
+
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   const [text, setText] = useState("");

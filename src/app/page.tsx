@@ -2,8 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import Navbar from "./components/Navbar";
-import { useEffect, useState, useContext } from "react";
-import Image from "next/image";
+import { useContext } from "react";
 
 import ThemeContext from "./components/ThemeContext";
 
