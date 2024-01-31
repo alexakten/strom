@@ -12,12 +12,20 @@ export default function Type() {
 
   const handleInput = (e: React.SyntheticEvent) => {
     let target = e.target as HTMLDivElement;
-    const currentText = target.textContent || "";
-    setText(currentText);
+    const htmlContent = target.innerHTML; // Get inner HTML content
+  
+    // Convert HTML to text with line breaks
+    const textWithLineBreaks = htmlContent
+      .replace(/<div>/gi, '\n') // Replace starting div tags with line breaks
+      .replace(/<\/div>/gi, '') // Remove closing div tags
+      .replace(/<br\s*\/?>/gi, '\n'); // Replace <br> tags with line breaks
+  
+    setText(textWithLineBreaks);
     if (typeof window !== "undefined") {
-      localStorage.setItem("savedText", currentText);
+      localStorage.setItem("savedText", textWithLineBreaks);
     }
   };
+  
 
   const saveText = () => {
     const blob = new Blob([text], { type: "text/plain" });
