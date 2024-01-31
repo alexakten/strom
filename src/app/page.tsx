@@ -28,7 +28,7 @@ export default function Home() {
         </h1>
         <p className="text-lg text-medium opacity-50 sm:text-xl max-w-md ">
           Mendly is a minimalistic & clutter-free writing tool that helps you focus
-          on your thoughts.
+          on your ideas.
         </p>
         <Link href={"/type"}>
           <button
