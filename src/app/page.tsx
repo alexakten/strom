@@ -22,7 +22,7 @@ export default function Home() {
       <Navbar theme={theme} onThemeToggle={toggleTheme} />
       {/* -------------------------------------------------------------------------- */}
       <div className="flex h-screen flex-col gap-6 text-center items-center justify-center">
-        <h1 className="text-[clamp(42px,5.5vw,84px)] font-medium leading-[0.95]">
+        <h1 className="text-[clamp(42px,5.5vw,84px)] tracking-[-1px] font-medium leading-[0.95]">
           Write with zero
           <br /> distractions.
         </h1>
