@@ -4,7 +4,7 @@ import { ThemeProvider } from "./components/ThemeContext";
 
 export const metadata = {
   title: "Mendly",
-  description: "Minimalistic writing tool.",
+  description: "Minimalistic writing.",
 };
 
 export default function RootLayout({
