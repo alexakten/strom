@@ -1,12 +1,14 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import {
+  RegisterLink,
+  LoginLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
 import Navbar from "../components/Navbar";
 import { useEffect, useState, useContext } from "react";
 import ThemeContext from "../components/ThemeContext";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-
 
 export default function Type() {
   //#region
@@ -15,8 +17,8 @@ export default function Type() {
 
   const router = useRouter();
 
-  console.log("Authenticated: ", isAuthenticated)
-  console.log("User: ", user)
+  console.log("Authenticated: ", isAuthenticated);
+  console.log("User: ", user);
 
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [text, setText] = useState("");
@@ -135,19 +137,26 @@ export default function Type() {
     }
   }, [text]);
 
-  if (isLoading) return <div className="w-full h-[100svh] flex items-center justify-center"></div>;
+  if (isLoading)
+    return (
+      <div className="flex h-[100svh] w-full items-center justify-center"></div>
+    );
 
   // #endregion
 
   return isAuthenticated ? (
     <main
       style={{ userSelect: "none", height: "100svh" }}
-      className={`flex h-screen w-screen flex-col justify-between ${theme === "dark"
-        ? "bg-neutral-950 text-white"
-        : "bg-zinc-50 text-black"
-        }`}
+      className={`flex h-screen w-screen flex-col justify-between ${
+        theme === "dark" ? "bg-neutral-950 text-white" : "bg-zinc-50 text-black"
+      }`}
     >
-      <Navbar theme={theme} onThemeToggle={toggleTheme} showThemeSwitcher={true} showAuthButtons={false} />
+      <Navbar
+        theme={theme}
+        onThemeToggle={toggleTheme}
+        showThemeSwitcher={true}
+        showAuthButtons={false}
+      />
       {/* Content area */}
       <div className="flex h-screen items-center justify-center">
         <div
@@ -165,16 +174,19 @@ export default function Type() {
 
           {/* Overlay for text lines */}
           <div
-            className={`absolute bottom-8 z-10 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-              } opacity-85`}
+            className={`absolute bottom-8 z-10 h-8 w-full ${
+              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+            } opacity-85`}
           ></div>
           <div
-            className={`absolute bottom-16 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-              } opacity-90`}
+            className={`absolute bottom-16 h-8 w-full ${
+              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+            } opacity-90`}
           ></div>
           <div
-            className={`absolute bottom-24 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-              } opacity-95`}
+            className={`absolute bottom-24 h-8 w-full ${
+              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+            } opacity-95`}
           ></div>
         </div>
       </div>
@@ -198,11 +210,13 @@ export default function Type() {
       </div> */}
     </main>
   ) : (
-    <div className="w-screen h-screen flex flex-col items-center justify-center">
-      <h2 className="text-white text-2xl font-medium max-w-xs text-center">Log in or create an account to get started using Mendly.</h2>
-      <div className="flex items-center pt-8 gap-4 text-sm font-medium">
+    <div className="flex h-screen w-screen flex-col items-center justify-center">
+      <h2 className="max-w-xs text-center text-2xl font-medium text-white">
+        Log in or create an account to get started using Mendly.
+      </h2>
+      <div className="flex items-center gap-4 pt-8 text-sm font-medium">
         <LoginLink
-          className="rounded-md flex gap-1 items-center px-3 py-2 text-sm hover:bg-neutral-900"
+          className="flex items-center gap-1 rounded-md px-3 py-2 text-sm hover:bg-neutral-900"
           postLoginRedirectURL="/"
         >
           <svg
