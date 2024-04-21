@@ -33,7 +33,6 @@ export default function Home() {
             </p>
           </div>
 
-
           {/* -------------------------------------------------------------------------- */}
           <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
             <p className="font-medium">Minimal editing</p>
@@ -57,7 +56,6 @@ export default function Home() {
           </div>
           {/* -------------------------------------------------------------------------- */}
         </div>
-        {/* -------------------------------------------------------------------------- */}
       </div>
     </main>
   );
