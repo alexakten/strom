@@ -1,73 +1,54 @@
-"use client";
 import Link from "next/link";
-import React from "react";
 import Navbar from "./components/Navbar";
-import { useContext } from "react";
-
-import ThemeContext from "./components/ThemeContext";
+import React, { useContext, useEffect } from "react";
 
 export default function Home() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
-
   return (
-    <main
-      style={{ userSelect: "none", height: "100svh" }}
-      className={`flex flex-col justify-between w-screen h-screen px-4 xs:px-12 py-8 ${
-        theme === "light"
-          ? "bg-zinc-50 text-black"
-          : "bg-neutral-950 text-white"
-      }`}
-    >
+    <main className="flex h-[100svh] flex-col justify-between bg-neutral-950 text-white">
       {/* -------------------------------------------------------------------------- */}
-      <Navbar theme={theme} onThemeToggle={toggleTheme} />
+      <Navbar showThemeSwitcher={false} showAuthButtons={true} />
       {/* -------------------------------------------------------------------------- */}
-      <div className="flex h-screen flex-col gap-6 text-center items-center justify-center">
-        <h1 className="text-[clamp(42px,5.5vw,84px)] tracking-[-1px] font-medium leading-[0.95]">
+      <div className="flex h-screen flex-col items-center justify-center gap-6 text-center">
+        <h1 className="text-[clamp(42px,5.5vw,72px)] font-medium leading-[0.95] tracking-[-1px]">
           Write with zero
-          <br /> distractions.
+          <br /> distractions
         </h1>
-        <p className="text-lg text-medium opacity-50 sm:text-xl max-w-md ">
-          Mendly is a minimalistic & clutter-free writing tool that helps you focus
-          on your ideas.
+        <p className="max-w-[340px] text-lg opacity-50">
+          Mendly is a minimalistic writing tool that helps you focus on your
+          ideas.
         </p>
-        <Link href={"/type"}>
-          <button
-            className={`px-4 py-2 rounded-full font-medium ${
-              theme === "light"
-                ? "bg-appleblue text-zinc-50 hover:bg-blue-600"
-                : "bg-appleblue text-zinc-50 hover:bg-blue-600"
-            }`}
-          >
+        <Link href={"/api/auth/login?post_login_redirect_url=%2Ftype"}>
+          <button className="rounded-full bg-blue-500 px-4 py-2 font-medium text-zinc-50 hover:bg-blue-600">
             Start writing
           </button>
         </Link>
         {/* -------------------------------------------------------------------------- */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-20 pt-16">
+        <div className="hidden gap-20 pt-16 md:grid md:grid-cols-2 lg:grid-cols-4">
           {/* -------------------------------------------------------------------------- */}
-          <div className="flex items-start text-left flex-col gap-1 max-w-[156px]">
+          <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
             <p className="font-medium">No distractions</p>
-            <p className="font-thin opacity-50 leading-tight">
+            <p className="font-thin leading-tight opacity-50">
               One font, one color, one feature—writing.
             </p>
           </div>
           {/* -------------------------------------------------------------------------- */}
-          <div className="flex items-start text-left flex-col gap-1 max-w-[156px]">
+          <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
             <p className="font-medium">Minimal editing</p>
-            <p className="font-thin opacity-50 leading-tight">
+            <p className="font-thin leading-tight opacity-50">
               You can only edit your last line.
             </p>
           </div>
           {/* -------------------------------------------------------------------------- */}
-          <div className="flex items-start text-left flex-col gap-1 max-w-[156px]">
+          <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
             <p className="font-medium">Dark mode</p>
-            <p className="font-thin opacity-50 leading-tight">
+            <p className="font-thin leading-tight opacity-50">
               Switch between light or dark mode.
             </p>
           </div>
           {/* -------------------------------------------------------------------------- */}
-          <div className="flex items-start text-left flex-col gap-1 max-w-[156px]">
+          <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
             <p className="font-medium">Fully private</p>
-            <p className="font-thin opacity-50 leading-tight">
+            <p className="font-thin leading-tight opacity-50">
               Everything is only saved locally.
             </p>
           </div>

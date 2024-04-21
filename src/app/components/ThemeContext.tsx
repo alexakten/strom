@@ -8,8 +8,8 @@ type ThemeContextType = {
 };
 
 const defaultState = {
-  theme: "light",
-  toggleTheme: () => {},
+  theme: "dark",
+  toggleTheme: () => { },
 };
 
 const ThemeContext = createContext<ThemeContextType>(defaultState);
@@ -19,7 +19,7 @@ type ThemeProviderProps = {
 };
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState<string>("light");
+  const [theme, setTheme] = useState<string>("dark");
 
   // Load theme from localStorage when the component mounts
   useEffect(() => {

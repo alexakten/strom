@@ -1,16 +1,24 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import Navbar from "../components/Navbar";
 import { useEffect, useState, useContext } from "react";
-
 import ThemeContext from "../components/ThemeContext";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+
 
 export default function Type() {
-  
-//#region 
+  //#region
+
+  const { isAuthenticated, user, isLoading } = useKindeBrowserClient();
+
+  const router = useRouter();
+
+  console.log("Authenticated: ", isAuthenticated)
+  console.log("User: ", user)
 
   const { theme, toggleTheme } = useContext(ThemeContext);
-
   const [text, setText] = useState("");
 
   const handleInput = (e: React.SyntheticEvent) => {
@@ -113,7 +121,7 @@ export default function Type() {
     };
   }, []);
 
-   useEffect(() => {
+  useEffect(() => {
     const savedText = localStorage.getItem("savedText");
     if (savedText) {
       setText(savedText);
@@ -127,69 +135,58 @@ export default function Type() {
     }
   }, [text]);
 
+  if (isLoading) return <div className="w-full h-[100svh] flex items-center justify-center"></div>;
+
   // #endregion
 
-  return (
+  return isAuthenticated ? (
     <main
       style={{ userSelect: "none", height: "100svh" }}
-      className={`flex flex-col justify-between w-screen h-screen px-4 xs:px-12 py-8 ${
-        theme === "light"
-          ? "bg-zinc-50 text-black"
-          : "bg-neutral-950 text-white"
-      }`}
+      className={`flex h-screen w-screen flex-col justify-between ${theme === "dark"
+        ? "bg-neutral-950 text-white"
+        : "bg-zinc-50 text-black"
+        }`}
     >
-      {/* ——————————————————————————————————————————————————————————————————— */}
-      <Navbar theme={theme} onThemeToggle={toggleTheme} />
-
-      {/* ——————————————————————————————————————————————————————————————————— */}
-
-      <div className="flex items-center justify-center h-screen">
+      <Navbar theme={theme} onThemeToggle={toggleTheme} showThemeSwitcher={true} showAuthButtons={false} />
+      {/* Content area */}
+      <div className="flex h-screen items-center justify-center">
         <div
-          className="w-full flex items-end h-32 overflow-hidden select-none cursor-text max-w-lg relative transform -translate-y-1/2"
+          className="relative flex h-32 w-full max-w-lg -translate-y-1/2 transform cursor-text select-none items-end overflow-hidden"
           onClick={handleContainerClick}
         >
           <div
             ref={editableRef}
-            className="whitespace-pre-wrap w-full outline-none font-normal select-none leading-8 text-xl relative no-select"
+            className="no-select relative w-full select-none whitespace-pre-wrap text-xl font-normal leading-8 outline-none"
             contentEditable={true}
             suppressContentEditableWarning={true}
-            onBlur={handleInput}  
+            onBlur={handleInput}
             dangerouslySetInnerHTML={{ __html: text }}
           ></div>
 
-          {/* Overlay for 2nd line */}
+          {/* Overlay for text lines */}
           <div
-            className={`absolute z-10 bottom-8 w-full h-8 ${
-              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-            } opacity-85`}
+            className={`absolute bottom-8 z-10 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+              } opacity-85`}
           ></div>
-          {/* Overlay for 3rd line */}
           <div
-            className={`absolute bottom-16 w-full h-8 ${
-              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-            } opacity-90`}
+            className={`absolute bottom-16 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+              } opacity-90`}
           ></div>
-          {/* Overlay for 4th line */}
           <div
-            className={`absolute bottom-24 w-full h-8 ${
-              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-            } opacity-95`}
+            className={`absolute bottom-24 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+              } opacity-95`}
           ></div>
         </div>
       </div>
-
-      {/* ——————————————————————————————————————————————————————————————————— */}
-
-      <div className="flex w-full font-medium justify-between items-center">
+      {/* <div className="flex w-full items-center justify-between font-medium">
         <div className="flex flex-row gap-8">
           <button type="button" onClick={saveText}>
-            ( save )
+            save
           </button>
           <button type="button" onClick={clearText}>
             clear
           </button>
         </div>
-        {/* <div style={{ display: "none" }}></div> */}
 
         <a
           href="mailto:alex.akten@outlook.com"
@@ -198,7 +195,38 @@ export default function Type() {
         >
           <p className="">feedback</p>
         </a>
-      </div>
+      </div> */}
     </main>
+  ) : (
+    <div className="w-screen h-screen flex flex-col items-center justify-center">
+      <h2 className="text-white text-2xl font-medium max-w-xs text-center">Log in or create an account to get started using Mendly.</h2>
+      <div className="flex items-center pt-8 gap-4 text-sm font-medium">
+        <LoginLink
+          className="rounded-md flex gap-1 items-center px-3 py-2 text-sm hover:bg-neutral-900"
+          postLoginRedirectURL="/"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#fff"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="feather feather-user"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Log in
+        </LoginLink>
+
+        <RegisterLink className="rounded-md px-3 py-2 text-sm hover:bg-neutral-900">
+          Sign up
+        </RegisterLink>
+      </div>
+    </div>
   );
 }

@@ -1,21 +1,64 @@
 import Link from "next/link";
+import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 interface NavbarProps {
-  onThemeToggle: () => void;
-  theme: string;
+  onThemeToggle?: () => void; // Optional property
+  theme?: string; // Optional property
+  showAuthButtons: boolean; // Required property
+  showThemeSwitcher: boolean; // Required property
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onThemeToggle, theme }) => {
+const Navbar: React.FC<NavbarProps> = ({
+  onThemeToggle,
+  theme = "light", // Default to "light" if not provided
+  showAuthButtons,
+  showThemeSwitcher,
+}) => {
   return (
-    <nav className="flex justify-between items-center relative">
+    <nav className="fixed top-0 flex w-full items-center justify-between px-4 py-6 xs:px-8">
       <Link href={"/"}>
-        <h2 className="text-2xl tracking-[-0.5px] font-medium">mendly</h2>
+        <h2 className="text-xl font-medium tracking-tight">mendly</h2>
       </Link>
 
-      {/* <div className="font-medium absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"> */}
-      <button className="font-medium" type="button" onClick={onThemeToggle}>
-        {theme === "light" ? "◖ dark" : "● light"}
-      </button>
+      {showThemeSwitcher && onThemeToggle && ( // Only render if showThemeSwitcher is true and onThemeToggle is defined
+        <button
+          className="text-sm px-3 py-2 font-medium"
+          type="button"
+          onClick={onThemeToggle}
+        >
+          {theme === "light" ? "◖ dark" : "● light"}
+        </button>
+      )}
+
+      {showAuthButtons && (
+        <div className="flex items-center gap-4 text-sm font-medium">
+          <LoginLink
+            className="rounded-md flex gap-1 items-center px-3 py-2 text-sm hover:bg-neutral-900"
+            postLoginRedirectURL="/type"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-user"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Log in
+          </LoginLink>
+
+          <RegisterLink className="rounded-md px-3 py-2 text-sm hover:bg-neutral-900">
+            Sign up
+          </RegisterLink>
+        </div>
+      )}
     </nav>
   );
 };
