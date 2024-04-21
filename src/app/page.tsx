@@ -22,6 +22,7 @@ export default function Home() {
             Start writing
           </button>
         </Link>
+
         {/* -------------------------------------------------------------------------- */}
         <div className="hidden gap-20 pt-16 md:grid md:grid-cols-2 lg:grid-cols-4">
           {/* -------------------------------------------------------------------------- */}
