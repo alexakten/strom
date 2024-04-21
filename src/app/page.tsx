@@ -32,6 +32,7 @@ export default function Home() {
               One font, one color, one feature—writing.
             </p>
           </div>
+
           
           {/* -------------------------------------------------------------------------- */}
           <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
