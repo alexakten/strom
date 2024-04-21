@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import ThemeContext from "../components/ThemeContext";
+import Link from "next/link";
 
 interface ProfileProps {
   user: any; // User data for initials
@@ -41,9 +42,9 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
   return (
     <div className="relative" ref={dropdownRef}>
       <button
-        className={`h-10 w-10 rounded-full text-xs ${theme === "light"
-            ? "bg-zinc-200 text-black"
-            : "bg-neutral-900 text-white"
+        className={`h-10 w-10 rounded-full font-medium text-xs ${theme === "light"
+          ? "bg-zinc-200 text-black"
+          : "bg-neutral-900 text-white"
           }`}
         onClick={toggleDropdown}
       >
@@ -53,8 +54,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
       {isDropdownOpen && (
         <div
           className={`absolute right-0 top-12 w-56 rounded-lg p-4 ${theme === "light"
-              ? "bg-zinc-200 text-black"
-              : "bg-neutral-900 text-white"
+            ? "bg-zinc-200 text-black"
+            : "bg-neutral-900 text-white"
             }`}
         >
           <div>
@@ -66,8 +67,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
           <div className="flex flex-col pt-4 text-sm">
             <button
               className={`flex w-full items-center gap-2 rounded-md px-4 py-2 ${theme === "light"
-                  ? "hover:bg-zinc-300 text-black"
-                  : "hover:bg-neutral-800 text-white"
+                ? "hover:bg-zinc-300 text-black"
+                : "hover:bg-neutral-800 text-white"
                 }`}
               onClick={toggleTheme} // Trigger theme change
             >
@@ -116,9 +117,18 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
                 </>
               )}
             </button>
+            <Link href={"mailto:alex.akten@outlook.com"} className={`flex w-full items-center gap-2 rounded-md px-4 py-2  ${theme === "light"
+              ? "hover:bg-zinc-300 text-black"
+              : "hover:bg-neutral-800 text-white"
+              }`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+              Feedback
+
+            </Link>
+            <div className="border-t opacity-10 m-2"></div>
             <LogoutLink className={`flex w-full items-center gap-2 rounded-md px-4 py-2 text-red-600 ${theme === "light"
-                ? "hover:bg-zinc-300"
-                : "hover:bg-neutral-800"
+              ? "hover:bg-zinc-300"
+              : "hover:bg-neutral-800"
               }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,6 +147,7 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
               </svg>
               Log out
             </LogoutLink>
+
           </div>
         </div>
       )}
