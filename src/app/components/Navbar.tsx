@@ -4,15 +4,13 @@ import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components
 interface NavbarProps {
   onThemeToggle?: () => void; // Optional property
   theme?: string; // Optional property
-  showAuthButtons: boolean; // Required property
-  showThemeSwitcher: boolean; // Required property
+  loggedIn: boolean
 }
 
 const Navbar: React.FC<NavbarProps> = ({
   onThemeToggle,
   theme = "light", // Default to "light" if not provided
-  showAuthButtons,
-  showThemeSwitcher,
+  loggedIn,
 }) => {
   return (
     <nav className="fixed top-0 flex w-full items-center justify-between px-4 py-6 xs:px-8">
@@ -20,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <h2 className="text-xl font-medium tracking-tight">mendly</h2>
       </Link>
 
-      {showThemeSwitcher && onThemeToggle && ( // Only render if showThemeSwitcher is true and onThemeToggle is defined
+      {loggedIn && ( // Only render if showThemeSwitcher is true and onThemeToggle is defined
         <button
           className="text-sm px-3 py-2 font-medium"
           type="button"
@@ -30,7 +28,7 @@ const Navbar: React.FC<NavbarProps> = ({
         </button>
       )}
 
-      {showAuthButtons && (
+      {!loggedIn && (
         <div className="flex items-center gap-4 text-sm font-medium">
           <LoginLink
             className="rounded-md flex gap-1 items-center px-3 py-2 text-sm hover:bg-neutral-900"

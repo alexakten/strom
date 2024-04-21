@@ -147,15 +147,12 @@ export default function Type() {
   return isAuthenticated ? (
     <main
       style={{ userSelect: "none", height: "100svh" }}
-      className={`flex h-screen w-screen flex-col justify-between ${
-        theme === "dark" ? "bg-neutral-950 text-white" : "bg-zinc-50 text-black"
-      }`}
+      className={`flex h-screen w-screen flex-col justify-between ${theme === "dark" ? "bg-neutral-950 text-white" : "bg-zinc-50 text-black"
+        }`}
     >
       <Navbar
         theme={theme}
-        onThemeToggle={toggleTheme}
-        showThemeSwitcher={true}
-        showAuthButtons={false}
+        loggedIn={true}
       />
       {/* Content area */}
       <div className="flex h-screen items-center justify-center">
@@ -174,19 +171,16 @@ export default function Type() {
 
           {/* Overlay for text lines */}
           <div
-            className={`absolute bottom-8 z-10 h-8 w-full ${
-              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-            } opacity-85`}
+            className={`absolute bottom-8 z-10 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+              } opacity-85`}
           ></div>
           <div
-            className={`absolute bottom-16 h-8 w-full ${
-              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-            } opacity-90`}
+            className={`absolute bottom-16 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+              } opacity-90`}
           ></div>
           <div
-            className={`absolute bottom-24 h-8 w-full ${
-              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-            } opacity-95`}
+            className={`absolute bottom-24 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+              } opacity-95`}
           ></div>
         </div>
       </div>

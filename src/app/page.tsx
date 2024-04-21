@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="flex h-[100svh] flex-col justify-between bg-neutral-950 text-white">
       {/* -------------------------------------------------------------------------- */}
-      <Navbar showThemeSwitcher={false} showAuthButtons={true} />
+      <Navbar loggedIn={false} />
       {/* -------------------------------------------------------------------------- */}
       <div className="flex h-screen flex-col items-center justify-center gap-6 text-center">
         <h1 className="text-[clamp(42px,5.5vw,72px)] font-medium leading-[0.95] tracking-[-1px]">
@@ -33,7 +33,7 @@ export default function Home() {
             </p>
           </div>
 
-          
+
           {/* -------------------------------------------------------------------------- */}
           <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
             <p className="font-medium">Minimal editing</p>
