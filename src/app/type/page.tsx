@@ -181,7 +181,7 @@ export default function Type() {
           ></div>
           <div
             className={`absolute bottom-24 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-              } opacity-95`}
+              } opacity-[0.95]`}
           ></div>
         </div>
       </div>
