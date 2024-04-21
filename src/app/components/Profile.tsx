@@ -42,9 +42,9 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
   return (
     <div className="relative" ref={dropdownRef}>
       <button
-        className={`h-10 w-10 rounded-full font-medium text-xs ${theme === "light"
-          ? "bg-zinc-200 text-black"
-          : "bg-neutral-900 text-white"
+        className={`h-10 w-10 rounded-full text-xs font-medium ${theme === "light"
+            ? "bg-zinc-200 text-black"
+            : "bg-neutral-900 text-white"
           }`}
         onClick={toggleDropdown}
       >
@@ -53,9 +53,9 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
 
       {isDropdownOpen && (
         <div
-          className={`absolute right-0 top-12 w-56 rounded-lg p-4 ${theme === "light"
-            ? "bg-zinc-200 text-black"
-            : "bg-neutral-900 text-white"
+          className={`absolute right-0 top-12 w-64 rounded-lg p-4 ${theme === "light"
+              ? "bg-zinc-200 text-black"
+              : "bg-neutral-900 text-white"
             }`}
         >
           <div>
@@ -67,8 +67,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
           <div className="flex flex-col pt-4 text-sm">
             <button
               className={`flex w-full items-center gap-2 rounded-md px-4 py-2 ${theme === "light"
-                ? "hover:bg-zinc-300 text-black"
-                : "hover:bg-neutral-800 text-white"
+                  ? "text-black hover:bg-zinc-300"
+                  : "text-white hover:bg-neutral-800"
                 }`}
               onClick={toggleTheme} // Trigger theme change
             >
@@ -117,23 +117,53 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
                 </>
               )}
             </button>
-            <Link href={"mailto:alex.akten@outlook.com"} className={`flex w-full items-center gap-2 rounded-md px-4 py-2  ${theme === "light"
-              ? "hover:bg-zinc-300 text-black"
-              : "hover:bg-neutral-800 text-white"
-              }`}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+            <Link
+              href={"mailto:alex.akten@outlook.com"}
+              className={`flex w-full items-center gap-2 rounded-md px-4 py-2  ${theme === "light"
+                  ? "text-black hover:bg-zinc-300"
+                  : "text-white hover:bg-neutral-800"
+                }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke={theme === "light" ? "#000" : "#fff"} // Set fill based on theme
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="feather feather-mail"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
               Feedback
-
             </Link>
-            <div className="border-t opacity-10 m-2"></div>
-            <LogoutLink className={`flex w-full items-center gap-2 rounded-md px-4 py-2 text-red-600 ${theme === "light"
-              ? "hover:bg-zinc-300"
-              : "hover:bg-neutral-800"
-              }`}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>
+            <div className="m-2 border-t opacity-10"></div>
+            <LogoutLink
+              className={`flex w-full items-center gap-2 rounded-md px-4 py-2 text-red-600 ${theme === "light" ? "hover:bg-zinc-300" : "hover:bg-neutral-800"
+                }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="feather feather-log-out"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
               Log out
             </LogoutLink>
-
           </div>
         </div>
       )}
