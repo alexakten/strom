@@ -153,6 +153,7 @@ export default function Type() {
       <Navbar
         theme={theme}
         loggedIn={true}
+        user={user}
       />
       {/* Content area */}
       <div className="flex h-screen items-center justify-center">

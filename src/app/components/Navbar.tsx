@@ -1,34 +1,27 @@
-import Link from "next/link";
-import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import Link from 'next/link';
+import Profile from './Profile';
+import { RegisterLink, LoginLink } from '@kinde-oss/kinde-auth-nextjs/components';
 
 interface NavbarProps {
-  onThemeToggle?: () => void; // Optional property
   theme?: string; // Optional property
-  loggedIn: boolean
+  loggedIn: boolean;
+  user?: any; // Optional user prop
 }
 
 const Navbar: React.FC<NavbarProps> = ({
-  onThemeToggle,
-  theme = "light", // Default to "light" if not provided
+  theme = 'dark',
   loggedIn,
+  user,
 }) => {
   return (
     <nav className="fixed top-0 flex w-full items-center justify-between px-4 py-6 xs:px-8">
-      <Link href={"/"}>
+      <Link href="/">
         <h2 className="text-xl font-medium tracking-tight">mendly</h2>
       </Link>
 
-      {loggedIn && ( // Only render if showThemeSwitcher is true and onThemeToggle is defined
-        <button
-          className="text-sm px-3 py-2 font-medium"
-          type="button"
-          onClick={onThemeToggle}
-        >
-          {theme === "light" ? "◖ dark" : "● light"}
-        </button>
-      )}
-
-      {!loggedIn && (
+      {loggedIn ? (
+        <Profile user={user} />
+      ) : (
         <div className="flex items-center gap-4 text-sm font-medium">
           <LoginLink
             className="rounded-md flex gap-1 items-center px-3 py-2 text-sm hover:bg-neutral-900"
@@ -51,10 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </svg>
             Log in
           </LoginLink>
-
-          <RegisterLink className="rounded-md px-3 py-2 text-sm hover:bg-neutral-900">
-            Sign up
-          </RegisterLink>
+          <RegisterLink className="px-3 py-2 rounded-md hover:bg-neutral-900">Sign Up</RegisterLink>
         </div>
       )}
     </nav>
