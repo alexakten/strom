@@ -43,8 +43,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
     <div className="relative" ref={dropdownRef}>
       <button
         className={`h-10 w-10 rounded-full text-xs font-medium ${theme === "light"
-            ? "bg-zinc-200 text-black"
-            : "bg-neutral-900 text-white"
+          ? "bg-zinc-200 text-black"
+          : "bg-neutral-900 text-white"
           }`}
         onClick={toggleDropdown}
       >
@@ -54,8 +54,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
       {isDropdownOpen && (
         <div
           className={`absolute right-0 top-12 w-64 rounded-lg p-4 ${theme === "light"
-              ? "bg-zinc-200 text-black"
-              : "bg-neutral-900 text-white"
+            ? "bg-zinc-200 text-black"
+            : "bg-neutral-900 text-white"
             }`}
         >
           <div>
@@ -67,8 +67,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
           <div className="flex flex-col pt-4 text-sm">
             <button
               className={`flex w-full items-center gap-2 rounded-md px-4 py-2 ${theme === "light"
-                  ? "text-black hover:bg-zinc-300"
-                  : "text-white hover:bg-neutral-800"
+                ? "text-black hover:bg-zinc-300"
+                : "text-white hover:bg-neutral-800"
                 }`}
               onClick={toggleTheme} // Trigger theme change
             >
@@ -120,8 +120,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
             <Link
               href={"mailto:alex.akten@outlook.com"}
               className={`flex w-full items-center gap-2 rounded-md px-4 py-2  ${theme === "light"
-                  ? "text-black hover:bg-zinc-300"
-                  : "text-white hover:bg-neutral-800"
+                ? "text-black hover:bg-zinc-300"
+                : "text-white hover:bg-neutral-800"
                 }`}
             >
               <svg
@@ -141,7 +141,11 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
               </svg>
               Feedback
             </Link>
-            <div className="m-2 border-t opacity-10"></div>
+            <div
+              className={`m-2 border-t opacity-10 ${theme === "light" ? "border-neutral-950" : "border-zinc-100"
+                }`}
+            ></div>
+
             <LogoutLink
               className={`flex w-full items-center gap-2 rounded-md px-4 py-2 text-red-600 ${theme === "light" ? "hover:bg-zinc-300" : "hover:bg-neutral-800"
                 }`}
