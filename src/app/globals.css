@@ -261,13 +261,7 @@
 
 body {
   font-family: 'Neue Haas Grotesk', sans-serif;
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #0A0A0A;
     -webkit-font-smoothing: antialiased;
 }
 
