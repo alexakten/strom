@@ -186,7 +186,7 @@ export default function Type() {
         </div>
       </div>
       <div className="flex w-full items-center justify-between px-4 py-6 font-medium xs:px-8">
-        <div className="flex flex-row gap-8">
+        <div className="flex w-full justify-between flex-row gap-8">
           <button
             type="button"
             onClick={saveText}
