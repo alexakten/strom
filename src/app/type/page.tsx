@@ -185,7 +185,7 @@ export default function Type() {
           ></div>
         </div>
       </div>
-      <div className="flex w-full items-center justify-between px-4 py-6 font-medium xs:px-8">
+      <div className="flex fixed bottom-0 w-full items-center justify-between px-4 py-6 font-medium xs:px-8">
         <div className="flex w-full justify-between flex-row gap-8">
           <button
             type="button"
@@ -243,14 +243,6 @@ export default function Type() {
             Clear
           </button>
         </div>
-
-        {/* <a
-          href="mailto:alex.akten@outlook.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <p className="">feedback</p>
-        </a> */}
       </div>
     </main>
   ) : (
