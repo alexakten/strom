@@ -147,14 +147,11 @@ export default function Type() {
   return isAuthenticated ? (
     <main
       style={{ userSelect: "none", height: "100svh" }}
-      className={`flex h-screen w-screen flex-col justify-between ${theme === "dark" ? "bg-neutral-950 text-white" : "bg-zinc-50 text-black"
-        }`}
+      className={`flex h-screen w-screen flex-col justify-between ${
+        theme === "dark" ? "bg-neutral-950 text-white" : "bg-zinc-50 text-black"
+      }`}
     >
-      <Navbar
-        theme={theme}
-        loggedIn={true}
-        user={user}
-      />
+      <Navbar theme={theme} loggedIn={true} user={user} />
       {/* Content area */}
       <div className="flex h-screen items-center justify-center">
         <div
@@ -172,37 +169,89 @@ export default function Type() {
 
           {/* Overlay for text lines */}
           <div
-            className={`absolute bottom-8 z-10 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-              } opacity-85`}
+            className={`absolute bottom-8 z-10 h-8 w-full ${
+              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+            } opacity-85`}
           ></div>
           <div
-            className={`absolute bottom-16 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-              } opacity-90`}
+            className={`absolute bottom-16 h-8 w-full ${
+              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+            } opacity-90`}
           ></div>
           <div
-            className={`absolute bottom-24 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-              } opacity-[0.95]`}
+            className={`absolute bottom-24 h-8 w-full ${
+              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+            } opacity-[0.95]`}
           ></div>
         </div>
       </div>
-      {/* <div className="flex w-full items-center justify-between font-medium">
+      <div className="flex w-full items-center justify-between px-4 py-6 font-medium xs:px-8">
         <div className="flex flex-row gap-8">
-          <button type="button" onClick={saveText}>
-            save
+          <button
+            type="button"
+            onClick={saveText}
+            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm ${
+              theme === "light"
+                ? "text-black hover:bg-zinc-100"
+                : "text-white hover:bg-neutral-900"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={theme === "light" ? "#000" : "#fff"} // Set fill based on theme
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="feather feather-download"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Save
           </button>
-          <button type="button" onClick={clearText}>
-            clear
+          <button
+            type="button"
+            onClick={clearText}
+            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm ${
+              theme === "light"
+                ? "text-black hover:bg-zinc-100"
+                : "text-white hover:bg-neutral-900"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={theme === "light" ? "#000" : "#fff"} // Set fill based on theme
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="feather feather-trash-2"
+            >
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+              <line x1="10" y1="11" x2="10" y2="17" />
+              <line x1="14" y1="11" x2="14" y2="17" />
+            </svg>
+            Clear
           </button>
         </div>
 
-        <a
+        {/* <a
           href="mailto:alex.akten@outlook.com"
           target="_blank"
           rel="noopener noreferrer"
         >
           <p className="">feedback</p>
-        </a>
-      </div> */}
+        </a> */}
+      </div>
     </main>
   ) : (
     <div className="flex h-screen w-screen flex-col items-center justify-center">
