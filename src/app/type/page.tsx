@@ -6,7 +6,7 @@ import {
   LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import Navbar from "../components/Navbar";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import ThemeContext from "../components/ThemeContext";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
@@ -15,15 +15,11 @@ export default function Type() {
 
   const { isAuthenticated, user, isLoading } = useKindeBrowserClient();
 
-  const router = useRouter();
-
-  console.log("Authenticated: ", isAuthenticated);
-  console.log("User: ", user);
-
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [text, setText] = useState("");
 
   const handleInput = (e: React.SyntheticEvent) => {
+
     let target = e.target as HTMLDivElement;
     const htmlContent = target.innerHTML; // Get inner HTML content
 
@@ -38,6 +34,21 @@ export default function Type() {
       localStorage.setItem("savedText", textWithLineBreaks);
     }
   };
+
+  // Overlay to hide UI elements on typing
+  // const [overlayOpacity, setOverlayOpacity] = useState(0);
+  // const [overlayZIndex, setOverlayZIndex] = useState(10);
+
+  // const handleFocus = () => {
+  //   setOverlayOpacity(1);
+  //   setOverlayZIndex(-1);
+  // };
+
+  // const handleBlur = () => {
+  //   setOverlayOpacity(0);
+  //   setOverlayZIndex(10);
+  // };
+
 
   const saveText = () => {
     const blob = new Blob([text], { type: "text/plain" });
@@ -147,11 +158,29 @@ export default function Type() {
   return isAuthenticated ? (
     <main
       style={{ userSelect: "none", height: "100svh" }}
-      className={`flex h-screen w-screen flex-col justify-between ${
-        theme === "dark" ? "bg-neutral-950 text-white" : "bg-zinc-50 text-black"
-      }`}
+      className={`flex h-screen w-screen flex-col justify-between ${theme === "dark" ? "bg-neutral-950 text-white" : "bg-zinc-50 text-black"
+        }`}
     >
+
       <Navbar theme={theme} loggedIn={true} user={user} />
+      {/* Overlays */}
+      {/* <div
+        className={`absolute top-0 left-0 w-40 h-16 ${theme === "dark" ? "bg-neutral-950" : "bg-zinc-50"}`}
+        style={{ opacity: overlayOpacity, zIndex: overlayZIndex, transition: "opacity 0.5s" }}
+      ></div>
+      <div
+        className={`absolute top-0 right-0 w-40 h-16 ${theme === "dark" ? "bg-neutral-950" : "bg-zinc-50"}`}
+        style={{ opacity: overlayOpacity, zIndex: overlayZIndex, transition: "opacity 0.5s" }}
+      ></div>
+      <div
+        className={`absolute bottom-0 left-0 w-40 h-16 ${theme === "dark" ? "bg-neutral-950" : "bg-zinc-50"}`}
+        style={{ opacity: overlayOpacity, zIndex: overlayZIndex, transition: "opacity 0.5s" }}
+      ></div>
+      <div
+        className={`absolute bottom-0 right-0 w-40 h-16 ${theme === "dark" ? "bg-neutral-950" : "bg-zinc-50"}`}
+        style={{ opacity: overlayOpacity, zIndex: overlayZIndex, transition: "opacity 0.5s" }}
+      ></div> */}
+
       {/* Content area */}
       <div className="flex h-screen items-center justify-center">
         <div
@@ -165,23 +194,21 @@ export default function Type() {
             suppressContentEditableWarning={true}
             onBlur={handleInput}
             dangerouslySetInnerHTML={{ __html: text }}
+
           ></div>
 
           {/* Overlay for text lines */}
           <div
-            className={`absolute bottom-8 z-10 h-8 w-full ${
-              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-            } opacity-85`}
+            className={`absolute bottom-8 z-10 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+              } opacity-85`}
           ></div>
           <div
-            className={`absolute bottom-16 h-8 w-full ${
-              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-            } opacity-90`}
+            className={`absolute bottom-16 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+              } opacity-90`}
           ></div>
           <div
-            className={`absolute bottom-24 h-8 w-full ${
-              theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
-            } opacity-[0.95]`}
+            className={`absolute bottom-24 h-8 w-full ${theme === "light" ? "bg-zinc-50" : "bg-neutral-950"
+              } opacity-[0.95]`}
           ></div>
         </div>
       </div>
@@ -190,11 +217,10 @@ export default function Type() {
           <button
             type="button"
             onClick={saveText}
-            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm ${
-              theme === "light"
-                ? "text-black hover:bg-zinc-100"
-                : "text-white hover:bg-neutral-900"
-            }`}
+            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm ${theme === "light"
+              ? "text-black hover:bg-zinc-100"
+              : "text-white hover:bg-neutral-900"
+              }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -217,11 +243,10 @@ export default function Type() {
           <button
             type="button"
             onClick={clearText}
-            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm ${
-              theme === "light"
-                ? "text-black hover:bg-zinc-100"
-                : "text-white hover:bg-neutral-900"
-            }`}
+            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm ${theme === "light"
+              ? "text-black hover:bg-zinc-100"
+              : "text-white hover:bg-neutral-900"
+              }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
