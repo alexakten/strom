@@ -108,7 +108,7 @@ const Type: React.FC = () => {
           <div
             ref={editableRef}
             className={`no-select relative w-full select-none whitespace-pre-wrap text-xl font-normal leading-8 outline-none ${
-              theme === "dark" ? "text-dark-text" : "text-light-text"
+              theme === "dark" ? "text-light-text" : "text-dark-text"
             }`}
             contentEditable={true}
             suppressContentEditableWarning={true}
