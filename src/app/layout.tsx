@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "./components/ThemeContext";
 
 export const metadata = {
-  title: "Mendly",
+  title: "Strōm",
   description: "Minimalistic writing.",
 };
 
