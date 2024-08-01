@@ -14,16 +14,21 @@ export default function Home() {
 
   const handleInput = (e: any) => {
     setText(e.target.innerHTML);
+    setTimeout(() => {
+      setCursorToEnd(editableRef.current);
+    }, 0);
   };
 
-  const setCursorToEnd = (element: HTMLDivElement) => {
-    const range = document.createRange();
-    const selection = window.getSelection();
-    if (selection) {
-      range.selectNodeContents(element);
-      range.collapse(false); // false collapses the range to its end
-      selection.removeAllRanges();
-      selection.addRange(range);
+  const setCursorToEnd = (element: HTMLDivElement | null) => {
+    if (element) {
+      const range = document.createRange();
+      const selection = window.getSelection();
+      if (selection) {
+        range.selectNodeContents(element);
+        range.collapse(false); // false collapses the range to its end
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
     }
   };
 
@@ -52,6 +57,33 @@ export default function Home() {
     }
   }, []);
 
+  useEffect(() => {
+    if (editableRef.current) {
+      preventAutomaticScrollUpOnNewLine(editableRef.current);
+    }
+  }, []);
+
+  const preventAutomaticScrollUpOnNewLine = (
+    bottomChildDiv: HTMLDivElement,
+  ) => {
+    let scrollY: number;
+    bottomChildDiv.addEventListener("keydown", () => {
+      scrollY = window.scrollY;
+    });
+    bottomChildDiv.addEventListener("input", () => {
+      if (scrollY !== window.scrollY) {
+        window.scrollTo({ top: scrollY });
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (editableRef.current) {
+      editableRef.current.innerHTML = text;
+      setCursorToEnd(editableRef.current);
+    }
+  }, [text]);
+
   return (
     <main
       className={`my-48 flex flex-col justify-between ${
@@ -61,7 +93,7 @@ export default function Home() {
       }`}
     >
       <Navbar />
-      <div className="flex flex-col items-center  justify-center px-6 text-left xs:px-8">
+      <div className="flex flex-col items-center justify-center px-6 text-left xs:px-8">
         <div className="flex w-full max-w-4xl flex-col items-start">
           <h1 className="text-[clamp(42px,8vw,120px)] font-medium leading-[0.95] tracking-[-1px]">
             Write with zero
@@ -122,8 +154,7 @@ export default function Home() {
                 }`}
                 contentEditable={true}
                 suppressContentEditableWarning={true}
-                onBlur={handleInput}
-                dangerouslySetInnerHTML={{ __html: text }}
+                onInput={handleInput}
               ></div>
               {/* Overlay for text lines */}
               <div
