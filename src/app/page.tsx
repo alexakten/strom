@@ -16,21 +16,39 @@ export default function Home() {
     setText(e.target.innerHTML);
   };
 
+  const setCursorToEnd = (element: HTMLDivElement) => {
+    const range = document.createRange();
+    const selection = window.getSelection();
+    if (selection) {
+      range.selectNodeContents(element);
+      range.collapse(false); // false collapses the range to its end
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        editableRef.current &&
+        !editableRef.current.contains(event.target as Node)
+      ) {
+        editableRef.current.focus();
+        setCursorToEnd(editableRef.current);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     if (editableRef.current !== null) {
-      // Focus the contentEditable div
       editableRef.current.focus();
-
-      // Set cursor to the end of the content
-      const range = document.createRange();
-      range.selectNodeContents(editableRef.current);
-      range.collapse(false); // false means collapse to the end
-      const sel = window.getSelection();
-      if (sel) {
-        // null check here
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
+      setCursorToEnd(editableRef.current);
     }
   }, []);
 
