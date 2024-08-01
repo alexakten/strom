@@ -202,34 +202,68 @@ export default function Home() {
             </div>
           </div>
 
+          {/* <div className="mt-8 flex flex-row items-center gap-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="feather opacity-40 feather-corner-left-up"
+            >
+              <link
+                type="text/css"
+                rel="stylesheet"
+                id="dark-mode-custom-link"
+              />
+              <link
+                type="text/css"
+                rel="stylesheet"
+                id="dark-mode-general-link"
+              />
+              <style lang="en" type="text/css" id="dark-mode-custom-style" />
+              <style lang="en" type="text/css" id="dark-mode-native-style" />
+              <style lang="en" type="text/css" id="dark-mode-native-sheet" />
+              <polyline points="14 9 9 4 4 9" />
+              <path d="M20 20h-7a4 4 0 0 1-4-4V4" />
+            </svg>
+            <p className="text-sm font-medium opacity-40">
+              Psst... you can edit the text above
+            </p>
+          </div> */}
+
           <div className="mt-24 grid max-w-4xl gap-16 xs:grid-cols-2 lg:grid-cols-4">
             <div className="flex w-full flex-col items-start gap-2 text-left">
               <p className="text-2xl font-medium">No distractions</p>
-              <p className="text-lg font-normal leading-tight opacity-50">
+              <p className="text-lg font-normal leading-tight opacity-40">
                 One font, one color, one feature—writing.
               </p>
             </div>
             <div className="flex flex-col items-start gap-2 text-left">
               <p className="text-2xl font-medium">Minimal editing</p>
-              <p className="text-lg font-normal leading-tight opacity-50">
+              <p className="text-lg font-normal leading-tight opacity-40">
                 You can only edit your last line.
               </p>
             </div>
             <div className="flex flex-col items-start gap-2 text-left">
               <p className="text-2xl font-medium">Dark mode</p>
-              <p className="text-lg font-normal leading-tight opacity-50">
+              <p className="text-lg font-normal leading-tight opacity-40">
                 Switch between light or dark mode.
               </p>
             </div>
             <div className="flex flex-col items-start gap-2 text-left">
               <p className="text-2xl font-medium">Fully private</p>
-              <p className="text-lg font-normal leading-tight opacity-50">
+              <p className="text-lg font-normal leading-tight opacity-40">
                 Everything is only saved locally.
               </p>
             </div>
           </div>
 
-          <p className="mt-24 text-sm opacity-50">
+          <p className="mt-32 text-sm font-medium opacity-40">
             🧑🏽‍💻 Built by{" "}
             <span className="underline">
               <a
