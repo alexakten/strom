@@ -92,7 +92,7 @@ export default function Home() {
       transition={{ ease: "easeInOut", duration: 0.5 }}
     >
       <main
-        className={`my-48 flex flex-col justify-between ${
+        className={`mb-12 mt-48 flex flex-col justify-between ${
           theme === "dark"
             ? "bg-dark-background text-light-text"
             : "bg-light-background text-dark-text"
@@ -228,6 +228,19 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          <p className="mt-24 text-sm opacity-50">
+            🧑🏽‍💻 Built by{" "}
+            <span className="underline">
+              <a
+                href="https://www.alexakten.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Alex
+              </a>
+            </span>
+          </p>
         </div>
       </main>
     </Motion>
