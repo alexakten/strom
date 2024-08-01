@@ -51,13 +51,41 @@ export default function Home() {
           </h1>
           <Link className="mt-8" href={"/type"}>
             <button
-              className={`rounded-2xl px-6 py-4 text-lg font-medium ${
+              className={`flex items-center gap-3 rounded-2xl px-6 py-4 text-lg font-medium ${
                 theme === "dark"
                   ? "bg-light-background text-dark-background hover:bg-[#EFE6DD]"
                   : "bg-dark-background text-light-text hover:bg-zinc-900"
               }`}
             >
-              Start writing for free
+              <p>Start writing for free</p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="feather feather-edit-3"
+              >
+                <link
+                  type="text/css"
+                  rel="stylesheet"
+                  id="dark-mode-custom-link"
+                />
+                <link
+                  type="text/css"
+                  rel="stylesheet"
+                  id="dark-mode-general-link"
+                />
+                <style lang="en" type="text/css" id="dark-mode-custom-style" />
+                <style lang="en" type="text/css" id="dark-mode-native-style" />
+                <style lang="en" type="text/css" id="dark-mode-native-sheet" />
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+              </svg>
             </button>
           </Link>
         </div>
