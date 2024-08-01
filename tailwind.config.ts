@@ -9,7 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        appleblue: "#387FF5",
+        "light-background": "#FFF7ED",
+        "light-text": "#FFF7ED",
+        "dark-background": "#27272a", // This is the equivalent of zinc-800
+        "dark-text": "#27272a", // This is the equivalent of zinc-800
       },
       opacity: {
         "85": "0.85",

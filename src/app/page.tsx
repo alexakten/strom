@@ -1,59 +1,135 @@
+// app/page.tsx
+"use client";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
-import React, { useContext, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import ThemeContext from "./components/ThemeContext";
 
 export default function Home() {
+  const { theme } = useContext(ThemeContext);
+  const [text, setText] = useState(
+    "It was a bright cold day in April, and the clocks were striking thirteen. ",
+  );
+  const editableRef = useRef<HTMLDivElement | null>(null);
+
+  const handleInput = (e: any) => {
+    setText(e.target.innerHTML);
+  };
+
+  useEffect(() => {
+    if (editableRef.current !== null) {
+      // Focus the contentEditable div
+      editableRef.current.focus();
+
+      // Set cursor to the end of the content
+      const range = document.createRange();
+      range.selectNodeContents(editableRef.current);
+      range.collapse(false); // false means collapse to the end
+      const sel = window.getSelection();
+      if (sel) {
+        // null check here
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+  }, []);
+
   return (
-    <main className="flex h-[100svh] flex-col justify-between bg-neutral-950 text-white">
-      {/* -------------------------------------------------------------------------- */}
-      <Navbar loggedIn={false} />
-      {/* -------------------------------------------------------------------------- */}
-      <div className="flex h-screen flex-col items-center justify-center gap-6 text-center">
-        <h1 className="text-[clamp(42px,5.5vw,72px)] font-medium leading-[0.95] tracking-[-1px]">
-          Write with zero
-          <br /> distractions
-        </h1>
-        <p className="max-w-[340px] text-lg opacity-50">
-          Mendly is a minimalistic writing tool that helps you focus on your
-          ideas.
-        </p>
-        <Link href={"/api/auth/login?post_login_redirect_url=%2Ftype"}>
-          <button className="rounded-full bg-blue-500 px-4 py-2 font-medium text-zinc-50 hover:bg-blue-600">
-            Start writing
-          </button>
-        </Link>
-        {/* -------------------------------------------------------------------------- */}
-        <div className="hidden gap-20 pt-16 md:grid md:grid-cols-2 lg:grid-cols-4">
-          {/* -------------------------------------------------------------------------- */}
-          <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
-            <p className="font-medium">No distractions</p>
+    <main
+      className={`my-48 flex flex-col justify-between ${
+        theme === "dark"
+          ? "bg-dark-background text-light-text"
+          : "bg-light-background text-dark-text"
+      }`}
+    >
+      <Navbar />
+      <div className="flex flex-col items-center  justify-center px-6 text-left xs:px-8">
+        <div className="flex w-full max-w-4xl flex-col items-start">
+          <h1 className="text-[clamp(42px,8vw,120px)] font-medium leading-[0.95] tracking-[-1px]">
+            Write with zero
+            <br /> distractions.
+          </h1>
+          <Link className="mt-8" href={"/type"}>
+            <button
+              className={`rounded-2xl px-6 py-4 text-lg font-medium ${
+                theme === "dark"
+                  ? "bg-light-background text-dark-background hover:bg-[#EFE6DD]"
+                  : "bg-dark-background text-light-text hover:bg-zinc-900"
+              }`}
+            >
+              Start writing for free
+            </button>
+          </Link>
+        </div>
+
+        <div
+          className={`relative mt-16 flex h-[28rem] w-full max-w-5xl justify-center rounded-[2rem] ${
+            theme === "dark" ? "bg-light-background" : "bg-dark-background"
+          }`}
+        >
+          <div className="absolute bottom-48 mt-16 flex h-32 w-full max-w-lg justify-center overflow-hidden px-6">
+            <div className="flex h-full w-full cursor-text select-none items-end overflow-hidden">
+              <div
+                ref={editableRef}
+                className={`no-select relative w-full select-none whitespace-pre-wrap text-xl font-normal leading-8 outline-none ${
+                  theme === "dark" ? "text-dark-background" : "text-light-text"
+                }`}
+                contentEditable={true}
+                suppressContentEditableWarning={true}
+                onBlur={handleInput}
+                dangerouslySetInnerHTML={{ __html: text }}
+              ></div>
+              {/* Overlay for text lines */}
+              <div
+                className={`absolute bottom-8 z-10 h-8 w-full ${
+                  theme === "dark"
+                    ? "bg-light-background"
+                    : "bg-dark-background"
+                } opacity-85`}
+              ></div>
+              <div
+                className={`absolute bottom-16 z-10 h-8 w-full ${
+                  theme === "dark"
+                    ? "bg-light-background"
+                    : "bg-dark-background"
+                } opacity-90`}
+              ></div>
+              <div
+                className={`absolute bottom-24 z-10 h-8 w-full ${
+                  theme === "dark"
+                    ? "bg-light-background"
+                    : "bg-dark-background"
+                } opacity-[0.95]`}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-24 grid max-w-4xl gap-16 xs:grid-cols-2 lg:grid-cols-4">
+          <div className="flex w-full flex-col items-start gap-1 text-left">
+            <p className="text-2xl font-medium">No distractions</p>
             <p className="font-thin leading-tight opacity-50">
               One font, one color, one feature—writing.
             </p>
           </div>
-
-          {/* -------------------------------------------------------------------------- */}
-          <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
-            <p className="font-medium">Minimal editing</p>
+          <div className="flex flex-col items-start gap-1 text-left">
+            <p className="text-2xl font-medium">Minimal editing</p>
             <p className="font-thin leading-tight opacity-50">
               You can only edit your last line.
             </p>
           </div>
-          {/* -------------------------------------------------------------------------- */}
-          <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
-            <p className="font-medium">Dark mode</p>
+          <div className="flex flex-col items-start gap-1 text-left">
+            <p className="text-2xl font-medium">Dark mode</p>
             <p className="font-thin leading-tight opacity-50">
               Switch between light or dark mode.
             </p>
           </div>
-          {/* -------------------------------------------------------------------------- */}
-          <div className="flex max-w-[156px] flex-col items-start gap-1 text-left">
-            <p className="font-medium">Fully private</p>
+          <div className="flex flex-col items-start gap-1 text-left">
+            <p className="text-2xl font-medium">Fully private</p>
             <p className="font-thin leading-tight opacity-50">
               Everything is only saved locally.
             </p>
           </div>
-          {/* -------------------------------------------------------------------------- */}
         </div>
       </div>
     </main>

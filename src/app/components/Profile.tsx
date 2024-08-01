@@ -43,8 +43,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
     <div className="relative" ref={dropdownRef}>
       <button
         className={`h-10 w-10 rounded-full text-xs font-medium ${theme === "light"
-          ? "bg-zinc-200 text-black"
-          : "bg-neutral-900 text-white"
+          ? "bg-[#f5ede4] text-zinc-800"
+          : "bg-zinc-900 text-[#FFF7ED]"
           }`}
         onClick={toggleDropdown}
       >
@@ -54,8 +54,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
       {isDropdownOpen && (
         <div
           className={`absolute right-0 top-12 w-64 rounded-lg p-4 ${theme === "light"
-            ? "bg-zinc-200 text-black"
-            : "bg-neutral-900 text-white"
+            ? "bg-[#f5ede4] text-black"
+            : "bg-zinc-900 text-[#FFF7ED]"
             }`}
         >
           <div>
@@ -67,8 +67,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
           <div className="flex flex-col pt-4 text-sm">
             <button
               className={`flex w-full items-center gap-2 rounded-md px-4 py-2 ${theme === "light"
-                ? "text-black hover:bg-zinc-300"
-                : "text-white hover:bg-neutral-800"
+                ? "text-black hover:bg-[#e8e0d8]"
+                : "text-[#FFF7ED] hover:bg-neutral-800"
                 }`}
               onClick={toggleTheme} // Trigger theme change
             >
@@ -120,8 +120,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
             <Link
               href={"mailto:alex.akten@outlook.com"}
               className={`flex w-full items-center gap-2 rounded-md px-4 py-2  ${theme === "light"
-                ? "text-black hover:bg-zinc-300"
-                : "text-white hover:bg-neutral-800"
+                ? "text-black hover:bg-[#e8e0d8]"
+                : "text-[#FFF7ED] hover:bg-neutral-800"
                 }`}
             >
               <svg
@@ -130,7 +130,7 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
                 height="16"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke={theme === "light" ? "#000" : "#fff"} // Set fill based on theme
+                stroke={theme === "light" ? "000" : "#FFF7ED"} // Set fill based on theme
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -147,7 +147,7 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
             ></div>
 
             <LogoutLink
-              className={`flex w-full items-center gap-2 rounded-md px-4 py-2 text-red-600 ${theme === "light" ? "hover:bg-zinc-300" : "hover:bg-neutral-800"
+              className={`flex w-full items-center gap-2 rounded-md px-4 py-2 text-red-600 ${theme === "light" ? "hover:bg-[#e8e0d8]" : "hover:bg-neutral-800"
                 }`}
             >
               <svg

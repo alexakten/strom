@@ -1,169 +1,26 @@
+/* globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
-  font-family: 'Neue Haas Grotesk';
-  src: url('/fonts/NHaasGroteskTXPro-55Rg.ttf') format('truetype');
+  font-family: "Neue Haas Grotesk";
+  src: url("/fonts/NHaasGroteskTXPro-55Rg.ttf") format("truetype");
   font-display: swap;
   font-weight: 400; /* normal */
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Neue Haas Grotesk';
-  src: url('/fonts/NHaasGroteskTXPro-65Md.ttf') format('truetype');
+  font-family: "Neue Haas Grotesk";
+  src: url("/fonts/NHaasGroteskTXPro-65Md.ttf") format("truetype");
   font-display: swap;
   font-weight: 500; /* medium weight for example */
   font-style: normal;
 }
 
-/* Add these styles to your stylesheet */
-.settings-window {
-  transform: translateX(115%);  /* Initially push it off the screen */
-  transition: transform 0.3s ease;  /* Animation effect */
-}
-
-.settings-window.open {
-  transform: translateX(0);  /* Show it */
-}
-
-
-/* Relax */
-@keyframes breatheAnimationRelax {
-  0%, 100% {
-    width: 0;
-    height: 0;
-  }
-  25%, 50% {
-    width: 256px;
-    height: 256px;
-  }
-  75% {
-    width: 0;
-    height: 0;
-  }
-}
-
-.animate-breathe-relax {
-  animation: breatheAnimationRelax 16s infinite;
-}
-
-/* Energy */
-@keyframes breatheAnimationEnergy {
-  0% {
-    width: 0;
-    height: 0;
-  }
-  22.22% {  /* Breathe in complete */
-    width: 256px;
-    height: 256px;
-  }
-  33.33% {  /* 22.22 + 11.11 (Hold after breathe in) */
-    width: 256px;
-    height: 256px;
-  }
-  100% {
-    width: 0;
-    height: 0;
-  }
-}
-
-.animate-breathe-energy {
-  animation: breatheAnimationEnergy 9s infinite;
-}
-
-/* Sleep */
-@keyframes breatheAnimationSleep {
-  0% {
-    width: 0;
-    height: 0;
-  }
-  21.05% {  /* Breathe in complete */
-    width: 256px;
-    height: 256px;
-  }
-  57.89% {  /* 21.05 + 36.84 */
-    width: 256px;
-    height: 256px;
-  }
-  100% {
-    width: 0;
-    height: 0;
-  }
-}
-
-.animate-breathe-sleep {
-  animation: breatheAnimationSleep 19s infinite;
-}
-
-@keyframes textAnimationRelax {
-  0%, 24.99% {
-    content: "breathe in";
-  }
-  25%, 49.99% {
-    content: "hold";
-  }
-  50%, 74.99% {
-    content: "exhale";
-  }
-  75%, 100% {
-    content: "hold";
-  }
-}
-
-
-@keyframes textAnimationEnergy {
-  0%, 22.22% {
-    content: "breathe in";
-  }
-  22.23%, 33.33% {
-    content: "breathe in";
-  }
-  33.34%, 100% {
-    content: "exhale";
-  }
-}
-
-
-@keyframes textAnimationSleep {
-  0%, 21.05% {
-    content: "breathe in";
-  }
-  21.06%, 57.89% {
-    content: "hold";
-  }
-  57.90%, 100% {
-    content: "exhale";
-  }
-}
-
-.text-relax::before {
-  content: "";
-  animation: textAnimationRelax 16s infinite;
-}
-
-.text-energy::before {
-  content: "";
-  animation: textAnimationEnergy 9s infinite;
-}
-
-.text-sleep::before {
-  content: "";
-  animation: textAnimationSleep 19s infinite;
-}
-
-.fixed-width-text {
-  width: 100px; /* Adjust this value to your liking */
-  text-align: center;
-  display: inline-block;
-  overflow: hidden;
-}
-
-
 .editable-div::before {
-  content: '...';
+  content: "...";
   display: inline-block;
   opacity: 0.6;
   pointer-events: none; /* make sure the pseudo-element doesn't interfere with editing */
@@ -171,98 +28,13 @@
 }
 
 .editable-div.active::before {
-  content: '';
-}
-
-
-/* Common style to ensure the div shrinks from the right */
-.inner-div {
-  transform-origin: left;
-  animation-timing-function: linear; 
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.planet-1 {
-  animation: rotate 16s linear infinite;
-}
-
-.planet-2 {
-  animation: rotate 24s linear infinite;
-}
-
-.planet-3 {
-  animation: rotate 32s linear infinite;
-}
-
-@keyframes meditateShrink {
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-.meditate-5m {
-  animation: meditateShrink calc(60*5s) forwards linear;
-}
-
-.meditate-10m {
-  animation: meditateShrink calc(60*10s) forwards linear;
-}
-
-.meditate-15m {
-  animation: meditateShrink calc(60*15s) forwards linear;
-}
-
-.meditate-20m {
-  animation: meditateShrink calc(60*20s) forwards linear;
-}
-
-.meditate-30m {
-  animation: meditateShrink calc(60*30s) forwards linear;
-}
-
-.meditate-60m {
-  animation: meditateShrink calc(60*60s) forwards linear;
-}
-
-
-
-.gratitude-entry::before {
-  content: "I am grateful for";
-  display: inline;
-  font-weight: normal;
-  margin-right: 4px; /* Adjust this margin to your liking */
-  pointer-events: none; /* Makes sure it doesn't interfere with editing */
-  color: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  content: "";
 }
 
 body {
-  font-family: 'Neue Haas Grotesk', sans-serif;
-  background-color: #0A0A0A;
-    -webkit-font-smoothing: antialiased;
+  font-family: "Neue Haas Grotesk", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #fff7ed;
 }
 
 .no-select {
@@ -274,81 +46,28 @@ body {
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+.dark-theme {
+  background-color: #27272a;
+  color: #fff7ed;
 }
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.light-theme {
+  background-color: #fff7ed;
+  color: #27272a;
 }
 
-/* Default styles for both sliders */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: .2s;
-  border-radius: 34px; 
+.bg-light-background {
+  background-color: #fff7ed;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  transition: .1s;
-  border-radius: 50%; 
+.text-light-text {
+  color: #fff7ed;
 }
 
-/* Styles for slider-light */
-.slider-light {
-  background-color: #e1e1e1;
+.bg-dark-background {
+  background-color: #27272a;
 }
 
-.slider-light:before {
-  background-color: white;
+.text-dark-text {
+  color: #27272a;
 }
-
-input:checked + .slider-light {
-  background-color: #000;
-}
-
-input:checked + .slider-light:before {
-  background-color: white;
-  transform: translateX(26px);
-}
-
-/* Styles for slider-dark */
-.slider-dark {
-  background-color: #252525; /* Dark gray background */
-}
-
-.slider-dark:before {
-  background-color: #000; /* Black toggle when off */
-}
-
-input:checked + .slider-dark {
-  background-color: white; /* White background with toggle on */
-}
-
-input:checked + .slider-dark:before {
-  background-color: #000; /* Black toggle when on */
-  transform: translateX(26px);
-}
-
-/* Focus effect for both sliders */
-input:focus + .slider {
-  box-shadow: 0 0 1px #ffffff;
-}
-
-
