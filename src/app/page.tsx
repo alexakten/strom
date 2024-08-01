@@ -152,27 +152,27 @@ export default function Home() {
         </div>
 
         <div className="mt-24 grid max-w-4xl gap-16 xs:grid-cols-2 lg:grid-cols-4">
-          <div className="flex w-full flex-col items-start gap-1 text-left">
+          <div className="flex w-full flex-col items-start gap-2 text-left">
             <p className="text-2xl font-medium">No distractions</p>
-            <p className="font-thin leading-tight opacity-50">
+            <p className="text-lg font-normal leading-tight opacity-50">
               One font, one color, one feature—writing.
             </p>
           </div>
-          <div className="flex flex-col items-start gap-1 text-left">
+          <div className="flex flex-col items-start gap-2 text-left">
             <p className="text-2xl font-medium">Minimal editing</p>
-            <p className="font-thin leading-tight opacity-50">
+            <p className="text-lg font-normal leading-tight opacity-50">
               You can only edit your last line.
             </p>
           </div>
-          <div className="flex flex-col items-start gap-1 text-left">
+          <div className="flex flex-col items-start gap-2 text-left">
             <p className="text-2xl font-medium">Dark mode</p>
-            <p className="font-thin leading-tight opacity-50">
+            <p className="text-lg font-normal leading-tight opacity-50">
               Switch between light or dark mode.
             </p>
           </div>
-          <div className="flex flex-col items-start gap-1 text-left">
+          <div className="flex flex-col items-start gap-2 text-left">
             <p className="text-2xl font-medium">Fully private</p>
-            <p className="font-thin leading-tight opacity-50">
+            <p className="text-lg font-normal leading-tight opacity-50">
               Everything is only saved locally.
             </p>
           </div>
