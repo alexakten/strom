@@ -1,11 +1,31 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "./components/ThemeContext";
-import Head from "next/head";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Strōm",
   description: "Write with zero distractions.",
+  openGraph: {
+    title: "Strōm",
+    description: "Write with zero distractions.",
+    url: "https://use-strom.vercel.app/",
+    type: "website",
+    images: [
+      {
+        url: "https://use-strom.vercel.app/thumbnail.webp",
+        width: 1200,
+        height: 630,
+        alt: "Strōm Thumbnail",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Strōm",
+    description: "Write with zero distractions.",
+    images: ["https://use-strom.vercel.app/thumbnail.webp"],
+  },
 };
 
 export default function RootLayout({
@@ -15,25 +35,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta property="og:title" content={metadata.title} />
-        <meta property="og:description" content={metadata.description} />
-        <meta property="og:image" content="/thumbnail.webp" />
-        <meta property="og:url" content="https://use-strom.vercel.app/" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={metadata.title} />
-        <meta name="twitter:description" content={metadata.description} />
-        <meta name="twitter:image" content="/thumbnail.webp" />
-      </Head>
-      <ThemeProvider>
-        <body>
+      <body>
+        <ThemeProvider>
           {children}
           <Analytics />
-        </body>
-      </ThemeProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
