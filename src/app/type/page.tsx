@@ -100,7 +100,7 @@ const Type: React.FC = () => {
     >
       <Navbar />
 
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex px-4 sm:px-8 h-screen items-center justify-center">
         <div
           className="relative flex h-32 w-full max-w-lg -translate-y-1/2 transform cursor-text select-none items-end overflow-hidden"
           onClick={handleContainerClick}
