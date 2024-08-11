@@ -4,27 +4,27 @@ import { ThemeProvider } from "./components/ThemeContext";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Strōm",
+  title: "Mendly",
   description: "Write with zero distractions.",
   openGraph: {
-    title: "Strōm",
+    title: "Mendly",
     description: "Write with zero distractions.",
-    url: "https://use-strom.vercel.app/",
+    url: "https://mendly.app/",
     type: "website",
     images: [
       {
-        url: "https://use-strom.vercel.app/thumbnail.webp",
+        url: "https://mendly.app/thumbnail.webp",
         width: 1200,
         height: 630,
-        alt: "Strōm Thumbnail",
+        alt: "Mendly Thumbnail",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Strōm",
+    title: "Mendly",
     description: "Write with zero distractions.",
-    images: ["https://use-strom.vercel.app/thumbnail.webp"],
+    images: ["https://mendly.app/thumbnail.webp"],
   },
 };
 

@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
       }`}
     >
       <Link href="/">
-        <h2 className="text-lg font-medium tracking-tight">strōm</h2>
+        <h2 className="text-lg font-medium tracking-tight">mendly</h2>
       </Link>
       <div>
         <button
