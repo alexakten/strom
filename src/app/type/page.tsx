@@ -112,6 +112,7 @@ const Type: React.FC = () => {
             }`}
             contentEditable={true}
             suppressContentEditableWarning={true}
+            spellCheck={false}
             onBlur={handleInput}
             dangerouslySetInnerHTML={{ __html: text }}
           ></div>
