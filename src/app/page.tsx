@@ -175,6 +175,8 @@ export default function Home() {
                   contentEditable={true}
                   suppressContentEditableWarning={true}
                   onInput={handleInput}
+                  spellCheck={false}
+              
                 ></div>
                 {/* Overlay for text lines */}
                 <div
