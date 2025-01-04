@@ -4,10 +4,10 @@ import { ThemeProvider } from "./components/ThemeContext";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Mendly",
+  title: "Strōm",
   description: "Write with zero distractions.",
   openGraph: {
-    title: "Mendly",
+    title: "Strōm",
     description: "Write with zero distractions.",
     url: "https://mendly.app/",
     type: "website",
