@@ -9,11 +9,13 @@ const Navbar: React.FC = () => {
   return (
     <nav
       className={`fixed top-0 z-50 flex w-full items-center justify-between px-4 py-6 xs:px-8 ${
-        theme === "dark" ? " bg-dark-background text-light-text" : "bg-light-background text-dark-text"
+        theme === "dark"
+          ? " bg-dark-background text-light-text"
+          : "bg-light-background text-dark-text"
       }`}
     >
       <Link href="/">
-        <h2 className="text-lg font-medium tracking-tight">mendly</h2>
+        <h2 className="text-lg font-medium tracking-tight">strōm</h2>
       </Link>
       <div>
         <button
