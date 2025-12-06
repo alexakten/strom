@@ -269,7 +269,7 @@ export default function Home() {
             🧑🏽‍💻 Built by{" "}
             <span className="underline">
               <a
-                href="https://www.alexakten.com"
+                href="https://www.autogram.id/alex"
                 target="_blank"
                 rel="noopener noreferrer"
               >
